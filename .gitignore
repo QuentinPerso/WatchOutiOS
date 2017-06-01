@@ -1,0 +1,57 @@
+Pods/Alamofire/LICENSE
+Pods/Alamofire/README.md
+Pods/Alamofire/Source/AFError.swift
+Pods/Alamofire/Source/Alamofire.swift
+Pods/Alamofire/Source/DispatchQueue+Alamofire.swift
+Pods/Alamofire/Source/MultipartFormData.swift
+Pods/Alamofire/Source/NetworkReachabilityManager.swift
+Pods/Alamofire/Source/Notifications.swift
+Pods/Alamofire/Source/ParameterEncoding.swift
+Pods/Alamofire/Source/Request.swift
+Pods/Alamofire/Source/Response.swift
+Pods/Alamofire/Source/ResponseSerialization.swift
+Pods/Alamofire/Source/Result.swift
+Pods/Alamofire/Source/ServerTrustPolicy.swift
+Pods/Alamofire/Source/SessionDelegate.swift
+Pods/Alamofire/Source/SessionManager.swift
+Pods/Alamofire/Source/TaskDelegate.swift
+Pods/Alamofire/Source/Timeline.swift
+Pods/Alamofire/Source/Validation.swift
+Pods/AlamofireImage/LICENSE
+Pods/AlamofireImage/README.md
+Pods/AlamofireImage/Source/AFIError.swift
+Pods/AlamofireImage/Source/Image.swift
+Pods/AlamofireImage/Source/ImageCache.swift
+Pods/AlamofireImage/Source/ImageDownloader.swift
+Pods/AlamofireImage/Source/ImageFilter.swift
+Pods/AlamofireImage/Source/Request+AlamofireImage.swift
+Pods/AlamofireImage/Source/UIButton+AlamofireImage.swift
+Pods/AlamofireImage/Source/UIImage+AlamofireImage.swift
+Pods/AlamofireImage/Source/UIImageView+AlamofireImage.swift
+Pods/Pods.xcodeproj/project.pbxproj
+Pods/Pods.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/Alamofire.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/AlamofireImage.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/Pods-WatchOut.xcscheme
+Pods/Pods.xcodeproj/xcuserdata/admin.xcuserdatad/xcschemes/xcschememanagement.plist
+Pods/Target Support Files/Alamofire/Alamofire-dummy.m
+Pods/Target Support Files/Alamofire/Alamofire-prefix.pch
+Pods/Target Support Files/Alamofire/Alamofire-umbrella.h
+Pods/Target Support Files/Alamofire/Alamofire.modulemap
+Pods/Target Support Files/Alamofire/Alamofire.xcconfig
+Pods/Target Support Files/Alamofire/Info.plist
+Pods/Target Support Files/AlamofireImage/AlamofireImage-dummy.m
+Pods/Target Support Files/AlamofireImage/AlamofireImage-prefix.pch
+Pods/Target Support Files/AlamofireImage/AlamofireImage-umbrella.h
+Pods/Target Support Files/AlamofireImage/AlamofireImage.modulemap
+Pods/Target Support Files/AlamofireImage/AlamofireImage.xcconfig
+Pods/Target Support Files/AlamofireImage/Info.plist
+Pods/Target Support Files/Pods-WatchOut/Info.plist
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-acknowledgements.markdown
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-acknowledgements.plist
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-dummy.m
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-frameworks.sh
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-resources.sh
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut-umbrella.h
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.debug.xcconfig
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.modulemap
+Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.release.xcconfig

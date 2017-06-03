@@ -17,6 +17,8 @@ class MapVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
+    var searchOverlay:SearchZoneView!
+    
     var autoCompleteRequest:DataRequest?
     
     var timeListRequest:DataRequest?
@@ -45,6 +47,13 @@ class MapVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.bringSubview(toFront: autocompleteView)
+        mapView.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10)
+        
+//        if searchOverlay == nil {
+//            searchOverlay = SearchZoneView(mapView: mapView)
+//            self.view.addSubview(searchOverlay)
+//        }
+
     }
     
     func setupViews() {
@@ -67,13 +76,13 @@ class MapVC: UIViewController {
         if locAuthStatus == .notDetermined {
             
             LocationManager.shared.locationInUseGranted = {[weak self] in
-                self?.mapView.setUserTrackingMode(.follow, animated: true)
+                self?.mapView.setUserTrackingMode(.follow, animated: false)
             }
             
             LocationManager.shared.requestLocAuth()
         }
         else if LocationManager.hasLocalisationAuth {
-            mapView.setUserTrackingMode(.follow, animated: true)
+            mapView.setUserTrackingMode(.follow, animated: false)
         }
         else {
             
@@ -103,11 +112,16 @@ extension MapVC:UIGestureRecognizerDelegate {
     func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
         
         if gestureRecognizer.state == .began {
-            
-            
             timeListRequest?.cancel()
             searchBar.resignFirstResponder()
-            
+
+            if mapView.selectedAnnotations.count == 0 {
+                if searchOverlay == nil {
+                    searchOverlay = SearchZoneView(mapView: mapView)
+                    self.view.addSubview(searchOverlay)
+                }
+                searchOverlay.show()
+            }
         }
 
         if mapView.selectedAnnotations.count == 0, gestureRecognizer.state == .ended {
@@ -129,12 +143,12 @@ extension MapVC {
     
     func callAPITimeLists() {
         
-//        if searchOverlay != nil, !isInWorldView {
-//            if searchOverlay.alpha == 0 {
-//                searchOverlay.show()
-//            }
-//            searchOverlay.startLoading()
-//        }
+        if searchOverlay != nil{
+            if searchOverlay.alpha == 0 {
+                searchOverlay.show()
+            }
+            searchOverlay.startLoading()
+        }
         
         
         let mapSearchSidePadding = SearchZoneView.mapSearchSidePadding
@@ -156,9 +170,12 @@ extension MapVC {
         
         timeListRequest?.cancel()
         
-        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovie?.uniqID, completion: { [weak self] theaterShowTimes in
+        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovie?.uniqID, completion: { [weak self] theaterShowTimes, canceled in
             
+            if !canceled { self?.searchOverlay.hide() }
+            print(theaterShowTimes?.count)
             if theaterShowTimes == nil { return }
+            print("theaterShowTimes")
             self?.reloadMap(theaterShowTimes: theaterShowTimes!)
             
             
@@ -219,6 +236,10 @@ extension MapVC : UISearchBarDelegate{
         exitSearch()
         
         return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -294,6 +315,33 @@ extension MapVC : MKMapViewDelegate{
         }
         
         return nil
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        
+        if let cineView = view as? CinemaShowsAnnotationView, let calloutView = cineView.calloutView {
+            timeListRequest?.cancel()
+            searchOverlay.hide()
+            
+            let frameOfAnnotView = CGRect(x: view.frame.origin.x - calloutView.frame.origin.x,
+                                          y: view.frame.origin.y ,
+                                          width: view.frame.size.width - calloutView.frame.size.width,
+                                          height: view.frame.size.height - calloutView.frame.size.height)
+            
+            let center = CGPoint(x: frameOfAnnotView.midX, y: frameOfAnnotView.midY)
+            let centerCoord = mapView.convert(center, toCoordinateFrom: mapView)
+            
+            print(view.frame)
+            print(frameOfAnnotView)
+            mapView.centerOn(centerCoord, zoomLevel: mapView.getZoomLevel(), animated: true)
+
+        }
+       
+    }
+    
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        let userLocationView = mapView.view(for: userLocation)
+        userLocationView?.canShowCallout = false
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {

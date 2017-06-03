@@ -43,22 +43,6 @@ class SearchZoneView: UIView {
         
         loaderView = UIView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
         
-        
-//        loaderBgImView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
-//        loaderBgImView.image = #imageLiteral(resourceName: "loadingViewSearchBg")
-//        
-//        let shadowPath:UIBezierPath  = UIBezierPath(roundedRect: (loaderBgImView.bounds), cornerRadius: 22)
-//        
-//        loaderBgImView.layer.shadowRadius = 10
-//        loaderBgImView.layer.shadowColor = UIColor.black.cgColor
-//        loaderBgImView.layer.shadowOpacity = 0.2
-//        loaderBgImView.layer.shadowOffset = CGSize(width: 0, height: 5)
-//        loaderBgImView.layer.shadowPath = shadowPath.cgPath
-//        loaderBgImView.clipsToBounds = false
-//        loaderBgImView.center = loaderView.center
-//
-//        loaderView.addSubview(loaderBgImView)
-        
         var cat:NVActivityIndicatorType!
         
         let dice = arc4random_uniform(6)
@@ -98,7 +82,7 @@ class SearchZoneView: UIView {
         loadingLabel.numberOfLines = 1
         loadingLabel.font = UIFont(name: "Montserrat-Light", size: 13)
         loadingLabel.textColor = UIColor.white
-        let messSize = loadingLabel.font.sizeOfString(string: "LOADING".localized, constrainedToWidth: Double(frame.width) - 30.0)
+        let messSize = loadingLabel.font.sizeOfString(string: "Loading...", constrainedToWidth: Double(frame.width) - 30.0)
         
         var messFrame = CGRect(origin: CGPoint(), size: messSize)
         messFrame.origin.y = 44 + 10
@@ -116,7 +100,7 @@ class SearchZoneView: UIView {
         loadingLabel.frame = messFrame
         loadingLabel.center.x = loaderView.frame.size.width/2
         
-        loadingLabel.text = "LOADING".localized
+        loadingLabel.text = "Loading..."
         
         loaderView.addSubview(loadingLabel)
         
@@ -227,6 +211,7 @@ class SearchZoneView: UIView {
         let sidePadding:CGFloat = SearchZoneView.mapSearchSidePadding - SearchZoneView.pinHeightPadding / 2
         let botAdditionalPadding:CGFloat = SearchZoneView.mapSearchBotAdditionalPadding
         let topAdditionalPadding:CGFloat = SearchZoneView.mapSearchTopAdditionalPadding - SearchZoneView.pinHeightPadding
+        print(mapView.layoutMargins)
         let nePoint =
             CGPoint(x:mapView.bounds.origin.x + mapView.bounds.size.width - sidePadding,
                     y:mapView.bounds.origin.y + mapView.layoutMargins.top + topAdditionalPadding)
@@ -234,22 +219,22 @@ class SearchZoneView: UIView {
             CGPoint(x:(mapView.bounds.origin.x + sidePadding),
                     y:(mapView.bounds.origin.y + mapView.bounds.size.height - mapView.layoutMargins.bottom - botAdditionalPadding))
         
-        layerView = UIView(frame: frame)
+        layerView = UIView(frame: bounds)
         layerView.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
         
         
         let maskLayer = CAShapeLayer()
         
-        maskLayer.frame = frame
+        maskLayer.frame = bounds
         
         let path = CGMutablePath()
         searchRect = CGRect(x: swPoint.x, y: nePoint.y, width: nePoint.x - swPoint.x, height: swPoint.y - nePoint.y)
 //        searchRect.size.width = max(searchRect.width, searchRect.height)
 //        searchRect.size.height = max(searchRect.width, searchRect.height)
-        
+
         let circlePath = UIBezierPath(roundedRect: searchRect, cornerRadius: searchRect.size.width/2)
         path.addPath(circlePath.cgPath)
-        path.addRect(self.frame)
+        path.addRect(self.bounds)
 
         maskLayer.fillColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 0.1813730736).cgColor
         maskLayer.path = path

@@ -110,8 +110,9 @@ extension APIConnector {
                                           cinemaChain:String? = nil,
                                           movieCode:Int? = nil,
                                           date:String? = nil,
-                                          completion:@escaping ([WOTheaterShowtime]?) -> Void) -> DataRequest{
+                                          completion:@escaping ([WOTheaterShowtime]?, _ canceled:Bool) -> Void) -> DataRequest{
         
+        let radius = max(radius, 1000)
         var queryParams:[String:String] = [
             "partner" : partner,
             "lat" : "\(position.latitude)",
@@ -130,22 +131,30 @@ extension APIConnector {
                         
             if let jsonDict = response.result.value as? [String: AnyObject]{
                 
-                if let rawSObj = jsonDict["feed"] as? [String : AnyObject],
-                    let rawObjs = rawSObj["theaterShowtimes"] as? [[String : AnyObject]] {
-                    
-                    var woObjs = [WOTheaterShowtime]()
-                    
-                    for rawObj in rawObjs {
-                        woObjs.append(WOTheaterShowtime(dictionary: rawObj))
+                if let rawSObj = jsonDict["feed"] as? [String : AnyObject] {
+                    if let rawObjs = rawSObj["theaterShowtimes"] as? [[String : AnyObject]] {
                         
-                     //   mksObjs.append(mksObj)
+                        var woObjs = [WOTheaterShowtime]()
+                        
+                        for rawObj in rawObjs {
+                            woObjs.append(WOTheaterShowtime(dictionary: rawObj))
+                            
+                            //   mksObjs.append(mksObj)
+                        }
+                        completion(woObjs, false)
+                        
                     }
-                    completion(woObjs)
-                    
+                    else { // no result
+                        completion([WOTheaterShowtime](), false)
+                    }
                 }
+                
+            }
+            else if let error = response.error as NSError?, error.code == -999 {
+                completion(nil, true)
             }
             else{
-                completion(nil)
+                completion(nil, false)
             }
         }
         print(request)

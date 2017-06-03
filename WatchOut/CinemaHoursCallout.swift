@@ -64,6 +64,10 @@ extension CinemaHoursCallout:UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
 }
 
 extension CinemaHoursCallout:UITableViewDelegate {

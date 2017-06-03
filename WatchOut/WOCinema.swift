@@ -18,7 +18,6 @@ class WOCinema : NSObject {
     
     init(dictionary:[String : AnyObject]) {
         super.init()
-        
         uniqID = dictionary["code"] as! String
         coordinate = extractGeoData(dictionary)
         name = dictionary["name"] as! String

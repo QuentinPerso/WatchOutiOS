@@ -10,29 +10,36 @@ import Foundation
 
 class WOMovie : NSObject {
     
-    var uniqID:String!
+    var uniqID:Int!
     var name: String!
-    var duration:String!
-    var genre:String?
-    var imageURL:String?
+    var duration:String?
+    var genre = ""
+    var imageURL:URL!
     var userRating:Double?
     var pressRating:Double?
     
     init(dictionary:[String : AnyObject]) {
         super.init()
-        
-        uniqID = dictionary["code"] as! String
+
+        uniqID = dictionary["code"] as! Int
         name = dictionary["title"] as! String
-        duration = (dictionary["runtime"] as! Int).timeFromSeconds()
-        genre = (dictionary["genre"] as! [String : AnyObject])["$"] as? String
+        if let secondTime = dictionary["runtime"] as? Int {
+            duration = secondTime.timeFromSeconds()
+        }
         
-        if let poster = dictionary["poster"] as? [String : AnyObject] {
-            imageURL = dictionary["href"] as? String
+        let genreDictArray = (dictionary["genre"] as! [[String : AnyObject]])
+        genre = genreDictArray.map({ (dict) -> String in return dict["$"] as! String }).joined(separator: ",")
+
+        if let poster = dictionary["poster"] as? [String : AnyObject], let urlStr = poster["href"] as? String {
+            imageURL = URL(string:urlStr)
+        }
+        else {
+            imageURL = URL(string:"blavla")!
         }
         
         if let stats = dictionary["statistics"] as? [String : AnyObject] {
-            userRating = dictionary["userRating"] as? Double
-            pressRating = dictionary["pressRating"] as? Double
+            userRating = stats["userRating"] as? Double
+            pressRating = stats["pressRating"] as? Double
         }
     }
     

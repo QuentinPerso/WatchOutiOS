@@ -14,14 +14,50 @@ class MapVC: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var autocompleteView: AutocompleteView!
+    
+    var autoCompleteRequest:DataRequest?
+    
     var timeListRequest:DataRequest?
     
+    var searchedMovie:WOMovieSearchResult?
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupMap()
+        setupViews()
+        setupKeyboard()
         setMapViewport()
+        searchBar.delegate = self
+        
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        view.bringSubview(toFront: autocompleteView)
+    }
+    
+    func setupViews() {
+        
+        autocompleteView.autocompletes = []
+        autocompleteView.didSelectSuggestion = { filmSuggestion in
+            self.searchBar.text = filmSuggestion.name
+            self.searchedMovie = filmSuggestion
+            self.callAPITimeLists()
+            self.autocompleteView.autocompletes = []
+            self.searchBar.resignFirstResponder()
+        }
+        
         
     }
     
@@ -45,10 +81,45 @@ class MapVC: UIViewController {
         
     }
     
+    
+
+}
+
+//************************************
+// MARK: - Map Conf
+//************************************
+extension MapVC:UIGestureRecognizerDelegate {
+    
     func setupMap() {
         mapView.delegate = self
+        
+        let panRec = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
+        panRec.delegate = self
+        
+        self.mapView.addGestureRecognizer(panRec)
+        
     }
+    
+    func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
+        
+        if gestureRecognizer.state == .began {
+            
+            
+            timeListRequest?.cancel()
+            searchBar.resignFirstResponder()
+            
+        }
 
+        if mapView.selectedAnnotations.count == 0, gestureRecognizer.state == .ended {
+            callAPITimeLists()
+        }
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 }
 
 //************************************
@@ -83,35 +154,128 @@ extension MapVC {
         
         let distance = CLLocation(latitude: camPos.latitude, longitude: camPos.longitude).distance(from: CLLocation(latitude: east.latitude, longitude: east.longitude))
         
-        
         timeListRequest?.cancel()
         
-        timeListRequest = APIConnector.getCinemasTimeList(position: camPos,
-                                                          radius: CGFloat(distance),
-                                                          completion: { [weak self] cinemas in
-                                            
-                                                            
-                                                            if cinemas == nil { return }
-                                                            self?.reloadMap(cinemas: cinemas!)
-                                                            
+        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovie?.uniqID, completion: { [weak self] theaterShowTimes in
             
-            //
+            if theaterShowTimes == nil { return }
+            self?.reloadMap(theaterShowTimes: theaterShowTimes!)
+            
+            
+            
         })
         
     }
     
-    func reloadMap(cinemas:[WOCinema]){
+    func reloadMap(theaterShowTimes:[WOTheaterShowtime]){
+        
+        
         for annot in mapView.annotations {
             if annot is CinemaAnnotation {
                 mapView.removeAnnotation(annot)
             }
         }
         
-        for cine in cinemas {
-            let annotation = CinemaAnnotation(cinema: cine)
-            print(annotation.coordinate)
+        for tst in theaterShowTimes {
+            let annotation = CinemaAnnotation(theaterShowTime: tst)
             mapView.addAnnotation(annotation)
         }
+    }
+    
+}
+
+//************************************
+// MARK: - Search Bar delegate
+//************************************
+
+extension MapVC : UISearchBarDelegate{
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        autoCompleteRequest?.cancel()
+        
+        if !searchBar.isFirstResponder {
+            resetSearch()
+        }
+        else {
+            if searchText == "" {
+                resetSearch()
+            }
+            else {
+                autoComplete(string: searchText)
+            }
+        }
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        enterSearch()
+        
+        return true
+    }
+    
+    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
+        
+        exitSearch()
+        
+        return true
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    
+    func enterSearch() {
+        searchBar.setShowsCancelButton(true, animated: true)
+        
+    }
+    
+    func exitSearch() {
+         searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func resetSearch() {
+        autocompleteView.autocompletes = []
+        searchedMovie = nil
+    }
+    
+    func autoComplete(string:String) {
+        
+        autoCompleteRequest?.cancel()
+        
+        
+        autoCompleteRequest = APIConnector.searchMovies(q: string, completion: { (results) in
+            if results == nil { return }
+            
+            self.autocompleteView.autocompletes = results!
+            
+        })
+
+        
+    }
+    
+}
+
+//************************************
+// MARK: - Keyboard Handling
+//************************************
+
+extension MapVC {
+    
+    func setupKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    func keyboardWillChange(notification:NSNotification) {
+        
+        let frameEnd = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        
+        let convRect = self.view.convert(frameEnd!, from: nil)
+        let yOffset = self.view.bounds.size.height - convRect.origin.y
+        
+        autocompleteView.tableView.contentInset.bottom = max(yOffset, 0) // -50 cause of tabBar
+        
     }
     
 }
@@ -121,9 +285,19 @@ extension MapVC {
 //************************************
 extension MapVC : MKMapViewDelegate{
     
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        if let cineAnnot = annotation as? CinemaAnnotation {
+            let cineView = CinemaShowsAnnotationView(annotation: annotation, reuseIdentifier: nil)
+            cineView.theaterShowTime = cineAnnot.theaterShowTime
+            return cineView
+        }
+        
+        return nil
+    }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        callAPITimeLists()
+        //callAPITimeLists()
         
     }
 }

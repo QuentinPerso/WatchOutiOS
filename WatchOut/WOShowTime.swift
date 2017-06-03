@@ -16,6 +16,16 @@ class WOShowtime : NSObject {
     init(dictionary:[String : AnyObject]) {
         super.init()
         date = dictionary["d"] as! String
+        let formater = DateFormatter()
+        formater.dateFormat = "yyyy-MM-dd"
+        if formater.string(from: Date()) == date.components(separatedBy: " ")[0] {
+            date = "today"
+        }
+        else {
+            let nsDate = formater.date(from: date)
+            date = DateFormatter.localizedString(from: nsDate!, dateStyle: .medium, timeStyle: .none)
+        }
+        
         if let hoursDicts = dictionary["t"] as? [[String : AnyObject]] {
             hours = [String]()
             for hourDict in hoursDicts {
@@ -23,6 +33,7 @@ class WOShowtime : NSObject {
             }
             
         }
+        
         
     }
     

@@ -4,10 +4,15 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--MapVC-->
         <scene sceneID="tne-QT-ifu">
@@ -21,20 +26,118 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwq-31-0eT" userLabel="Top bar">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" text="" placeholder="Search movie" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-q4-za1">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </searchBar>
+                                </subviews>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="r1J-q4-za1" secondAttribute="bottom" id="BW7-Nh-cjS"/>
+                                    <constraint firstAttribute="trailing" secondItem="r1J-q4-za1" secondAttribute="trailing" id="U1s-L5-mSV"/>
+                                    <constraint firstAttribute="height" constant="64" id="mA9-0l-Boj"/>
+                                    <constraint firstItem="r1J-q4-za1" firstAttribute="leading" secondItem="lwq-31-0eT" secondAttribute="leading" id="nHY-Jl-PEj"/>
+                                </constraints>
+                            </view>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vB0-BK-6e4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCe-Jv-yMm" customClass="AutocompleteView" customModule="WatchOut" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="62" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VIf-eR-TSk">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <inset key="separatorInset" minX="13" minY="0.0" maxX="13" maxY="0.0"/>
+                                        <view key="tableFooterView" contentMode="scaleToFill" id="MgJ-hT-FPl">
+                                            <rect key="frame" x="0.0" y="90" width="375" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AutocompleteCell" rowHeight="62" id="Jsa-7L-N5j" customClass="AutocompleteCell" customModule="WatchOut" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="62"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jsa-7L-N5j" id="JX4-sf-mVm">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="62"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EsB-C5-ljY">
+                                                            <rect key="frame" x="20" y="16" width="32" height="16"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
+                                                            <color key="textColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="83D-9d-aZz">
+                                                            <rect key="frame" x="15" y="61" width="345" height="1"/>
+                                                            <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="1" id="KUY-Du-zAn"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCH-wv-YGh">
+                                                            <rect key="frame" x="20" y="37" width="327" height="16"/>
+                                                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="13"/>
+                                                            <color key="textColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailingMargin" secondItem="FCH-wv-YGh" secondAttribute="trailing" constant="20" id="7dR-tg-EZN"/>
+                                                        <constraint firstItem="EsB-C5-ljY" firstAttribute="top" secondItem="JX4-sf-mVm" secondAttribute="topMargin" constant="8" id="9IT-9c-nNh"/>
+                                                        <constraint firstItem="FCH-wv-YGh" firstAttribute="top" secondItem="EsB-C5-ljY" secondAttribute="bottom" constant="5" id="GJS-zC-D2H"/>
+                                                        <constraint firstItem="EsB-C5-ljY" firstAttribute="leading" secondItem="JX4-sf-mVm" secondAttribute="leading" constant="20" id="GwI-CM-Un0"/>
+                                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EsB-C5-ljY" secondAttribute="trailing" constant="13" id="JqT-Mb-tyR"/>
+                                                        <constraint firstItem="83D-9d-aZz" firstAttribute="leading" secondItem="JX4-sf-mVm" secondAttribute="leading" constant="15" id="MHs-m3-FiT"/>
+                                                        <constraint firstAttribute="bottom" secondItem="83D-9d-aZz" secondAttribute="bottom" id="ROZ-cB-nWz"/>
+                                                        <constraint firstItem="FCH-wv-YGh" firstAttribute="leading" secondItem="EsB-C5-ljY" secondAttribute="leading" id="lsV-T4-2k9"/>
+                                                        <constraint firstAttribute="trailing" secondItem="83D-9d-aZz" secondAttribute="trailing" constant="15" id="vob-yj-luP"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="filmCastLabel" destination="FCH-wv-YGh" id="kl2-bZ-PLX"/>
+                                                    <outlet property="filmTitleLabel" destination="EsB-C5-ljY" id="V6g-fr-mDu"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="VIf-eR-TSk" secondAttribute="bottom" id="0mZ-54-VhU"/>
+                                    <constraint firstItem="VIf-eR-TSk" firstAttribute="top" secondItem="tCe-Jv-yMm" secondAttribute="top" id="EF1-bi-ayY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VIf-eR-TSk" secondAttribute="trailing" id="ZDQ-oS-CrY"/>
+                                    <constraint firstItem="VIf-eR-TSk" firstAttribute="leading" secondItem="tCe-Jv-yMm" secondAttribute="leading" id="wLo-YP-GjJ"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="tableView" destination="VIf-eR-TSk" id="udj-eY-fLY"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="lwq-31-0eT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9Kk-uN-P00"/>
+                            <constraint firstItem="tCe-Jv-yMm" firstAttribute="top" secondItem="lwq-31-0eT" secondAttribute="bottom" id="AAQ-lV-3tt"/>
+                            <constraint firstAttribute="trailing" secondItem="tCe-Jv-yMm" secondAttribute="trailing" id="ERG-oK-T48"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tCe-Jv-yMm" secondAttribute="bottom" id="IfH-ZX-dJW"/>
+                            <constraint firstAttribute="trailing" secondItem="lwq-31-0eT" secondAttribute="trailing" id="JFV-hh-GYC"/>
                             <constraint firstAttribute="trailing" secondItem="vB0-BK-6e4" secondAttribute="trailing" id="T89-Dq-oO9"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vB0-BK-6e4" secondAttribute="bottom" id="Vgs-vY-ivP"/>
-                            <constraint firstItem="vB0-BK-6e4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="kuu-z4-xd6"/>
+                            <constraint firstItem="tCe-Jv-yMm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jy7-ws-dr0"/>
+                            <constraint firstItem="vB0-BK-6e4" firstAttribute="top" secondItem="lwq-31-0eT" secondAttribute="bottom" id="nds-aL-5IR"/>
                             <constraint firstItem="vB0-BK-6e4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rPp-pP-5Vx"/>
+                            <constraint firstItem="lwq-31-0eT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uR1-c6-GIT"/>
                         </constraints>
                     </view>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="autocompleteView" destination="tCe-Jv-yMm" id="LXg-Fn-bKc"/>
                         <outlet property="mapView" destination="vB0-BK-6e4" id="vcS-c8-f2g"/>
+                        <outlet property="searchBar" destination="r1J-q4-za1" id="NF6-Cg-g6K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

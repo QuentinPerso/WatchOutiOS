@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		7316B48AD8371A4D15F9C693 /* Pods_WatchOut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */; };
+		8405CB991EE2ADE7005B373E /* WOTheaterShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */; };
+		8405CB9B1EE2BB83005B373E /* CinemaShowsAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */; };
+		8405CB9E1EE2BB8F005B373E /* CinemaHoursCallout.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8405CB9C1EE2BB8F005B373E /* CinemaHoursCallout.xib */; };
+		8405CB9F1EE2BB8F005B373E /* CinemaHoursCallout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9D1EE2BB8F005B373E /* CinemaHoursCallout.swift */; };
+		8425BF241EE2C234009E15A3 /* MovieHoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF221EE2C234009E15A3 /* MovieHoursCell.swift */; };
+		8425BF251EE2C234009E15A3 /* MovieHoursCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8425BF231EE2C234009E15A3 /* MovieHoursCell.xib */; };
+		8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF261EE2D691009E15A3 /* AutocompleteView.swift */; };
+		8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */; };
 		848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */; };
 		848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFE1EE01D5700A9F88E /* MapVC.swift */; };
 		848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A7F001EE01D5700A9F88E /* Main.storyboard */; };
@@ -68,6 +76,14 @@
 
 /* Begin PBXFileReference section */
 		64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchOut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOTheaterShowTime.swift; sourceTree = "<group>"; };
+		8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaShowsAnnotationView.swift; sourceTree = "<group>"; };
+		8405CB9C1EE2BB8F005B373E /* CinemaHoursCallout.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CinemaHoursCallout.xib; sourceTree = "<group>"; };
+		8405CB9D1EE2BB8F005B373E /* CinemaHoursCallout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaHoursCallout.swift; sourceTree = "<group>"; };
+		8425BF221EE2C234009E15A3 /* MovieHoursCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHoursCell.swift; sourceTree = "<group>"; };
+		8425BF231EE2C234009E15A3 /* MovieHoursCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieHoursCell.xib; sourceTree = "<group>"; };
+		8425BF261EE2D691009E15A3 /* AutocompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
+		8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOMovieSearchResult.swift; sourceTree = "<group>"; };
 		848A7EF91EE01D5700A9F88E /* WatchOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A7EFE1EE01D5700A9F88E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -142,6 +158,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8405CBA01EE2C07F005B373E /* CinemaHoursAnnotations */ = {
+			isa = PBXGroup;
+			children = (
+				848A7F751EE0343300A9F88E /* CinemaAnnotation.swift */,
+				8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */,
+				8405CB9C1EE2BB8F005B373E /* CinemaHoursCallout.xib */,
+				8405CB9D1EE2BB8F005B373E /* CinemaHoursCallout.swift */,
+				8425BF231EE2C234009E15A3 /* MovieHoursCell.xib */,
+				8425BF221EE2C234009E15A3 /* MovieHoursCell.swift */,
+			);
+			name = CinemaHoursAnnotations;
+			sourceTree = "<group>";
+		};
 		848A7EF01EE01D5700A9F88E = {
 			isa = PBXGroup;
 			children = (
@@ -189,8 +218,9 @@
 			children = (
 				848A7F001EE01D5700A9F88E /* Main.storyboard */,
 				848A7EFE1EE01D5700A9F88E /* MapVC.swift */,
+				8425BF261EE2D691009E15A3 /* AutocompleteView.swift */,
 				848A7F171EE0288600A9F88E /* SearchZoneView.swift */,
-				848A7F751EE0343300A9F88E /* CinemaAnnotation.swift */,
+				8405CBA01EE2C07F005B373E /* CinemaHoursAnnotations */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -289,9 +319,11 @@
 			isa = PBXGroup;
 			children = (
 				848A7F731EE02CCB00A9F88E /* WOCinema.swift */,
-				848A7F771EE039C100A9F88E /* WOMovie.swift */,
+				8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */,
 				848A7F791EE03FE700A9F88E /* WOMovieShowtime.swift */,
+				848A7F771EE039C100A9F88E /* WOMovie.swift */,
 				848A7F7B1EE0434400A9F88E /* WOShowTime.swift */,
+				8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -377,6 +409,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				848A7F071EE01D5700A9F88E /* LaunchScreen.storyboard in Resources */,
+				8425BF251EE2C234009E15A3 /* MovieHoursCell.xib in Resources */,
+				8405CB9E1EE2BB8F005B373E /* CinemaHoursCallout.xib in Resources */,
 				848A7F041EE01D5700A9F88E /* Assets.xcassets in Resources */,
 				848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */,
 			);
@@ -437,14 +471,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8405CB9F1EE2BB8F005B373E /* CinemaHoursCallout.swift in Sources */,
 				848A7F6F1EE02AE000A9F88E /* String+Functions.swift in Sources */,
 				848A7F461EE02A5300A9F88E /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				848A7F411EE02A5300A9F88E /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */,
 				848A7F5A1EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				848A7F591EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
+				8425BF241EE2C234009E15A3 /* MovieHoursCell.swift in Sources */,
 				848A7F481EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
 				848A7F781EE039C100A9F88E /* WOMovie.swift in Sources */,
 				848A7F181EE0288600A9F88E /* SearchZoneView.swift in Sources */,
+				8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */,
 				848A7F531EE02A5300A9F88E /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				848A7F641EE02A5300A9F88E /* NVActivityIndicatorView.swift in Sources */,
 				848A7F4C1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
@@ -457,8 +494,10 @@
 				848A7F4E1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
 				848A7F4F1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
 				848A7F5C1EE02A5300A9F88E /* NVActivityIndicatorAnimationOrbit.swift in Sources */,
+				8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */,
 				848A7F471EE02A5300A9F88E /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				848A7F711EE02AE000A9F88E /* Array+Functions.swift in Sources */,
+				8405CB9B1EE2BB83005B373E /* CinemaShowsAnnotationView.swift in Sources */,
 				848A7F441EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				848A7F761EE0343300A9F88E /* CinemaAnnotation.swift in Sources */,
 				848A7F5B1EE02A5300A9F88E /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,
@@ -482,6 +521,7 @@
 				848A7F161EE025B400A9F88E /* MapFunctions.swift in Sources */,
 				848A7F501EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScaleRippleMultiple.swift in Sources */,
 				848A7F571EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
+				8405CB991EE2ADE7005B373E /* WOTheaterShowTime.swift in Sources */,
 				848A7F7A1EE03FE700A9F88E /* WOMovieShowtime.swift in Sources */,
 				848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */,
 				848A7F511EE02A5300A9F88E /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,

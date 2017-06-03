@@ -50,33 +50,53 @@ class APIConnector: NSObject{
     }
  
     
-//    static func getClosestCinemas(position:CLLocationCoordinate2D, completion:@escaping () -> Void){
-//        
-//        let queryParams:[String:String] = [
-//            "partner" : partner,
-//            "lat" : "\(position.latitude)",
-//            "long" : "\(position.longitude)",
-//            "radius" : "10",
-//            "format" : "json",
-//            ]
-//        
-//        print("*****************")
-//        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-//        let request = sessionManager.request("http://api.allocine.fr/rest/v3/theaterlist", parameters: queryParams).responseJSON { response in
-//            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-//            
-//            print(response)
-//            
-//            if let jsonDict = response.result.value as? [String: AnyObject]{
-//                _ = jsonDict.reversed()
-//                
-//            }
-//            else{
-//                completion()
-//            }
-//        }
-//        print(request)
-//    }  
+}
+
+//************************************
+// MARK: - Search
+//************************************
+
+extension APIConnector {
+    
+    static func searchMovies(q:String, completion:@escaping ([WOMovieSearchResult]?) -> Void) -> DataRequest{
+        
+        let queryParams:[String:String] = [
+            "q" : q,
+            "partner" : partner,
+            "filter" : "movie",
+            "count" : "20",
+            "format" : "json",
+            ]
+        
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let request = sessionManager.request("http://api.allocine.fr/rest/v3/search", parameters: queryParams).responseJSON { response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let jsonDict = response.result.value as? [String: AnyObject]{
+                
+                if let rawSObj = jsonDict["feed"] as? [String : AnyObject],
+                    let rawObjs = rawSObj["movie"] as? [[String : AnyObject]] {
+                    
+                    var woObjs = [WOMovieSearchResult]()
+                    
+                    for rawObj in rawObjs {
+                        woObjs.append(WOMovieSearchResult(dictionary: rawObj))
+                        
+                        //   mksObjs.append(mksObj)
+                    }
+                    completion(woObjs)
+                    
+                }
+            }
+            else{
+                completion(nil)
+            }
+        }
+        print(request)
+        return request
+    }
+    
 }
 
 //************************************
@@ -88,23 +108,22 @@ extension APIConnector {
     static func getCinemasTimeList(position:CLLocationCoordinate2D,
                                           radius:CGFloat,
                                           cinemaChain:String? = nil,
-                                          movie:String? = nil,
+                                          movieCode:Int? = nil,
                                           date:String? = nil,
-                                          completion:@escaping ([WOCinema]?) -> Void) -> DataRequest{
+                                          completion:@escaping ([WOTheaterShowtime]?) -> Void) -> DataRequest{
         
         var queryParams:[String:String] = [
             "partner" : partner,
             "lat" : "\(position.latitude)",
             "long" : "\(position.longitude)",
-            "radius" : "10",
+            "radius" : "\(Int(radius/1000))",
             "format" : "json",
             ]
         
         if cinemaChain != nil { queryParams["location"] = cinemaChain }
-        if movie != nil { queryParams["movie"] = movie }
+        if movieCode != nil { queryParams["movie"] = "\(movieCode!)" }
         if date != nil { queryParams["date"] = date }
         
-        print("*****************")
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let request = sessionManager.request("http://api.allocine.fr/rest/v3/showtimelist", parameters: queryParams).responseJSON { response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -114,17 +133,10 @@ extension APIConnector {
                 if let rawSObj = jsonDict["feed"] as? [String : AnyObject],
                     let rawObjs = rawSObj["theaterShowtimes"] as? [[String : AnyObject]] {
                     
-                    var woObjs = [WOCinema]()
+                    var woObjs = [WOTheaterShowtime]()
                     
                     for rawObj in rawObjs {
-                        if let placeDict = (rawObj["place"] as? [String : AnyObject]),
-                            let cinemaDict = placeDict["theater"] as? [String : AnyObject] {
-                            
-                            let cinema = WOCinema(dictionary: cinemaDict)
-                            print(cinema.name)
-                            woObjs.append(cinema)
-                        }
-                        
+                        woObjs.append(WOTheaterShowtime(dictionary: rawObj))
                         
                      //   mksObjs.append(mksObj)
                     }
@@ -151,32 +163,11 @@ extension APIConnector {
     
     static func absoluteURLString(path:String) -> URL{
         let url = URL(string: path.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlPathAllowed)!, relativeTo: apiBaseURL)!
-        //        print(APIConnector.userSession?.accessToken ?? "user not logged in")
         print(url)
         return url
         
     }
     
-    static func logResponse(note:String, value:Any?, meta:Bool){
-        
-        if let jsonDict = value as? [String: AnyObject] {
-            if jsonDict["__DEBUG__"] != nil {
-                var jsonMut = jsonDict
-                jsonMut.removeValue(forKey: "__DEBUG__")
-                
-                if meta == false, jsonDict["__meta"] != nil {
-                    jsonMut.removeValue(forKey: "__meta")
-                }
-                
-                debugPrint(note + " : " , jsonMut)
-                
-            }
-            else {
-                debugPrint(note + " : ", jsonDict)
-            }
-        }
-        
-    }
     
     
 }

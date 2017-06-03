@@ -11,17 +11,18 @@ import MapKit
 
 class CinemaAnnotation:NSObject, MKAnnotation {
     
-    let cinema:WOCinema!
+    let theaterShowTime:WOTheaterShowtime
+//    let !
     let coordinate: CLLocationCoordinate2D
     
     var title: String?
     
-    init(cinema:WOCinema) {
+    init(theaterShowTime:WOTheaterShowtime) {
         
-        self.cinema = cinema
-        self.coordinate = cinema.coordinate
+        self.theaterShowTime = theaterShowTime
+        self.coordinate = theaterShowTime.cinema.coordinate
 
-        self.title = cinema.name
+        self.title = theaterShowTime.cinema.name
 //        self.subtitle = cinema.address
         
         super.init()

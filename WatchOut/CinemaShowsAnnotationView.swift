@@ -29,9 +29,12 @@ class CinemaShowsAnnotationView : MKPinAnnotationView {
         
         if (self.isSelected && !calloutViewAdded) {
             let width = 230.0
-            let rowNb = Double(min(theaterShowTime.moviesShowTime.count, 3))
-            let height = 37.0 + 44.0 + rowNb*82.0
+            
+            let rowNb = CGFloat(min(theaterShowTime.moviesShowTime.count, 3))
+            
+            let height = Double(calloutView!.titleHConstraint.constant + calloutView!.bottomHConstraint.constant + rowNb * calloutView!.tableView.rowHeight + calloutView!.tableView.contentInset.top + calloutView!.tableView.contentInset.top)
             let calloutHeightOffset = 5.0
+            
             let halfSelfWidth = Double(frame.size.width/2.0)
             let halfWidth = -width/2.0
             let x = halfSelfWidth+halfWidth

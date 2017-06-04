@@ -17,6 +17,7 @@
 		8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF261EE2D691009E15A3 /* AutocompleteView.swift */; };
 		8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */; };
 		8425BF2B1EE40B5B009E15A3 /* WOPersonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2A1EE40B5B009E15A3 /* WOPersonSearchResult.swift */; };
+		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
 		848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */; };
 		848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFE1EE01D5700A9F88E /* MapVC.swift */; };
 		848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A7F001EE01D5700A9F88E /* Main.storyboard */; };
@@ -86,6 +87,7 @@
 		8425BF261EE2D691009E15A3 /* AutocompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
 		8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOMovieSearchResult.swift; sourceTree = "<group>"; };
 		8425BF2A1EE40B5B009E15A3 /* WOPersonSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOPersonSearchResult.swift; sourceTree = "<group>"; };
+		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
 		848A7EF91EE01D5700A9F88E /* WatchOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A7EFE1EE01D5700A9F88E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				8405CB9D1EE2BB8F005B373E /* CinemaHoursCallout.swift */,
 				8425BF231EE2C234009E15A3 /* MovieHoursCell.xib */,
 				8425BF221EE2C234009E15A3 /* MovieHoursCell.swift */,
+				8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */,
 			);
 			name = CinemaHoursAnnotations;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				848A7F5A1EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScalePulseOutRapid.swift in Sources */,
 				848A7F591EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScalePulseOut.swift in Sources */,
 				8425BF241EE2C234009E15A3 /* MovieHoursCell.swift in Sources */,
+				8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */,
 				848A7F481EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
 				848A7F781EE039C100A9F88E /* WOMovie.swift in Sources */,
 				848A7F181EE0288600A9F88E /* SearchZoneView.swift in Sources */,

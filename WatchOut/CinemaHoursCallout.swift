@@ -16,6 +16,9 @@ class CinemaHoursCallout : UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    @IBOutlet weak var titleHConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var bottomHConstraint: NSLayoutConstraint!
     
     var theaterShowTime:WOTheaterShowtime! {
         didSet {
@@ -31,11 +34,29 @@ class CinemaHoursCallout : UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        style()
+        
     }
     
     func style() {
-        layer.borderColor = UIColor.black.cgColor
-        layer.borderWidth = 1
+        
+        let cornerR = CGFloat(4.0)
+        
+        layer.cornerRadius = cornerR
+        
+//        tableView.contentInset = UIEdgeInsets(top: cornerR/2, left: 0, bottom: 0, right: 0)
+        tableView.layer.cornerRadius = cornerR/2
+        
+        var shadowPath = UIBezierPath(roundedRect: (bounds), cornerRadius: cornerR)
+        
+        shadowPath  = UIBezierPath(roundedRect: (bounds), cornerRadius: bounds.height/2)
+        layer.shadowRadius = 10
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.4
+        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowPath = shadowPath.cgPath
+        clipsToBounds = false
+        
     }
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -57,10 +78,11 @@ extension CinemaHoursCallout:UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieHoursCell") as! MovieHoursCell
         let movieShowtime = theaterShowTime.moviesShowTime[indexPath.row]
-        cell.pictureImage.af_setImage(withURL: movieShowtime.movie.imageURL)
+        cell.pictureImage.af_setImage(withURL: movieShowtime.movie.imageURL, placeholderImage: #imageLiteral(resourceName: "defaultMovie"))
         cell.filmTitleLabel.text = movieShowtime.movie.name
         cell.versionLabel.text = movieShowtime.version + (movieShowtime.screenFormat ?? "")
-        cell.hoursLabel.text = movieShowtime.showTimes[0].date + " " + movieShowtime.showTimes[0].hours[0]
+        print("debug nil something : ", movieShowtime.showTimes?[0].date, movieShowtime.showTimes?[0].hours[0])
+        cell.hoursLabel.text = (movieShowtime.showTimes?[0].date)! + " " + (movieShowtime.showTimes?[0].hours[0])!
         return cell
     }
     

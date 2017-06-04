@@ -34,6 +34,11 @@ extension Double {
     
 }
 
+enum FontWeight:String {
+    case regular = "regular"
+    case demibold = "semibold"
+    case bold = "bold"
+}
 
 extension UIFont {
     func sizeOfString (string: String, constrainedToWidth width: Double) -> CGSize {
@@ -44,4 +49,24 @@ extension UIFont {
                                                              attributes: [NSFontAttributeName: self],
                                                              context: nil).size
     }
+    
+    static func woFont(size:CGFloat, weight:FontWeight = .regular) -> UIFont {
+        
+        var fontName = "AvenirNext-Regular"
+        switch weight {
+        case .regular:
+            fontName = "AvenirNext-Regular"
+        case .demibold:
+            fontName = "AvenirNext-DemiBold"
+        case .bold:
+            fontName = "AvenirNext-Bold"
+        }
+        
+        return UIFont(name: fontName, size: size)!
+        
+    }
+    
 }
+
+
+

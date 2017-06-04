@@ -80,7 +80,7 @@ class SearchZoneView: UIView {
         
         
         loadingLabel.numberOfLines = 1
-        loadingLabel.font = UIFont(name: "Montserrat-Light", size: 13)
+        loadingLabel.font = UIFont.woFont(size: 13)
         loadingLabel.textColor = UIColor.white
         let messSize = loadingLabel.font.sizeOfString(string: "Loading...", constrainedToWidth: Double(frame.width) - 30.0)
         
@@ -211,7 +211,6 @@ class SearchZoneView: UIView {
         let sidePadding:CGFloat = SearchZoneView.mapSearchSidePadding - SearchZoneView.pinHeightPadding / 2
         let botAdditionalPadding:CGFloat = SearchZoneView.mapSearchBotAdditionalPadding
         let topAdditionalPadding:CGFloat = SearchZoneView.mapSearchTopAdditionalPadding - SearchZoneView.pinHeightPadding
-        print(mapView.layoutMargins)
         let nePoint =
             CGPoint(x:mapView.bounds.origin.x + mapView.bounds.size.width - sidePadding,
                     y:mapView.bounds.origin.y + mapView.layoutMargins.top + topAdditionalPadding)

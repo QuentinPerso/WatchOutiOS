@@ -121,6 +121,7 @@ extension APIConnector {
                                           movieCode:Int? = nil,
                                           person:String? = nil,
                                           date:String? = nil,
+                                          timeInterval:Double? = nil,
                                           completion:@escaping ([WOTheaterShowtime]?, _ canceled:Bool) -> Void) -> DataRequest{
         
         let radius = max(radius, 1000)
@@ -149,7 +150,7 @@ extension APIConnector {
                         var woObjs = [WOTheaterShowtime]()
                         
                         for rawObj in rawObjs {
-                            let theaterShowTime = WOTheaterShowtime(dictionary: rawObj, person: person)
+                            let theaterShowTime = WOTheaterShowtime(dictionary: rawObj, person: person, timeIntervalFromNow: timeInterval)
                             if theaterShowTime.moviesShowTime.count > 0 {
                                 woObjs.append(theaterShowTime)
                             }

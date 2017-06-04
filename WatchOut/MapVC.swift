@@ -17,6 +17,8 @@ class MapVC: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
+    @IBOutlet weak var dateFilterView: DateFilterView!
+    
     var searchOverlay:SearchZoneView!
     
     var autoCompleteRequest:DataRequest?
@@ -36,9 +38,10 @@ class MapVC: UIViewController {
         setupSearchView()
         setupKeyboard()
         setMapViewport()
-        searchBar.delegate = self
+        setupSearchBar()
         
     }
+    
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -155,12 +158,26 @@ extension MapVC {
         let searchedMovieCode = (searchedObject as? WOMovieSearchResult)?.uniqID
         let seachedPersonName = (searchedObject as? WOPersonSearchResult)?.name
         
-        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovieCode, person:seachedPersonName, completion: { [weak self] theaterShowTimes, canceled in
+        var dateString:String? = nil
+        var hoursTimeInterval:Double? = nil
+        let formater = DateFormatter()
+        formater.dateFormat = "yyyy-MM-dd"
+        
+        if dateFilterView.oneHourButton.isSelected {
+            dateString = formater.string(from: Date())
+            hoursTimeInterval = 3600.0
+        }
+        else if dateFilterView.todayButton.isSelected {
+            dateString = formater.string(from: Date())
+        }
+        else if dateFilterView.otherDayButton.isSelected {
+            dateString = formater.string(from: Date())
+        }
+        
+        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovieCode, person:seachedPersonName,date:dateString, timeInterval:hoursTimeInterval, completion: { [weak self] theaterShowTimes, canceled in
             
             if !canceled { self?.searchOverlay.hide() }
-            print(theaterShowTimes?.count ?? "no show times")
             if theaterShowTimes == nil { return }
-            print("theaterShowTimes")
             self?.reloadMap(theaterShowTimes: theaterShowTimes!)
             
             
@@ -273,6 +290,42 @@ extension MapVC {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
     }
     
+    func setupSearchBar(){
+        
+        searchBar.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
+        
+        self.searchBar.delegate = self
+        
+        searchBar.backgroundImage = UIImage()
+
+        if let textField = self.searchBar.value(forKey: "searchField") as? UITextField {
+            //Magnifying glass
+            if let glassIconView = textField.leftView as? UIImageView {
+                glassIconView.image = #imageLiteral(resourceName: "search")
+                glassIconView.tintColor = UIColor.white
+            }
+            
+            let buttonAttribute = [NSForegroundColorAttributeName : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+                                   NSFontAttributeName : UIFont.woFont(size: 13, weight: .demibold)] as [String : Any]
+            
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(buttonAttribute, for: .normal)
+            
+            textField.textColor = UIColor.white
+            textField.tintColor = UIColor.white
+            
+            textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726)
+            textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726).cgColor
+            textField.layer.cornerRadius = 2
+            textField.clipsToBounds = true
+            
+            
+            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .normal)
+            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .highlighted)
+            
+        }
+        searchBar.keyboardAppearance = .dark
+    }
+    
     func setupSearchView() {
         
         autocompleteView.autocompletes = []
@@ -310,6 +363,7 @@ extension MapVC : MKMapViewDelegate{
         if let cineAnnot = annotation as? CinemaAnnotation {
             let cineView = CinemaShowsAnnotationView(annotation: annotation, reuseIdentifier: nil)
             cineView.theaterShowTime = cineAnnot.theaterShowTime
+            cineView.pinTintColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
             return cineView
         }
         
@@ -329,9 +383,6 @@ extension MapVC : MKMapViewDelegate{
             
             let center = CGPoint(x: frameOfAnnotView.midX, y: frameOfAnnotView.midY)
             let centerCoord = mapView.convert(center, toCoordinateFrom: mapView)
-            
-            print(view.frame)
-            print(frameOfAnnotView)
             mapView.centerOn(centerCoord, zoomLevel: mapView.getZoomLevel(), animated: true)
 
         }

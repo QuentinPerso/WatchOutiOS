@@ -13,9 +13,9 @@ class WOMovieShowtime : NSObject {
     var movie:WOMovie!
     var version:String!
     var screenFormat:String?
-    var showTimes:[WOShowtime]!
+    var showTimes:[WOShowtime]?
     
-    init(dictionary:[String : AnyObject]) {
+    init(dictionary:[String : AnyObject], timeIntervalFromNow:Double?) {
         super.init()
     
         movie = WOMovie(dictionary: (dictionary["onShow"] as! [String : AnyObject])["movie"] as! [String : AnyObject])
@@ -31,7 +31,12 @@ class WOMovieShowtime : NSObject {
         if let dictArray = dictionary["scr"] as? [[String : AnyObject]] {
             showTimes = [WOShowtime]()
             for dict in dictArray {
-                showTimes.append(WOShowtime(dictionary: dict))
+                let showTime = WOShowtime(dictionary: dict, timeIntervalFromNow: timeIntervalFromNow)
+                if showTime.hours.count > 0 {
+                    showTimes!.append(showTime)
+                }
+                
+
             }
         }
     }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
 
@@ -67,12 +68,23 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: AutocompleteCell.identifier, for: indexPath) as! AutocompleteCell
         
         if let resultMovie = autocompletes[indexPath.row] as? WOMovieSearchResult {
-            cell.filmTitleLabel.text = resultMovie.name + " " + resultMovie.productionYear
-            cell.filmCastLabel.text = resultMovie.directors
+            if let url = resultMovie.imageURL {
+                let filter = AspectScaledToFillSizeFilter(size: cell.pictureImage.frame.size)
+                let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
+                cell.pictureImage.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
+            }
+            cell.mainLabel.text = resultMovie.name + " " + resultMovie.productionYear
+            cell.secondLabel.text = resultMovie.directors
         }
         else if let resultPerson = autocompletes[indexPath.row] as? WOPersonSearchResult {
-            cell.filmTitleLabel.text = resultPerson.name
-            cell.filmCastLabel.text = resultPerson.activities
+            if let url = resultPerson.imageURL {
+                let filter = AspectScaledToFillSizeCircleFilter(size: cell.pictureImage.frame.size)
+                let placeH = filter.filter(#imageLiteral(resourceName: "defaultPerson"))
+                cell.pictureImage.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
+            }
+            cell.mainLabel.text = resultPerson.name
+            cell.secondLabel.text = resultPerson.activities
+            
         }
 
         
@@ -105,7 +117,8 @@ class AutocompleteCell: UITableViewCell {
     static let identifier = "AutocompleteCell"
     
     
-    @IBOutlet weak var filmCastLabel: UILabel!
-    @IBOutlet weak var filmTitleLabel: UILabel!
+    @IBOutlet weak var pictureImage: UIImageView!
+    @IBOutlet weak var mainLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
     
 }

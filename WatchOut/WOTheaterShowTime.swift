@@ -13,7 +13,7 @@ class WOTheaterShowtime : NSObject {
     var moviesShowTime:[WOMovieShowtime]!
     var cinema:WOCinema!
     
-    init(dictionary:[String : AnyObject]) {
+    init(dictionary:[String : AnyObject], person:String?) {
         super.init()
         
         cinema = WOCinema(dictionary: (dictionary["place"] as! [String : AnyObject])["theater"] as! [String : AnyObject])
@@ -21,7 +21,24 @@ class WOTheaterShowtime : NSObject {
         let showsArray = dictionary["movieShowtimes"] as! [[String : AnyObject]]
         moviesShowTime = [WOMovieShowtime]()
         for dict in showsArray {
-            moviesShowTime.append(WOMovieShowtime(dictionary: dict))
+            let movieST = WOMovieShowtime(dictionary: dict)
+            print(person)
+            if person != nil {
+                
+                print(movieST.movie.actors)
+                if let actors = movieST.movie.actors, actors.contains(person!) {
+                    moviesShowTime.append(movieST)
+                }
+                else if let directors = movieST.movie.directors, directors.contains(person!) {
+                    moviesShowTime.append(movieST)
+                }
+                
+            }
+            else {
+                moviesShowTime.append(movieST)
+            }
+            
+            
         }
         
     }

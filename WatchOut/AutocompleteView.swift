@@ -12,9 +12,9 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView:UITableView!
     
-    var didSelectSuggestion:((WOMovieSearchResult)->())?
+    var didSelectSuggestion:((AnyObject)->())?
     
-    var autocompletes = [WOMovieSearchResult]() {
+    var autocompletes = [AnyObject]() {
         
         didSet {
             if autocompletes.count == 0, tableView.alpha == 1  {
@@ -66,10 +66,16 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: AutocompleteCell.identifier, for: indexPath) as! AutocompleteCell
         
-        let result = autocompletes[indexPath.row]
+        if let resultMovie = autocompletes[indexPath.row] as? WOMovieSearchResult {
+            cell.filmTitleLabel.text = resultMovie.name + " " + resultMovie.productionYear
+            cell.filmCastLabel.text = resultMovie.directors
+        }
+        else if let resultPerson = autocompletes[indexPath.row] as? WOPersonSearchResult {
+            cell.filmTitleLabel.text = resultPerson.name
+            cell.filmCastLabel.text = resultPerson.activities
+        }
 
-        cell.filmTitleLabel.text = result.name + " " + result.productionYear
-        cell.filmCastLabel.text = result.directors
+        
         
 
         return cell

@@ -72,5 +72,10 @@ extension CinemaHoursCallout:UITableViewDataSource {
 
 extension CinemaHoursCallout:UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = theaterShowTime.moviesShowTime[indexPath.row].movie
+        print(movie?.directors)
+        print(movie?.actors)
+    }
 
 }

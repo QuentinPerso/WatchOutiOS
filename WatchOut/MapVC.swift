@@ -23,7 +23,7 @@ class MapVC: UIViewController {
     
     var timeListRequest:DataRequest?
     
-    var searchedMovie:WOMovieSearchResult?
+    var searchedObject:AnyObject?
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
@@ -33,7 +33,7 @@ class MapVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupMap()
-        setupViews()
+        setupSearchView()
         setupKeyboard()
         setMapViewport()
         searchBar.delegate = self
@@ -49,24 +49,29 @@ class MapVC: UIViewController {
         view.bringSubview(toFront: autocompleteView)
         mapView.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10)
         
-//        if searchOverlay == nil {
-//            searchOverlay = SearchZoneView(mapView: mapView)
-//            self.view.addSubview(searchOverlay)
-//        }
-
-    }
-    
-    func setupViews() {
-        
-        autocompleteView.autocompletes = []
-        autocompleteView.didSelectSuggestion = { filmSuggestion in
-            self.searchBar.text = filmSuggestion.name
-            self.searchedMovie = filmSuggestion
-            self.callAPITimeLists()
-            self.autocompleteView.autocompletes = []
-            self.searchBar.resignFirstResponder()
+        if searchOverlay == nil {
+            searchOverlay = SearchZoneView(mapView: mapView)
+            self.view.addSubview(searchOverlay)
         }
         
+
+    }
+
+}
+
+
+//************************************
+// MARK: - Map Conf
+//************************************
+extension MapVC:UIGestureRecognizerDelegate {
+    
+    func setupMap() {
+        mapView.delegate = self
+        
+        let panRec = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
+        panRec.delegate = self
+        
+        self.mapView.addGestureRecognizer(panRec)
         
     }
     
@@ -90,25 +95,6 @@ class MapVC: UIViewController {
         
     }
     
-    
-
-}
-
-//************************************
-// MARK: - Map Conf
-//************************************
-extension MapVC:UIGestureRecognizerDelegate {
-    
-    func setupMap() {
-        mapView.delegate = self
-        
-        let panRec = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
-        panRec.delegate = self
-        
-        self.mapView.addGestureRecognizer(panRec)
-        
-    }
-    
     func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
         
         if gestureRecognizer.state == .began {
@@ -116,10 +102,6 @@ extension MapVC:UIGestureRecognizerDelegate {
             searchBar.resignFirstResponder()
 
             if mapView.selectedAnnotations.count == 0 {
-                if searchOverlay == nil {
-                    searchOverlay = SearchZoneView(mapView: mapView)
-                    self.view.addSubview(searchOverlay)
-                }
                 searchOverlay.show()
             }
         }
@@ -170,10 +152,13 @@ extension MapVC {
         
         timeListRequest?.cancel()
         
-        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovie?.uniqID, completion: { [weak self] theaterShowTimes, canceled in
+        let searchedMovieCode = (searchedObject as? WOMovieSearchResult)?.uniqID
+        let seachedPersonName = (searchedObject as? WOPersonSearchResult)?.name
+        
+        timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovieCode, person:seachedPersonName, completion: { [weak self] theaterShowTimes, canceled in
             
             if !canceled { self?.searchOverlay.hide() }
-            print(theaterShowTimes?.count)
+            print(theaterShowTimes?.count ?? "no show times")
             if theaterShowTimes == nil { return }
             print("theaterShowTimes")
             self?.reloadMap(theaterShowTimes: theaterShowTimes!)
@@ -258,7 +243,7 @@ extension MapVC : UISearchBarDelegate{
     
     func resetSearch() {
         autocompleteView.autocompletes = []
-        searchedMovie = nil
+        searchedObject = nil
     }
     
     func autoComplete(string:String) {
@@ -266,7 +251,7 @@ extension MapVC : UISearchBarDelegate{
         autoCompleteRequest?.cancel()
         
         
-        autoCompleteRequest = APIConnector.searchMovies(q: string, completion: { (results) in
+        autoCompleteRequest = APIConnector.search(q: string, completion: { (results) in
             if results == nil { return }
             
             self.autocompleteView.autocompletes = results!
@@ -279,13 +264,27 @@ extension MapVC : UISearchBarDelegate{
 }
 
 //************************************
-// MARK: - Keyboard Handling
+// MARK: - Search Setup
 //************************************
 
 extension MapVC {
     
     func setupKeyboard() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    func setupSearchView() {
+        
+        autocompleteView.autocompletes = []
+        autocompleteView.didSelectSuggestion = { suggestion in
+            self.searchBar.text = suggestion.name
+            self.searchedObject = suggestion
+            self.callAPITimeLists()
+            self.autocompleteView.autocompletes = []
+            self.searchBar.resignFirstResponder()
+        }
+        
+        
     }
     
     func keyboardWillChange(notification:NSNotification) {

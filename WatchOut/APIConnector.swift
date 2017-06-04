@@ -58,12 +58,12 @@ class APIConnector: NSObject{
 
 extension APIConnector {
     
-    static func searchMovies(q:String, completion:@escaping ([WOMovieSearchResult]?) -> Void) -> DataRequest{
+    static func search(q:String, completion:@escaping ([AnyObject]?) -> Void) -> DataRequest{
         
         let queryParams:[String:String] = [
             "q" : q,
             "partner" : partner,
-            "filter" : "movie",
+            "filter" : "movie,person",
             "count" : "20",
             "format" : "json",
             ]
@@ -75,15 +75,25 @@ extension APIConnector {
             
             if let jsonDict = response.result.value as? [String: AnyObject]{
                 
-                if let rawSObj = jsonDict["feed"] as? [String : AnyObject],
-                    let rawObjs = rawSObj["movie"] as? [[String : AnyObject]] {
+                var woObjs = [AnyObject]()
+                
+                if let rawSObj = jsonDict["feed"] as? [String : AnyObject]{
                     
-                    var woObjs = [WOMovieSearchResult]()
-                    
-                    for rawObj in rawObjs {
-                        woObjs.append(WOMovieSearchResult(dictionary: rawObj))
+                    if let rawObjs = rawSObj["movie"] as? [[String : AnyObject]] {
+                        for rawObj in rawObjs {
+                            woObjs.append(WOMovieSearchResult(dictionary: rawObj))
+                            
+                            //   mksObjs.append(mksObj)
+                        }
                         
-                        //   mksObjs.append(mksObj)
+                    }
+                    if let rawObjs = rawSObj["person"] as? [[String : AnyObject]] {
+                        
+                        for rawObj in rawObjs {
+                            woObjs.append(WOPersonSearchResult(dictionary: rawObj))
+                            
+                            //   mksObjs.append(mksObj)
+                        }
                     }
                     completion(woObjs)
                     
@@ -109,6 +119,7 @@ extension APIConnector {
                                           radius:CGFloat,
                                           cinemaChain:String? = nil,
                                           movieCode:Int? = nil,
+                                          person:String? = nil,
                                           date:String? = nil,
                                           completion:@escaping ([WOTheaterShowtime]?, _ canceled:Bool) -> Void) -> DataRequest{
         
@@ -123,6 +134,7 @@ extension APIConnector {
         
         if cinemaChain != nil { queryParams["location"] = cinemaChain }
         if movieCode != nil { queryParams["movie"] = "\(movieCode!)" }
+        if person != nil { queryParams["count"] = "30" } // increase count for post search treatment
         if date != nil { queryParams["date"] = date }
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -137,8 +149,10 @@ extension APIConnector {
                         var woObjs = [WOTheaterShowtime]()
                         
                         for rawObj in rawObjs {
-                            woObjs.append(WOTheaterShowtime(dictionary: rawObj))
-                            
+                            let theaterShowTime = WOTheaterShowtime(dictionary: rawObj, person: person)
+                            if theaterShowTime.moviesShowTime.count > 0 {
+                                woObjs.append(theaterShowTime)
+                            }
                             //   mksObjs.append(mksObj)
                         }
                         completion(woObjs, false)

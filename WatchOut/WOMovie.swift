@@ -13,6 +13,8 @@ class WOMovie : NSObject {
     var uniqID:Int!
     var name: String!
     var duration:String?
+    var directors:[String]?
+    var actors:[String]?
     var genre = ""
     var imageURL:URL!
     var userRating:Double?
@@ -21,6 +23,7 @@ class WOMovie : NSObject {
     init(dictionary:[String : AnyObject]) {
         super.init()
 
+        
         uniqID = dictionary["code"] as! Int
         name = dictionary["title"] as! String
         if let secondTime = dictionary["runtime"] as? Int {
@@ -40,6 +43,14 @@ class WOMovie : NSObject {
         if let stats = dictionary["statistics"] as? [String : AnyObject] {
             userRating = stats["userRating"] as? Double
             pressRating = stats["pressRating"] as? Double
+        }
+        if let castDict = dictionary["castingShort"] as? [String : AnyObject] {
+            if let directorsString = castDict["directors"] as? String {
+                directors = directorsString.components(separatedBy: ", ")
+            }
+            if let actorsString = castDict["actors"] as? String {
+                actors = actorsString.components(separatedBy: ", ")
+            }
         }
     }
     

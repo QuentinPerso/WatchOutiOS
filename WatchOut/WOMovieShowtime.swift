@@ -17,6 +17,7 @@ class WOMovieShowtime : NSObject {
     
     init(dictionary:[String : AnyObject]) {
         super.init()
+    
         movie = WOMovie(dictionary: (dictionary["onShow"] as! [String : AnyObject])["movie"] as! [String : AnyObject])
         let versionDict = dictionary["version"] as! [String : AnyObject]
         let voStr = versionDict["original"] as! String

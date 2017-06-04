@@ -81,8 +81,13 @@ extension CinemaHoursCallout:UITableViewDataSource {
         cell.pictureImage.af_setImage(withURL: movieShowtime.movie.imageURL, placeholderImage: #imageLiteral(resourceName: "defaultMovie"))
         cell.filmTitleLabel.text = movieShowtime.movie.name
         cell.versionLabel.text = movieShowtime.version + (movieShowtime.screenFormat ?? "")
-        print("debug nil something : ", movieShowtime.showTimes?[0].date, movieShowtime.showTimes?[0].hours[0])
-        cell.hoursLabel.text = (movieShowtime.showTimes?[0].date)! + " " + (movieShowtime.showTimes?[0].hours[0])!
+        if let date = movieShowtime.showTimes?[0].date, let hour = movieShowtime.showTimes?[0].hours[0] {
+            cell.hoursLabel.text = date + " " + hour
+        }
+        else {
+            cell.hoursLabel.text = "Bug date: \(String(describing: movieShowtime.showTimes?[0].date)), hours[0]: \(String(describing:  movieShowtime.showTimes?[0].hours[0]))"
+        }
+        
         return cell
     }
     

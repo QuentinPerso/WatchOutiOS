@@ -178,6 +178,47 @@ extension APIConnector {
     
 }
 
+
+//************************************
+// MARK: - TimeList
+//************************************
+
+extension APIConnector {
+    
+    static func getMovieSynospsi(movie:WOMovie, completion:@escaping (WOMovie?) -> Void) -> DataRequest{
+        
+        let queryParams:[String:String] = [
+            "partner" : partner,
+            "code" : "\(movie.uniqID)",
+            "format" : "json",
+            ]
+        
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let request = sessionManager.request("http://api.allocine.fr/rest/v3/showtimelist", parameters: queryParams).responseJSON { response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let jsonDict = response.result.value as? [String: AnyObject]{
+                
+                if let rawObj = jsonDict["movie"] as? [String : AnyObject] {
+                    movie.synopsis = rawObj["synopsis"] as? String
+                }
+                completion(movie)
+                
+            }
+            else if let error = response.error as NSError?, error.code == -999 {
+                completion(movie)
+            }
+            else{
+                completion(movie)
+            }
+        }
+        print(request)
+        return request
+    }
+    
+}
+
 //************************************
 // MARK: - Private
 //************************************

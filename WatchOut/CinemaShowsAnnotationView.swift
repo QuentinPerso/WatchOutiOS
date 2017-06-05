@@ -15,6 +15,8 @@ class CinemaShowsAnnotationView : MKPinAnnotationView {
     
     var theaterShowTime:WOTheaterShowtime!
     
+    var didSelectMovieAction:((WOMovie) -> (Void))?
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         let calloutViewAdded = calloutView?.superview != nil
         
@@ -49,6 +51,10 @@ class CinemaShowsAnnotationView : MKPinAnnotationView {
                 self.calloutView?.alpha = 1
                 self.calloutView?.transform = .identity
             }, completion: nil)
+            
+            calloutView?.didSelectMovieAction = { [weak self] movie in self?.didSelectMovieAction?(movie) }
+            
+            
         }
         
         if (!self.isSelected) {

@@ -20,6 +20,8 @@ class CinemaHoursCallout : UIView {
     
     @IBOutlet weak var bottomHConstraint: NSLayoutConstraint!
     
+    var didSelectMovieAction:((WOMovie) -> (Void))?
+    
     var theaterShowTime:WOTheaterShowtime! {
         didSet {
             titleLabel.text = theaterShowTime.cinema.name
@@ -99,7 +101,15 @@ extension CinemaHoursCallout:UITableViewDataSource {
 extension CinemaHoursCallout:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        
+        if let movie = theaterShowTime.moviesShowTime[indexPath.row].movie {
+            didSelectMovieAction?(movie)
+        }
+        
     }
 
 }
+
+
+
+

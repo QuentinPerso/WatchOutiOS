@@ -34,7 +34,9 @@ class MapVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
         setupMap()
         setupDateFilterView()
         setupSearchView()
@@ -64,7 +66,7 @@ class MapVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         view.bringSubview(toFront: autocompleteView)
-        mapView.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10)
+        mapView.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0)
         setupTopShadow()
         if searchOverlay == nil {
             searchOverlay = SearchZoneView(mapView: mapView)
@@ -398,6 +400,23 @@ extension MapVC {
 }
 
 //************************************
+// MARK: - Navigation
+//************************************
+extension MapVC {
+    
+    func showMovieVC(_ movie:WOMovie) {
+        
+        let viewController = UIStoryboard(name: "MovieDetails", bundle: nil).instantiateInitialViewController() as! MovieVC
+        
+        viewController.movie = movie
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+}
+
+//************************************
 // MARK: - Map View Delegate
 //************************************
 extension MapVC : MKMapViewDelegate{
@@ -408,6 +427,7 @@ extension MapVC : MKMapViewDelegate{
             let cineView = CinemaShowsAnnotationView(annotation: annotation, reuseIdentifier: nil)
             cineView.theaterShowTime = cineAnnot.theaterShowTime
             cineView.pinTintColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
+            cineView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
             return cineView
         }
         

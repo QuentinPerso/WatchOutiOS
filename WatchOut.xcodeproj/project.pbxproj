@@ -23,6 +23,8 @@
 		84572D191EE4B82600D8CE05 /* PIDatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D161EE4B82600D8CE05 /* PIDatePickerDelegate.swift */; };
 		84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */; };
 		84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */; };
+		84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */; };
+		84572D241EE5525800D8CE05 /* MovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D231EE5525800D8CE05 /* MovieVC.swift */; };
 		848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */; };
 		848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFE1EE01D5700A9F88E /* MapVC.swift */; };
 		848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A7F001EE01D5700A9F88E /* Main.storyboard */; };
@@ -98,6 +100,8 @@
 		84572D161EE4B82600D8CE05 /* PIDatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIDatePickerDelegate.swift; sourceTree = "<group>"; };
 		84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPopup.swift; sourceTree = "<group>"; };
 		84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerPopup.xib; sourceTree = "<group>"; };
+		84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
+		84572D231EE5525800D8CE05 /* MovieVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieVC.swift; sourceTree = "<group>"; };
 		848A7EF91EE01D5700A9F88E /* WatchOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A7EFE1EE01D5700A9F88E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -214,6 +218,26 @@
 			name = Popup;
 			sourceTree = "<group>";
 		};
+		84572D1F1EE549F800D8CE05 /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				848A7F001EE01D5700A9F88E /* Main.storyboard */,
+				848A7EFE1EE01D5700A9F88E /* MapVC.swift */,
+				84572D121EE4B44200D8CE05 /* Views */,
+				8405CBA01EE2C07F005B373E /* CinemaHoursAnnotations */,
+			);
+			name = MapVC;
+			sourceTree = "<group>";
+		};
+		84572D201EE54A2200D8CE05 /* MovieVC */ = {
+			isa = PBXGroup;
+			children = (
+				84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */,
+				84572D231EE5525800D8CE05 /* MovieVC.swift */,
+			);
+			name = MovieVC;
+			sourceTree = "<group>";
+		};
 		848A7EF01EE01D5700A9F88E = {
 			isa = PBXGroup;
 			children = (
@@ -260,10 +284,8 @@
 		848A7F111EE0215500A9F88E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				848A7F001EE01D5700A9F88E /* Main.storyboard */,
-				848A7EFE1EE01D5700A9F88E /* MapVC.swift */,
-				84572D121EE4B44200D8CE05 /* Views */,
-				8405CBA01EE2C07F005B373E /* CinemaHoursAnnotations */,
+				84572D1F1EE549F800D8CE05 /* MapVC */,
+				84572D201EE54A2200D8CE05 /* MovieVC */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -454,6 +476,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */,
+				84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */,
 				848A7F071EE01D5700A9F88E /* LaunchScreen.storyboard in Resources */,
 				8425BF251EE2C234009E15A3 /* MovieHoursCell.xib in Resources */,
 				8405CB9E1EE2BB8F005B373E /* CinemaHoursCallout.xib in Resources */,
@@ -526,6 +549,7 @@
 				8425BF241EE2C234009E15A3 /* MovieHoursCell.swift in Sources */,
 				8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */,
 				848A7F481EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
+				84572D241EE5525800D8CE05 /* MovieVC.swift in Sources */,
 				848A7F781EE039C100A9F88E /* WOMovie.swift in Sources */,
 				848A7F181EE0288600A9F88E /* SearchZoneView.swift in Sources */,
 				8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */,

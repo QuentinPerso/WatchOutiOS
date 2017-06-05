@@ -16,9 +16,11 @@ class WOMovie : NSObject {
     var directors:[String]?
     var actors:[String]?
     var genre = ""
+    var releaseDate:String?
     var imageURL:URL!
     var userRating:Double?
     var pressRating:Double?
+    var synopsis:String?
     
     init(dictionary:[String : AnyObject]) {
         super.init()
@@ -28,6 +30,15 @@ class WOMovie : NSObject {
         name = dictionary["title"] as! String
         if let secondTime = dictionary["runtime"] as? Int {
             duration = secondTime.timeFromSeconds()
+        }
+        
+        if let releaseDict = dictionary["release"] as? [String : AnyObject] {
+            let rawDate = releaseDict["releaseDate"] as! String
+            let formater = DateFormatter()
+            formater.dateFormat = "yyyy-MM-dd"
+            let nsDate = formater.date(from: rawDate)
+            releaseDate = DateFormatter.localizedString(from: nsDate!, dateStyle: .medium, timeStyle: .none)
+            
         }
         
         let genreDictArray = (dictionary["genre"] as! [[String : AnyObject]])

@@ -22,7 +22,7 @@ extension Int {
     
     func timeFromSeconds() -> String {
         
-        return "\(self%3600)h\(self/60)"
+        return "\(self/3600)h\(self%3600/60)"
     }
 }
 
@@ -52,14 +52,14 @@ extension UIFont {
     
     static func woFont(size:CGFloat, weight:FontWeight = .regular) -> UIFont {
         
-        var fontName = "AvenirNext-Regular"
+        var fontName = "AvenirNextCondensed-Regular"
         switch weight {
         case .regular:
-            fontName = "AvenirNext-Regular"
+            fontName = "AvenirNextCondensed-Regular"
         case .demibold:
-            fontName = "AvenirNext-DemiBold"
+            fontName = "AvenirNextCondensed-DemiBold"
         case .bold:
-            fontName = "AvenirNext-Bold"
+            fontName = "AvenirNextCondensed-Bold"
         }
         
         return UIFont(name: fontName, size: size)!

@@ -11,78 +11,16 @@ import MapKit
 
 class CinemaShowsAnnotationView : MKPinAnnotationView {
     
-    var calloutView: CinemaHoursCallout?
-    
-    var theaterShowTime:WOTheaterShowtime!
-    
-    var didSelectMovieAction:((WOMovie) -> (Void))?
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
-        let calloutViewAdded = calloutView?.superview != nil
-        
-            super.setSelected(selected, animated: animated)
-        
-        self.superview?.bringSubview(toFront: self)
-        
-        if (calloutView == nil) {
-            calloutView = UINib(nibName: "CinemaHoursCallout", bundle: nil).instantiate(withOwner: nil, options: nil)[0] as? CinemaHoursCallout
-            calloutView?.theaterShowTime = theaterShowTime
+        super.setSelected(selected, animated: animated)
+        let scale:CGFloat = selected ? 1.2:0.7
+        let translationX:CGFloat = selected ? 0:-frame.size.width*(1-scale)/2
+        let translationY:CGFloat = selected ? 0:frame.size.height*(1-scale)/2
+        UIView.animate(withDuration: animated ? 0.15:0) {
+            self.transform = CGAffineTransform(scaleX: scale, y: scale).translatedBy(x: translationX, y: translationY)
         }
         
-        if (self.isSelected && !calloutViewAdded) {
-            let width = 230.0
-            
-            let rowNb = CGFloat(min(theaterShowTime.moviesShowTime.count, 3))
-            
-            let height = Double(calloutView!.titleHConstraint.constant + calloutView!.bottomHConstraint.constant + rowNb * calloutView!.tableView.rowHeight + calloutView!.tableView.contentInset.top + calloutView!.tableView.contentInset.top)
-            let calloutHeightOffset = 5.0
-            
-            let halfSelfWidth = Double(frame.size.width/2.0)
-            let halfWidth = -width/2.0
-            let x = halfSelfWidth+halfWidth
-            let calloutWidthOffset = 5.0 //depends on pin width
-            calloutView!.frame = CGRect(origin: CGPoint(x: x - calloutWidthOffset, y: -height-calloutHeightOffset), size: CGSize(width: width, height: height))
-            calloutView!.style()
-            calloutView?.alpha = 0
-            calloutView?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-            addSubview(calloutView!)
-            bringSubview(toFront: calloutView!)
-            UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0, options: [], animations: {
-                self.calloutView?.alpha = 1
-                self.calloutView?.transform = .identity
-            }, completion: nil)
-            
-            calloutView?.didSelectMovieAction = { [weak self] movie in self?.didSelectMovieAction?(movie) }
-            
-            
-        }
-        
-        if (!self.isSelected) {
-//            UIView.animate(withDuration: 0.15, animations: {
-//                self.calloutView?.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-//                self.calloutView?.alpha = 0
-//            }, completion: { (_) in
-//                self.calloutView?.removeFromSuperview()
-//            })
-            self.calloutView?.removeFromSuperview()
-            
-        }
     }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        var hitView = super.hitTest(point, with: event)
-        
-        if hitView == nil && self.isSelected {
-            let pointInCallout = convert(point, to: calloutView)
-            hitView = calloutView!.hitTest(pointInCallout, with: event)
-        }
-        
-        if let callout = calloutView {
-            if (hitView == nil && self.isSelected) {
-                hitView = callout.hitTest(point, with: event)
-            }
-        }
-        
-        return hitView;
-    }
+
 }

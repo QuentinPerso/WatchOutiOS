@@ -41,6 +41,8 @@ class MovieVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         setupMovie()
         
     }
@@ -80,9 +82,15 @@ class MovieVC: UIViewController {
         
         if let synopsis = movie.synopsis {
             synopsisLabel.text = synopsis
+            if synopsisLabel.alpha == 0 {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.synopsisLabel.alpha = 1
+                })
+            }
         }
         else if !isDetailsRequestDone{
             isDetailsRequestDone = true
+            synopsisLabel.alpha = 0
             _ = APIConnector.getMovieSynospsi(movie: movie, completion: { [weak self] (movie) in
                 self?.movie = movie
                 self?.setupMovie()
@@ -93,6 +101,11 @@ class MovieVC: UIViewController {
             synopsisTitleLabel.text = ""
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.view.bringSubview(toFront: topGradient)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -124,7 +137,7 @@ extension MovieVC : UIScrollViewDelegate {
             
             let yOffset = scrollView.contentOffset.y
                         
-            topGradient.alpha = min(0.65/20 * yOffset, 0.65)
+            topGradient.alpha = min(0.65/40 * yOffset, 0.65)
             
         }
         

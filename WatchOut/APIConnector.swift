@@ -103,7 +103,7 @@ extension APIConnector {
                 completion(nil)
             }
         }
-        print(request)
+
         return request
     }
     
@@ -154,7 +154,6 @@ extension APIConnector {
                             if theaterShowTime.moviesShowTime.count > 0 {
                                 woObjs.append(theaterShowTime)
                             }
-                            //   mksObjs.append(mksObj)
                         }
                         completion(woObjs, false)
                         
@@ -172,7 +171,7 @@ extension APIConnector {
                 completion(nil, false)
             }
         }
-        print(request)
+//        print(request)
         return request
     }
     
@@ -189,17 +188,17 @@ extension APIConnector {
         
         let queryParams:[String:String] = [
             "partner" : partner,
-            "code" : "\(movie.uniqID)",
+            "code" : "\(movie.uniqID!)",
             "format" : "json",
+            "striptags" : "synopsis,synopsisshort"
             ]
         
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        let request = sessionManager.request("http://api.allocine.fr/rest/v3/showtimelist", parameters: queryParams).responseJSON { response in
+        let request = sessionManager.request("http://api.allocine.fr/rest/v3/movie", parameters: queryParams).responseJSON { response in
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             if let jsonDict = response.result.value as? [String: AnyObject]{
-                
                 if let rawObj = jsonDict["movie"] as? [String : AnyObject] {
                     movie.synopsis = rawObj["synopsis"] as? String
                 }
@@ -213,7 +212,7 @@ extension APIConnector {
                 completion(movie)
             }
         }
-        print(request)
+
         return request
     }
     

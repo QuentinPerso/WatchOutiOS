@@ -11,8 +11,10 @@ import AlamofireImage
 
 class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var dimeBGView:UIView!
     @IBOutlet weak var tableView:UITableView!
     
+    var didTapBG:(()->())?
     var didSelectSuggestion:((AnyObject)->())?
     
     var autocompletes = [AnyObject]() {
@@ -22,6 +24,7 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
                 UIView.animate(withDuration: 0.15, animations: {
                     self.tableView.alpha = 0
                 })
+                
                 self.tableView.isUserInteractionEnabled = false
             }
             else if autocompletes.count > 0, tableView.alpha == 0  {
@@ -41,6 +44,21 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
+        dimeBG(false, animated: false)
+        
+    }
+    
+    @IBAction func dimeViewTapped(_ sender: Any) {
+        didTapBG?()
+
+    }
+    
+    func dimeBG(_ dimed:Bool, animated:Bool){
+        
+        UIView.animate(withDuration: animated ? 0.25:0) {
+            self.dimeBGView.alpha = dimed ? 1:0
+        }
+        dimeBGView.isUserInteractionEnabled = dimed
         
     }
     

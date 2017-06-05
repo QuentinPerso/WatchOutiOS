@@ -13,20 +13,28 @@ import Alamofire
 class MapVC: UIViewController {
 
     @IBOutlet weak var topBarView: UIView!
+    
+    @IBOutlet weak var topbarHConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var botViewBotConstraint: NSLayoutConstraint!
+    @IBOutlet weak var botViewHConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var bottomView: TheaterShowTimesView!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
+    @IBOutlet weak var searchOverlay: SearchZoneView!
     @IBOutlet weak var dateFilterView: DateFilterView!
- 
-    var searchOverlay:SearchZoneView!
     
     var autoCompleteRequest:DataRequest?
     
     var timeListRequest:DataRequest?
     
     var searchedObject:AnyObject?
+    
+    var shouldStartSearch:Bool = false
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
@@ -35,14 +43,24 @@ class MapVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
+        setBottomViewHidden(true, animated: false)
         setupMap()
+        setupBottomView()
         setupDateFilterView()
         setupSearchView()
         setupKeyboard()
         setMapViewport()
         setupSearchBar()
+        
+    }
+    
+    func setupBottomView() {
+        
+        bottomView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
+        
         
     }
     
@@ -65,13 +83,16 @@ class MapVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        autocompleteView.tableView.contentInset = UIEdgeInsetsMake(topbarHConstraint.constant, 0, 0, autocompleteView.tableView.contentInset.bottom)
+        mapView.layoutMargins = UIEdgeInsetsMake(topbarHConstraint.constant, 0, mapView.layoutMargins.bottom, 0)
+
+        
         view.bringSubview(toFront: autocompleteView)
-        mapView.layoutMargins = UIEdgeInsetsMake(0, 0, 0, 0)
+        view.bringSubview(toFront: topBarView)
+        
+        
         setupTopShadow()
-        if searchOverlay == nil {
-            searchOverlay = SearchZoneView(mapView: mapView)
-            self.view.addSubview(searchOverlay)
-        }
         
 
     }
@@ -117,16 +138,10 @@ extension MapVC:UIGestureRecognizerDelegate {
     func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
         
         if gestureRecognizer.state == .began {
-            timeListRequest?.cancel()
-            searchBar.resignFirstResponder()
-
-            if mapView.selectedAnnotations.count == 0 {
+            if gestureRecognizer.numberOfTouches == 1{
+                shouldStartSearch = true
                 searchOverlay.show()
             }
-        }
-
-        if mapView.selectedAnnotations.count == 0, gestureRecognizer.state == .ended {
-            callAPITimeLists()
         }
         
     }
@@ -204,16 +219,31 @@ extension MapVC {
     
     func reloadMap(theaterShowTimes:[WOTheaterShowtime]){
         
+        var selectedAnnot:CinemaAnnotation?
+        for annot in mapView.selectedAnnotations {
+            if let cAnnot = annot as? CinemaAnnotation {
+                selectedAnnot = cAnnot
+            }
+        }
         
         for annot in mapView.annotations {
-            if annot is CinemaAnnotation {
+            if let cAnnot = annot as? CinemaAnnotation, let selAnnot = selectedAnnot, cAnnot != selAnnot {
+                mapView.removeAnnotation(annot)
+            }
+            else if selectedAnnot == nil {
                 mapView.removeAnnotation(annot)
             }
         }
         
         for tst in theaterShowTimes {
-            let annotation = CinemaAnnotation(theaterShowTime: tst)
-            mapView.addAnnotation(annotation)
+            if let selAnnot = selectedAnnot, selAnnot.theaterShowTime != tst {
+                let annotation = CinemaAnnotation(theaterShowTime: tst)
+                mapView.addAnnotation(annotation)
+            }
+            else if selectedAnnot == nil {
+                let annotation = CinemaAnnotation(theaterShowTime: tst)
+                mapView.addAnnotation(annotation)
+            }
         }
     }
     
@@ -266,11 +296,13 @@ extension MapVC : UISearchBarDelegate{
     
     
     func enterSearch() {
+        autocompleteView.dimeBG(true, animated: true)
         searchBar.setShowsCancelButton(true, animated: true)
         
     }
     
     func exitSearch() {
+        autocompleteView.dimeBG(false, animated: true)
          searchBar.setShowsCancelButton(false, animated: true)
     }
     
@@ -308,11 +340,12 @@ extension MapVC {
     
     func setupSearchBar(){
         
-        searchBar.backgroundColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
+        searchBar.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
         
         self.searchBar.delegate = self
         
         searchBar.backgroundImage = UIImage()
+        
 
         if let textField = self.searchBar.value(forKey: "searchField") as? UITextField {
             //Magnifying glass
@@ -333,6 +366,8 @@ extension MapVC {
             textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726).cgColor
             textField.layer.cornerRadius = 2
             textField.clipsToBounds = true
+            print(textField.font)
+            textField.font = UIFont.woFont(size: 16)
             
             
             searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .normal)
@@ -382,6 +417,11 @@ extension MapVC {
             self.autocompleteView.autocompletes = []
             self.searchBar.resignFirstResponder()
         }
+        autocompleteView.didTapBG = {
+            
+            self.searchBar.resignFirstResponder()
+            
+        }
         
         
     }
@@ -423,11 +463,10 @@ extension MapVC : MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if let cineAnnot = annotation as? CinemaAnnotation {
+        if annotation is CinemaAnnotation {
             let cineView = CinemaShowsAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            cineView.theaterShowTime = cineAnnot.theaterShowTime
             cineView.pinTintColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
-            cineView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
+            cineView.setSelected(false, animated: false)
             return cineView
         }
         
@@ -436,21 +475,64 @@ extension MapVC : MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
-        if let cineView = view as? CinemaShowsAnnotationView, let calloutView = cineView.calloutView {
+        if let cineAnnot = view.annotation as? CinemaAnnotation {
+            
             timeListRequest?.cancel()
             searchOverlay.hide()
-            
-            let frameOfAnnotView = CGRect(x: view.frame.origin.x - calloutView.frame.origin.x,
-                                          y: view.frame.origin.y ,
-                                          width: view.frame.size.width - calloutView.frame.size.width,
-                                          height: view.frame.size.height - calloutView.frame.size.height)
-            
-            let center = CGPoint(x: frameOfAnnotView.midX, y: frameOfAnnotView.midY)
-            let centerCoord = mapView.convert(center, toCoordinateFrom: mapView)
-            mapView.centerOn(centerCoord, zoomLevel: mapView.getZoomLevel(), animated: true)
 
+            bottomView.theaterShowTime = cineAnnot.theaterShowTime
+            
+            setBottomViewHidden(false, animated: true)
+            centerMapOnAnnotation(cineAnnot)
+            
+            
         }
        
+    }
+    
+    func centerMapOnAnnotation(_ cineAnnot:CinemaAnnotation) {
+        let nePoint =
+            CGPoint(x:mapView.bounds.origin.x + mapView.bounds.size.width,
+                    y:mapView.bounds.origin.y)
+        let swPoint =
+            CGPoint(x:(mapView.bounds.origin.x),
+                    y:(mapView.bounds.origin.y + mapView.bounds.size.height - mapView.layoutMargins.bottom))
+        
+        
+        
+        //Then transform those point into lat,lng values
+        let ne = mapView.convert(nePoint, toCoordinateFrom: mapView)
+        let sw = mapView.convert(swPoint, toCoordinateFrom: mapView)
+        
+        
+        if !MapFunctions.isCoordInViewPort(coord: cineAnnot.coordinate, sw: sw, ne: ne) {
+            mapView.centerOn(coord: cineAnnot.coordinate, radius: nil, animated: true)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        
+        if (view.annotation as? CinemaAnnotation) != nil {
+            if mapView.selectedAnnotations.count == 0 {
+                setBottomViewHidden(true, animated: true)
+            }
+        }
+    }
+    
+    
+    
+    func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
+        
+        botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -bottomView.padInsetBot
+        mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - bottomView.padInsetBot
+        
+        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
+            
+            self?.mapView.layoutIfNeeded()
+            self?.view.layoutIfNeeded()
+
+            }, completion: nil)
+        
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
@@ -459,6 +541,11 @@ extension MapVC : MKMapViewDelegate{
     }
     
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        
+        if shouldStartSearch {
+            shouldStartSearch = false
+            callAPITimeLists()
+        }
         //callAPITimeLists()
         
     }

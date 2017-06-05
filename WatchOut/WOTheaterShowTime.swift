@@ -13,6 +13,14 @@ class WOTheaterShowtime : NSObject {
     var moviesShowTime:[WOMovieShowtime]!
     var cinema:WOCinema!
     
+    override func isEqual(_ object: Any?) -> Bool {
+        if let object = object as? WOTheaterShowtime {
+            return self.cinema.uniqID == object.cinema.uniqID
+        } else {
+            return false
+        }
+    }
+    
     init(dictionary:[String : AnyObject], person:String?, timeIntervalFromNow:Double?) {
         super.init()
         

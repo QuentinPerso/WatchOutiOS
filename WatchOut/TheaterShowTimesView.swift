@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 import AlamofireImage
 
-class CinemaHoursCallout : UIView {
+class TheaterShowTimesView : UIView {
     
+    let padInsetBot:CGFloat = 20.0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -24,53 +25,61 @@ class CinemaHoursCallout : UIView {
     
     var theaterShowTime:WOTheaterShowtime! {
         didSet {
-            titleLabel.text = theaterShowTime.cinema.name
+            UIView.transition(with: titleLabel, duration: 0.2, options: [], animations: {
+                self.titleLabel.text = self.theaterShowTime.cinema.name.uppercased()
+            }, completion: nil)
+            
             tableView.delegate = self
             tableView.dataSource = self
-            tableView.register(UINib(nibName: "MovieHoursCell", bundle: nil), forCellReuseIdentifier: "MovieHoursCell")
-            tableView.reloadData()
+            //tableView.register(UINib(nibName: "MovieHoursCell", bundle: nil), forCellReuseIdentifier: "MovieHoursCell")
+            tableView.reloadSections([0], with: .left)
         }
         
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        print(titleLabel.font.fontName)
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, padInsetBot, 0)
         
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
         style()
-        
     }
     
     func style() {
         
-        let cornerR = CGFloat(4.0)
+        let cornerR = CGFloat(8.0)
         
         layer.cornerRadius = cornerR
         
 //        tableView.contentInset = UIEdgeInsets(top: cornerR/2, left: 0, bottom: 0, right: 0)
-        tableView.layer.cornerRadius = cornerR/2
+//        tableView.layer.cornerRadius = cornerR/2
         
         let shadowPath = UIBezierPath(roundedRect: (bounds), cornerRadius: cornerR)
     
         layer.shadowRadius = 10
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.4
-        layer.shadowOffset = CGSize(width: 0, height: 5)
+        layer.shadowOffset = CGSize(width: 0, height: 0)
         layer.shadowPath = shadowPath.cgPath
         clipsToBounds = false
         
     }
     
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let viewPoint = superview?.convert(point, to: self) ?? point
-    
-        let view = super.hitTest(viewPoint, with: event)
-    
-        return view
-    }
-    
+//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+//        let viewPoint = superview?.convert(point, to: self) ?? point
+//    
+//        let view = super.hitTest(viewPoint, with: event)
+//    
+//        return view
+//    }
+//    
 }
 
-extension CinemaHoursCallout:UITableViewDataSource {
+extension TheaterShowTimesView:UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return theaterShowTime.moviesShowTime.count
@@ -98,7 +107,7 @@ extension CinemaHoursCallout:UITableViewDataSource {
     
 }
 
-extension CinemaHoursCallout:UITableViewDelegate {
+extension TheaterShowTimesView:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         

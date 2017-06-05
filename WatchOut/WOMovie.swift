@@ -32,12 +32,15 @@ class WOMovie : NSObject {
             duration = secondTime.timeFromSeconds()
         }
         
-        if let releaseDict = dictionary["release"] as? [String : AnyObject] {
-            let rawDate = releaseDict["releaseDate"] as! String
+        if let releaseDict = dictionary["release"] as? [String : AnyObject], let rawDate = releaseDict["releaseDate"] as? String {
+            
             let formater = DateFormatter()
             formater.dateFormat = "yyyy-MM-dd"
-            let nsDate = formater.date(from: rawDate)
-            releaseDate = DateFormatter.localizedString(from: nsDate!, dateStyle: .medium, timeStyle: .none)
+            
+            if let nsDate = formater.date(from: rawDate) {
+                releaseDate = DateFormatter.localizedString(from: nsDate, dateStyle: .medium, timeStyle: .none)
+            }
+            
             
         }
         

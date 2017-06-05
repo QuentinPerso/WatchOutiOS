@@ -366,7 +366,6 @@ extension MapVC {
             textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726).cgColor
             textField.layer.cornerRadius = 2
             textField.clipsToBounds = true
-            print(textField.font)
             textField.font = UIFont.woFont(size: 16)
             
             
@@ -509,6 +508,7 @@ extension MapVC : MKMapViewDelegate{
             mapView.centerOn(coord: cineAnnot.coordinate, radius: nil, animated: true)
         }
     }
+
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
@@ -526,9 +526,8 @@ extension MapVC : MKMapViewDelegate{
         botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -bottomView.padInsetBot
         mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - bottomView.padInsetBot
         
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
             
-            self?.mapView.layoutIfNeeded()
             self?.view.layoutIfNeeded()
 
             }, completion: nil)

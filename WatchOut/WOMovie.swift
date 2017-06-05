@@ -45,7 +45,7 @@ class WOMovie : NSObject {
         }
         
         let genreDictArray = (dictionary["genre"] as! [[String : AnyObject]])
-        genre = genreDictArray.map({ (dict) -> String in return dict["$"] as! String }).joined(separator: ",")
+        genre = genreDictArray.map({ (dict) -> String in return dict["$"] as! String }).joined(separator: ", ")
 
         if let poster = dictionary["poster"] as? [String : AnyObject], let urlStr = poster["href"] as? String {
             imageURL = URL(string:urlStr)

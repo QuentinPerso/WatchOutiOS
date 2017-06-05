@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsX-LI-Uqq" userLabel="MainView">
-                    <rect key="frame" x="20" y="144" width="281" height="280.5"/>
+                    <rect key="frame" x="20" y="151" width="281" height="267"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="0c1-9r-NEj">
                             <rect key="frame" x="24" y="42.5" width="233" height="25"/>
@@ -24,13 +24,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNZ-Xb-9bK">
-                            <rect key="frame" x="34" y="77" width="213" height="120"/>
+                            <rect key="frame" x="34" y="63.5" width="213" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="120" id="emD-0N-2Au"/>
                             </constraints>
                         </pickerView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seQ-nj-E8F">
-                            <rect key="frame" x="97" y="207.5" width="88" height="34"/>
+                            <rect key="frame" x="97" y="194" width="88" height="34"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-d7-KrC">
                                     <rect key="frame" x="0.0" y="0.0" width="88" height="34"/>
@@ -64,7 +64,7 @@
                         <constraint firstItem="0c1-9r-NEj" firstAttribute="leading" secondItem="OsX-LI-Uqq" secondAttribute="leading" constant="24" id="PqQ-dg-xZy"/>
                         <constraint firstItem="seQ-nj-E8F" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OsX-LI-Uqq" secondAttribute="leading" constant="20" id="c5M-PQ-AX5"/>
                         <constraint firstItem="0c1-9r-NEj" firstAttribute="top" secondItem="OsX-LI-Uqq" secondAttribute="top" constant="43" id="cf5-3o-FzA"/>
-                        <constraint firstItem="PNZ-Xb-9bK" firstAttribute="top" secondItem="0c1-9r-NEj" secondAttribute="bottom" constant="10" id="jHg-FZ-y6O"/>
+                        <constraint firstItem="PNZ-Xb-9bK" firstAttribute="top" secondItem="0c1-9r-NEj" secondAttribute="bottom" constant="-4" id="jHg-FZ-y6O"/>
                         <constraint firstItem="seQ-nj-E8F" firstAttribute="top" secondItem="PNZ-Xb-9bK" secondAttribute="bottom" constant="10" id="rPL-6Q-Mp6"/>
                         <constraint firstItem="seQ-nj-E8F" firstAttribute="centerX" secondItem="OsX-LI-Uqq" secondAttribute="centerX" id="tcQ-nM-TIL"/>
                         <constraint firstItem="0c1-9r-NEj" firstAttribute="centerX" secondItem="OsX-LI-Uqq" secondAttribute="centerX" id="xTH-nY-arq"/>

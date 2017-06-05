@@ -273,7 +273,7 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1F-H2-VJI" customClass="TheaterShowTimesView" customModule="WatchOut" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="427" width="375" height="260"/>
+                                <rect key="frame" x="0.0" y="427" width="375" height="300"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CINEMA NAME" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VkM-Re-pfH">
                                         <rect key="frame" x="10" y="0.0" width="355" height="50"/>
@@ -292,7 +292,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="82" sectionHeaderHeight="1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2Jq-ps-F8y">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="210"/>
+                                        <rect key="frame" x="0.0" y="50" width="375" height="250"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="MovieHoursCell" rowHeight="88" id="k91-Ni-s1s" customClass="MovieHoursCell" customModule="WatchOut" customModuleProvider="target">
@@ -309,19 +309,19 @@
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A llloooooooooong film name on a looooonng day" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RAo-sH-A1r">
-                                                            <rect key="frame" x="79" y="8" width="288" height="22"/>
+                                                            <rect key="frame" x="79" y="4" width="288" height="22"/>
                                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="16"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VOSTFR Francais numerique" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XDj-X3-oTr">
-                                                            <rect key="frame" x="79" y="35" width="280" height="19.5"/>
+                                                            <rect key="frame" x="79" y="31" width="280" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 - 03 - 2017 14:40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HBI-Vg-jTd">
-                                                            <rect key="frame" x="79" y="56.5" width="288" height="19.5"/>
+                                                            <rect key="frame" x="79" y="52.5" width="288" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -350,7 +350,7 @@
                                                         <constraint firstItem="XDj-X3-oTr" firstAttribute="leading" secondItem="RAo-sH-A1r" secondAttribute="leading" id="pJS-m8-jJa"/>
                                                         <constraint firstAttribute="bottom" secondItem="xyH-pT-PC8" secondAttribute="bottom" id="r55-fa-duQ"/>
                                                         <constraint firstItem="HBI-Vg-jTd" firstAttribute="top" secondItem="XDj-X3-oTr" secondAttribute="bottom" constant="2" id="sl9-lb-eQg"/>
-                                                        <constraint firstItem="RAo-sH-A1r" firstAttribute="top" secondItem="b3F-UJ-EqX" secondAttribute="top" constant="8" id="vMw-f6-f2c"/>
+                                                        <constraint firstItem="RAo-sH-A1r" firstAttribute="top" secondItem="b3F-UJ-EqX" secondAttribute="top" constant="4" id="vMw-f6-f2c"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -370,7 +370,7 @@
                                     <constraint firstAttribute="trailing" secondItem="2Jq-ps-F8y" secondAttribute="trailing" id="PYF-0t-Bnm"/>
                                     <constraint firstAttribute="bottom" secondItem="2Jq-ps-F8y" secondAttribute="bottom" id="Z3i-6F-HDt"/>
                                     <constraint firstItem="2Jq-ps-F8y" firstAttribute="leading" secondItem="f1F-H2-VJI" secondAttribute="leading" id="c0m-tS-mJZ"/>
-                                    <constraint firstAttribute="height" constant="260" id="gnS-nX-3eM"/>
+                                    <constraint firstAttribute="height" constant="300" id="gnS-nX-3eM"/>
                                     <constraint firstItem="2Jq-ps-F8y" firstAttribute="top" secondItem="VkM-Re-pfH" secondAttribute="bottom" id="h7g-1m-ACF"/>
                                     <constraint firstItem="VkM-Re-pfH" firstAttribute="leading" secondItem="f1F-H2-VJI" secondAttribute="leading" constant="10" id="kCv-Fd-CZY"/>
                                     <constraint firstItem="VkM-Re-pfH" firstAttribute="top" secondItem="f1F-H2-VJI" secondAttribute="top" id="kwQ-L7-U9W"/>
@@ -396,7 +396,7 @@
                             <constraint firstAttribute="trailing" secondItem="vB0-BK-6e4" secondAttribute="trailing" id="T89-Dq-oO9"/>
                             <constraint firstAttribute="trailing" secondItem="A4K-UB-ANk" secondAttribute="trailing" id="Uk2-uN-Gd0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="vB0-BK-6e4" secondAttribute="bottom" id="Vgs-vY-ivP"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="f1F-H2-VJI" secondAttribute="bottom" constant="-20" id="W0e-2F-hm4"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="f1F-H2-VJI" secondAttribute="bottom" constant="-60" id="W0e-2F-hm4"/>
                             <constraint firstItem="f1F-H2-VJI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZQg-i8-Dsf"/>
                             <constraint firstAttribute="trailing" secondItem="f1F-H2-VJI" secondAttribute="trailing" id="aLU-WH-wa1"/>
                             <constraint firstItem="A4K-UB-ANk" firstAttribute="top" secondItem="lwq-31-0eT" secondAttribute="bottom" id="fCS-Le-Yn6"/>

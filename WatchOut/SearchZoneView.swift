@@ -21,8 +21,12 @@ class SearchZoneView: UIView {
     static let mapSearchTopAdditionalPadding:CGFloat = 80.0
     static let pinHeightPadding:CGFloat = 34.0
     
+    var baseAlphaloaderImage:CGFloat = 0.0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        baseAlphaloaderImage = loaderImage.alpha
         
         self.isUserInteractionEnabled = false
         
@@ -45,7 +49,7 @@ class SearchZoneView: UIView {
         case 4:
             cat = .ballRotateChase
         case 5:
-            cat = .lineScaleParty
+            cat = .ballPulseSync
         case 6:
             cat = .ballClipRotateMultiple
         default:
@@ -54,7 +58,7 @@ class SearchZoneView: UIView {
         
         loadingIndicator.type = cat
         loadingIndicator.color = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
-        loadingIndicator.alpha = 0.7
+        loadingIndicator.alpha = 1
         
         loadingIndicator.center = loaderView.center
         loaderView.addSubview(loadingIndicator)
@@ -82,7 +86,7 @@ class SearchZoneView: UIView {
             self.alpha = 1
         }
         UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: [], animations: {
-            self.loaderImage.alpha = 0.5
+            self.loaderImage.alpha = self.baseAlphaloaderImage
             self.loaderImage.transform = CGAffineTransform(scaleX: 1, y: 1)
         }, completion: nil)
     }

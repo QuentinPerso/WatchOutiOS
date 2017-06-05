@@ -229,10 +229,10 @@
                                 <rect key="frame" x="0.0" y="104" width="375" height="323"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dak-Au-zjv">
-                                        <rect key="frame" x="171" y="145.5" width="33" height="33"/>
+                                        <rect key="frame" x="165.5" y="140" width="44" height="44"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1X-Y7-ZFs" customClass="NVActivityIndicatorView" customModule="WatchOut" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="color">
@@ -244,20 +244,22 @@
                                                     <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="pacman"/>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchViewIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-Zy-pLS">
-                                                <rect key="frame" x="0.0" y="0.0" width="33" height="33"/>
+                                            <imageView userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="searchViewIcon" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-Zy-pLS">
+                                                <rect key="frame" x="6" y="6" width="32" height="32"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="ARm-JC-kqL"/>
+                                            <constraint firstAttribute="width" constant="44" id="F1j-1Y-6wH"/>
+                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dak-Au-zjv" secondAttribute="leading" id="I3O-tP-dVs"/>
                                             <constraint firstAttribute="trailing" secondItem="i1X-Y7-ZFs" secondAttribute="trailing" id="JTG-tc-cy6"/>
-                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="leading" secondItem="dak-Au-zjv" secondAttribute="leading" id="QX4-By-sWh"/>
+                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="centerX" secondItem="dak-Au-zjv" secondAttribute="centerX" id="O6L-gx-Nag"/>
                                             <constraint firstItem="i1X-Y7-ZFs" firstAttribute="leading" secondItem="dak-Au-zjv" secondAttribute="leading" id="TOv-rA-Vx3"/>
-                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="top" secondItem="dak-Au-zjv" secondAttribute="top" id="WDW-gt-DWe"/>
+                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="centerY" secondItem="dak-Au-zjv" secondAttribute="centerY" id="YDX-Ae-oBA"/>
                                             <constraint firstItem="i1X-Y7-ZFs" firstAttribute="top" secondItem="dak-Au-zjv" secondAttribute="top" id="be0-EA-pzX"/>
                                             <constraint firstAttribute="bottom" secondItem="i1X-Y7-ZFs" secondAttribute="bottom" id="frZ-xM-3vU"/>
-                                            <constraint firstAttribute="trailing" secondItem="zvJ-Zy-pLS" secondAttribute="trailing" id="hue-GL-3xw"/>
-                                            <constraint firstAttribute="bottom" secondItem="zvJ-Zy-pLS" secondAttribute="bottom" id="nlp-Ke-w0B"/>
+                                            <constraint firstItem="zvJ-Zy-pLS" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dak-Au-zjv" secondAttribute="top" id="sdC-dO-IE4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -453,6 +455,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="searchViewIcon" width="33" height="33"/>
+        <image name="searchViewIcon" width="32" height="32"/>
     </resources>
 </document>

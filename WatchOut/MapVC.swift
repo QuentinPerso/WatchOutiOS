@@ -12,13 +12,14 @@ import Alamofire
 
 class MapVC: UIViewController {
 
+    @IBOutlet weak var topBarView: UIView!
     @IBOutlet weak var mapView: MKMapView!
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
     @IBOutlet weak var dateFilterView: DateFilterView!
-    
+ 
     var searchOverlay:SearchZoneView!
     
     var autoCompleteRequest:DataRequest?
@@ -35,6 +36,7 @@ class MapVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         setupMap()
+        setupDateFilterView()
         setupSearchView()
         setupKeyboard()
         setMapViewport()
@@ -42,6 +44,18 @@ class MapVC: UIViewController {
         
     }
     
+    func setupTopShadow() {
+        
+        let shadowPath = UIBezierPath(roundedRect: topBarView.bounds, cornerRadius: 0)
+        
+        topBarView.layer.shadowRadius = 3
+        topBarView.layer.shadowColor = UIColor.black.cgColor
+        topBarView.layer.shadowOpacity = 0.4
+        topBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        topBarView.layer.shadowPath = shadowPath.cgPath
+        topBarView.clipsToBounds = false
+        
+    }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -51,7 +65,7 @@ class MapVC: UIViewController {
         super.viewDidLayoutSubviews()
         view.bringSubview(toFront: autocompleteView)
         mapView.layoutMargins = UIEdgeInsetsMake(10, 10, 10, 10)
-        
+        setupTopShadow()
         if searchOverlay == nil {
             searchOverlay = SearchZoneView(mapView: mapView)
             self.view.addSubview(searchOverlay)
@@ -170,8 +184,8 @@ extension MapVC {
         else if dateFilterView.todayButton.isSelected {
             dateString = formater.string(from: Date())
         }
-        else if dateFilterView.otherDayButton.isSelected {
-            dateString = formater.string(from: Date())
+        else if dateFilterView.otherDayButton.isSelected, let date = dateFilterView.filterDate {
+            dateString = formater.string(from: date)
         }
         
         timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovieCode, person:seachedPersonName,date:dateString, timeInterval:hoursTimeInterval, completion: { [weak self] theaterShowTimes, canceled in
@@ -324,6 +338,36 @@ extension MapVC {
             
         }
         searchBar.keyboardAppearance = .dark
+    }
+    
+    func setupDateFilterView() {
+        
+        dateFilterView.otherDayAction = {
+            let alert = Bundle.main.loadNibNamed("DatePickerPopup", owner: self, options: nil)?[0] as! DatePickerPopup
+            alert.okAction = {
+                let row = alert.datePicker.selectedRow(inComponent: 0)
+                self.dateFilterView.filterDate = Date().addingTimeInterval(Double(row+1) * 24 * 3600)
+                if row == 0 {
+                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .normal)
+                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .selected)
+                }
+                else {
+                    let formater = DateFormatter()
+                    formater.dateFormat = "MM-dd"
+                    let dateString = DateFormatter.localizedString(from: self.dateFilterView.filterDate!, dateStyle: .short, timeStyle: .none)
+                    
+                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .normal)
+                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .selected)
+                }
+                self.callAPITimeLists()
+            }
+            alert.showInWindow(self.view.window!)
+        }
+        
+        dateFilterView.valueDidChangeAction = {
+            self.callAPITimeLists()
+        }
+        
     }
     
     func setupSearchView() {

@@ -21,6 +21,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vB0-BK-6e4">
+                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
+                                <color key="tintColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwq-31-0eT" userLabel="Top bar">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                 <subviews>
@@ -32,17 +36,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6y-pu-Qpi" customClass="DateFilterView" customModule="WatchOut" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="64" width="375" height="40"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyT-kk-EZE">
-                                                <rect key="frame" x="12" y="7.5" width="42.5" height="18"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="13"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcB-2p-fvl">
-                                                <rect key="frame" x="63" y="0.0" width="304" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="32"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6K-oc-6zh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="101.5" height="32"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="32"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="1 hour">
@@ -53,7 +51,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiM-vM-wFl">
-                                                        <rect key="frame" x="101.5" y="0.0" width="101" height="32"/>
+                                                        <rect key="frame" x="94" y="0.0" width="93.5" height="32"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Today">
@@ -64,7 +62,7 @@
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTR-L8-Kzj">
-                                                        <rect key="frame" x="202.5" y="0.0" width="101.5" height="32"/>
+                                                        <rect key="frame" x="187.5" y="0.0" width="94" height="32"/>
                                                         <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" title="Another day">
@@ -74,23 +72,34 @@
                                                             <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="fwT-gs-CUu"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYr-uO-XwJ">
+                                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="32"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="All">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="0G4-Uy-71q"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstItem="EiM-vM-wFl" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="DV9-M7-OSh"/>
                                                     <constraint firstItem="Z6K-oc-6zh" firstAttribute="width" secondItem="EiM-vM-wFl" secondAttribute="width" id="gDj-at-Ia3"/>
+                                                    <constraint firstItem="TYr-uO-XwJ" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="iP4-Ki-5Zt"/>
                                                 </constraints>
                                             </stackView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstItem="RyT-kk-EZE" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" constant="12" id="205-dn-ZWl"/>
-                                            <constraint firstItem="RyT-kk-EZE" firstAttribute="centerY" secondItem="vcB-2p-fvl" secondAttribute="centerY" id="Bdb-bS-2Dg"/>
+                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" id="2Ne-Au-bze"/>
                                             <constraint firstItem="vcB-2p-fvl" firstAttribute="top" secondItem="s6y-pu-Qpi" secondAttribute="top" id="OfN-Qh-GEl"/>
-                                            <constraint firstAttribute="trailing" secondItem="vcB-2p-fvl" secondAttribute="trailing" constant="8" id="WV5-cX-vuR"/>
+                                            <constraint firstAttribute="trailing" secondItem="vcB-2p-fvl" secondAttribute="trailing" id="WV5-cX-vuR"/>
                                             <constraint firstAttribute="bottom" secondItem="vcB-2p-fvl" secondAttribute="bottom" constant="8" id="beX-fs-kcx"/>
-                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="leading" secondItem="RyT-kk-EZE" secondAttribute="trailing" constant="8" id="law-8b-h6J"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="allButton" destination="TYr-uO-XwJ" id="vGq-s4-sRR"/>
                                             <outlet property="oneHourButton" destination="Z6K-oc-6zh" id="iCP-bS-IvA"/>
                                             <outlet property="otherDayButton" destination="qTR-L8-Kzj" id="Bxn-oW-IGE"/>
                                             <outlet property="todayButton" destination="EiM-vM-wFl" id="c55-Zc-AVR"/>
@@ -109,10 +118,6 @@
                                     <constraint firstAttribute="bottom" secondItem="s6y-pu-Qpi" secondAttribute="bottom" id="sPF-mt-zvb"/>
                                 </constraints>
                             </view>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="vB0-BK-6e4">
-                                <rect key="frame" x="0.0" y="104" width="375" height="563"/>
-                                <color key="tintColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCe-Jv-yMm" customClass="AutocompleteView" customModule="WatchOut" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="104" width="375" height="563"/>
                                 <subviews>
@@ -229,11 +234,12 @@
                         <outlet property="dateFilterView" destination="s6y-pu-Qpi" id="Mr3-Ne-4DE"/>
                         <outlet property="mapView" destination="vB0-BK-6e4" id="vcS-c8-f2g"/>
                         <outlet property="searchBar" destination="r1J-q4-za1" id="NF6-Cg-g6K"/>
+                        <outlet property="topBarView" destination="lwq-31-0eT" id="x1n-Im-2px"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+            <point key="canvasLocation" x="104.8" y="138.98050974512745"/>
         </scene>
     </scenes>
 </document>

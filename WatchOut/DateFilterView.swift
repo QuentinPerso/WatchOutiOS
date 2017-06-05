@@ -10,12 +10,16 @@ import UIKit
 
 class DateFilterView: UIView {
 
-    @IBOutlet weak var oneHourButton
-    : UIButton!
-    @IBOutlet weak var todayButton
-    : UIButton!
-    @IBOutlet weak var otherDayButton
-    : UIButton!
+    @IBOutlet weak var oneHourButton:UIButton!
+    @IBOutlet weak var todayButton:UIButton!
+    @IBOutlet weak var otherDayButton:UIButton!
+    @IBOutlet weak var allButton:UIButton!
+    
+    var filterDate:Date?
+    
+    var otherDayAction:((Void) -> (Void))?
+    
+    var valueDidChangeAction:((Void) -> (Void))?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,13 +27,21 @@ class DateFilterView: UIView {
     }
     
     @IBAction func didSelectTimeFilter(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        sender.isSelected = true
         let buttons = [oneHourButton,todayButton,otherDayButton]
+        
         for button in buttons {
             if button != sender {
                 button?.isSelected = false
             }
         }
+        if sender == otherDayButton, sender.isSelected {
+            otherDayAction?()
+        }
+        else {
+            valueDidChangeAction?()
+        }
+        
     }
     
 

@@ -47,9 +47,8 @@ class CinemaHoursCallout : UIView {
 //        tableView.contentInset = UIEdgeInsets(top: cornerR/2, left: 0, bottom: 0, right: 0)
         tableView.layer.cornerRadius = cornerR/2
         
-        var shadowPath = UIBezierPath(roundedRect: (bounds), cornerRadius: cornerR)
-        
-        shadowPath  = UIBezierPath(roundedRect: (bounds), cornerRadius: bounds.height/2)
+        let shadowPath = UIBezierPath(roundedRect: (bounds), cornerRadius: cornerR)
+    
         layer.shadowRadius = 10
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.4
@@ -100,9 +99,7 @@ extension CinemaHoursCallout:UITableViewDataSource {
 extension CinemaHoursCallout:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movie = theaterShowTime.moviesShowTime[indexPath.row].movie
-        print(movie?.directors)
-        print(movie?.actors)
+
     }
 
 }

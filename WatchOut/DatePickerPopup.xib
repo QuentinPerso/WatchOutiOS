@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DatePickerPopup" customModule="WatchOut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OsX-LI-Uqq" userLabel="MainView">
+                    <rect key="frame" x="20" y="131" width="281" height="306"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="0c1-9r-NEj">
+                            <rect key="frame" x="24" y="42.5" width="233" height="21"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNZ-Xb-9bK">
+                            <rect key="frame" x="34" y="83" width="213" height="120"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="120" id="emD-0N-2Au"/>
+                            </constraints>
+                        </pickerView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seQ-nj-E8F">
+                            <rect key="frame" x="88.5" y="233" width="105" height="34"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tb1-d7-KrC">
+                                    <rect key="frame" x="0.0" y="0.0" width="105" height="34"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="2R7-JQ-JHh"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="11"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                    <state key="normal" title="Custom Button"/>
+                                    <connections>
+                                        <action selector="clickOkButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="xN6-eh-mLu"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="Tb1-d7-KrC" firstAttribute="top" secondItem="seQ-nj-E8F" secondAttribute="top" id="41U-qP-3H8"/>
+                                <constraint firstItem="Tb1-d7-KrC" firstAttribute="leading" secondItem="seQ-nj-E8F" secondAttribute="leading" id="KVg-qx-axH"/>
+                                <constraint firstAttribute="trailing" secondItem="Tb1-d7-KrC" secondAttribute="trailing" priority="249" id="Zv3-2r-AiE"/>
+                                <constraint firstAttribute="bottom" secondItem="Tb1-d7-KrC" secondAttribute="bottom" id="yPV-Ls-olN"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="seQ-nj-E8F" secondAttribute="bottom" constant="39" id="32b-QU-zSe"/>
+                        <constraint firstItem="PNZ-Xb-9bK" firstAttribute="leading" secondItem="OsX-LI-Uqq" secondAttribute="leading" constant="34" id="3pK-DL-DIU"/>
+                        <constraint firstAttribute="trailing" secondItem="PNZ-Xb-9bK" secondAttribute="trailing" constant="34" id="8uU-dm-Tcv"/>
+                        <constraint firstItem="0c1-9r-NEj" firstAttribute="leading" secondItem="OsX-LI-Uqq" secondAttribute="leading" constant="24" id="PqQ-dg-xZy"/>
+                        <constraint firstItem="seQ-nj-E8F" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="OsX-LI-Uqq" secondAttribute="leading" constant="20" id="c5M-PQ-AX5"/>
+                        <constraint firstItem="0c1-9r-NEj" firstAttribute="top" secondItem="OsX-LI-Uqq" secondAttribute="top" constant="43" id="cf5-3o-FzA"/>
+                        <constraint firstItem="PNZ-Xb-9bK" firstAttribute="top" secondItem="0c1-9r-NEj" secondAttribute="bottom" constant="19.5" id="jHg-FZ-y6O"/>
+                        <constraint firstItem="seQ-nj-E8F" firstAttribute="top" secondItem="PNZ-Xb-9bK" secondAttribute="bottom" constant="30" id="rPL-6Q-Mp6"/>
+                        <constraint firstItem="seQ-nj-E8F" firstAttribute="centerX" secondItem="OsX-LI-Uqq" secondAttribute="centerX" id="tcQ-nM-TIL"/>
+                        <constraint firstItem="0c1-9r-NEj" firstAttribute="centerX" secondItem="OsX-LI-Uqq" secondAttribute="centerX" id="xTH-nY-arq"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="0.70232234589041098" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="OsX-LI-Uqq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="kP7-He-Rd2"/>
+                <constraint firstItem="OsX-LI-Uqq" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="pXB-S4-i01"/>
+                <constraint firstItem="OsX-LI-Uqq" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wxW-dc-WRX"/>
+            </constraints>
+            <connections>
+                <outlet property="buttonView" destination="seQ-nj-E8F" id="I6x-Es-fDh"/>
+                <outlet property="datePicker" destination="PNZ-Xb-9bK" id="uNi-Y1-aA5"/>
+                <outlet property="mainView" destination="OsX-LI-Uqq" id="pr3-dw-liw"/>
+                <outlet property="okButton" destination="Tb1-d7-KrC" id="OrW-W4-d7O"/>
+                <outlet property="titleLbl" destination="0c1-9r-NEj" id="aCb-Dw-iwe"/>
+                <outletCollection property="gestureRecognizers" destination="kpF-St-vk9" appends="YES" id="6MZ-nJ-5d6"/>
+            </connections>
+            <point key="canvasLocation" x="389" y="48"/>
+        </view>
+        <tapGestureRecognizer id="kpF-St-vk9">
+            <connections>
+                <action selector="closeClicked:" destination="iN0-l3-epB" id="sMx-O7-hrB"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

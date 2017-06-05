@@ -15,14 +15,12 @@
 		8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */; };
 		8425BF2B1EE40B5B009E15A3 /* WOPersonSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2A1EE40B5B009E15A3 /* WOPersonSearchResult.swift */; };
 		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
-		84572D171EE4B82600D8CE05 /* PIDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D141EE4B82600D8CE05 /* PIDatePicker.swift */; };
-		84572D181EE4B82600D8CE05 /* PIDatePickerComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D151EE4B82600D8CE05 /* PIDatePickerComponents.swift */; };
-		84572D191EE4B82600D8CE05 /* PIDatePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D161EE4B82600D8CE05 /* PIDatePickerDelegate.swift */; };
 		84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */; };
 		84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */; };
 		84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */; };
 		84572D241EE5525800D8CE05 /* MovieVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D231EE5525800D8CE05 /* MovieVC.swift */; };
 		84572D261EE5F9CC00D8CE05 /* MovieHoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */; };
+		84572D281EE60D6C00D8CE05 /* ClickablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */; };
 		848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */; };
 		848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFE1EE01D5700A9F88E /* MapVC.swift */; };
 		848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A7F001EE01D5700A9F88E /* Main.storyboard */; };
@@ -90,14 +88,12 @@
 		8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOMovieSearchResult.swift; sourceTree = "<group>"; };
 		8425BF2A1EE40B5B009E15A3 /* WOPersonSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOPersonSearchResult.swift; sourceTree = "<group>"; };
 		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
-		84572D141EE4B82600D8CE05 /* PIDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIDatePicker.swift; sourceTree = "<group>"; };
-		84572D151EE4B82600D8CE05 /* PIDatePickerComponents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIDatePickerComponents.swift; sourceTree = "<group>"; };
-		84572D161EE4B82600D8CE05 /* PIDatePickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIDatePickerDelegate.swift; sourceTree = "<group>"; };
 		84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPopup.swift; sourceTree = "<group>"; };
 		84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerPopup.xib; sourceTree = "<group>"; };
 		84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
 		84572D231EE5525800D8CE05 /* MovieVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieVC.swift; sourceTree = "<group>"; };
 		84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHoursCell.swift; sourceTree = "<group>"; };
+		84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickablePickerView.swift; sourceTree = "<group>"; };
 		848A7EF91EE01D5700A9F88E /* WatchOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A7EFE1EE01D5700A9F88E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -193,16 +189,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		84572D131EE4B82600D8CE05 /* CustomDatePicker */ = {
-			isa = PBXGroup;
-			children = (
-				84572D141EE4B82600D8CE05 /* PIDatePicker.swift */,
-				84572D151EE4B82600D8CE05 /* PIDatePickerComponents.swift */,
-				84572D161EE4B82600D8CE05 /* PIDatePickerDelegate.swift */,
-			);
-			path = CustomDatePicker;
-			sourceTree = "<group>";
-		};
 		84572D1A1EE4C22100D8CE05 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
@@ -296,8 +282,8 @@
 		848A7F191EE02A4900A9F88E /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				84572D131EE4B82600D8CE05 /* CustomDatePicker */,
 				848A7F1A1EE02A5300A9F88E /* NVActivityIndicatorView */,
+				84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -550,8 +536,6 @@
 				848A7F741EE02CCB00A9F88E /* WOCinema.swift in Sources */,
 				848A7F421EE02A5300A9F88E /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				848A7F4B1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
-				84572D181EE4B82600D8CE05 /* PIDatePickerComponents.swift in Sources */,
-				84572D191EE4B82600D8CE05 /* PIDatePickerDelegate.swift in Sources */,
 				848A7F611EE02A5300A9F88E /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				848A7F701EE02AE000A9F88E /* MapView+ZoomLevel.swift in Sources */,
 				848A7F651EE02A5300A9F88E /* NVActivityIndicatorViewable.swift in Sources */,
@@ -573,11 +557,11 @@
 				848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */,
 				848A7F631EE02A5300A9F88E /* NVActivityIndicatorShape.swift in Sources */,
 				848A7F431EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				84572D281EE60D6C00D8CE05 /* ClickablePickerView.swift in Sources */,
 				848A7F581EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */,
 				848A7F4D1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				848A7F521EE02A5300A9F88E /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
-				84572D171EE4B82600D8CE05 /* PIDatePicker.swift in Sources */,
 				848A7F561EE02A5300A9F88E /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				848A7F451EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
 				848A7F5D1EE02A5300A9F88E /* NVActivityIndicatorAnimationPacman.swift in Sources */,

@@ -23,8 +23,8 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNZ-Xb-9bK">
-                            <rect key="frame" x="34" y="63.5" width="213" height="120"/>
+                        <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNZ-Xb-9bK" customClass="ClickablePickerView" customModule="WatchOut" customModuleProvider="target">
+                            <rect key="frame" x="34" y="64" width="213" height="120"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="120" id="emD-0N-2Au"/>
                             </constraints>
@@ -88,7 +88,7 @@
             </connections>
             <point key="canvasLocation" x="389" y="48"/>
         </view>
-        <tapGestureRecognizer id="kpF-St-vk9">
+        <tapGestureRecognizer cancelsTouchesInView="NO" id="kpF-St-vk9">
             <connections>
                 <action selector="closeClicked:" destination="iN0-l3-epB" id="sMx-O7-hrB"/>
             </connections>

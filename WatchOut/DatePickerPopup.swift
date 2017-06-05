@@ -8,13 +8,13 @@
 
 import UIKit
 
-class DatePickerPopup: UIView, CAAnimationDelegate {
+class DatePickerPopup: UIView, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var mainView: UIView!
 
     @IBOutlet weak var titleLbl: UILabel!
 
-    @IBOutlet weak var datePicker: UIPickerView!
+    @IBOutlet weak var datePicker: ClickablePickerView!
     
     @IBOutlet weak var buttonView: UIView!
     
@@ -31,7 +31,15 @@ class DatePickerPopup: UIView, CAAnimationDelegate {
   
         titleLbl.text = "Pick a date!"
         okButton.setTitle("OK", for: .normal)
+        
+        datePicker.didSelectAction = { [weak self] in
+            
+            self?.okAction?()
+            self?.hide(good: true)
+            
+        }
     }
+    
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -53,8 +61,6 @@ class DatePickerPopup: UIView, CAAnimationDelegate {
         okButton.layer.borderColor = UIColor.white.cgColor
         okButton.layer.borderWidth = 1
         
-        
-        
     }
 
     func showInWindow(_ window:UIWindow) {
@@ -75,7 +81,7 @@ class DatePickerPopup: UIView, CAAnimationDelegate {
     }
     
     
-    @IBAction func clickOkButton(_ sender: UIButton) {
+    @IBAction func clickOkButton(_ sender: Any) {
         hide(good: true)
         okAction?()
         
@@ -83,7 +89,7 @@ class DatePickerPopup: UIView, CAAnimationDelegate {
 
     
     @IBAction func closeClicked(_ sender: Any) {
-
+        print("eeeee")
         //hide(good: false)
         
     }
@@ -166,6 +172,9 @@ extension DatePickerPopup:UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 36
     }
+    
+    
+    
     
     
 }

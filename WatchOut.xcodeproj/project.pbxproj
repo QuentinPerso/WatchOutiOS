@@ -22,6 +22,8 @@
 		84572D261EE5F9CC00D8CE05 /* MovieHoursCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */; };
 		84572D281EE60D6C00D8CE05 /* ClickablePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */; };
 		84572D2A1EE695D400D8CE05 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D291EE695D400D8CE05 /* StarRatingView.swift */; };
+		84572D2C1EE6AFBF00D8CE05 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D2B1EE6AFBF00D8CE05 /* SearchBarView.swift */; };
+		84572D2E1EE6EAE700D8CE05 /* DebugAnnot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D2D1EE6EAE700D8CE05 /* DebugAnnot.swift */; };
 		848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */; };
 		848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7EFE1EE01D5700A9F88E /* MapVC.swift */; };
 		848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 848A7F001EE01D5700A9F88E /* Main.storyboard */; };
@@ -30,7 +32,7 @@
 		848A7F101EE01F3300A9F88E /* APIConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F0F1EE01F3300A9F88E /* APIConnector.swift */; };
 		848A7F141EE0228F00A9F88E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F131EE0228F00A9F88E /* LocationManager.swift */; };
 		848A7F161EE025B400A9F88E /* MapFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F151EE025B400A9F88E /* MapFunctions.swift */; };
-		848A7F181EE0288600A9F88E /* SearchZoneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F171EE0288600A9F88E /* SearchZoneView.swift */; };
+		848A7F181EE0288600A9F88E /* MapReloaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F171EE0288600A9F88E /* MapReloaderView.swift */; };
 		848A7F411EE02A5300A9F88E /* NVActivityIndicatorAnimationAudioEqualizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F1C1EE02A5300A9F88E /* NVActivityIndicatorAnimationAudioEqualizer.swift */; };
 		848A7F421EE02A5300A9F88E /* NVActivityIndicatorAnimationBallBeat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F1D1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallBeat.swift */; };
 		848A7F431EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848A7F1E1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotate.swift */; };
@@ -96,6 +98,8 @@
 		84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieHoursCell.swift; sourceTree = "<group>"; };
 		84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickablePickerView.swift; sourceTree = "<group>"; };
 		84572D291EE695D400D8CE05 /* StarRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		84572D2B1EE6AFBF00D8CE05 /* SearchBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
+		84572D2D1EE6EAE700D8CE05 /* DebugAnnot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugAnnot.swift; sourceTree = "<group>"; };
 		848A7EF91EE01D5700A9F88E /* WatchOut.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchOut.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848A7EFC1EE01D5700A9F88E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		848A7EFE1EE01D5700A9F88E /* MapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVC.swift; sourceTree = "<group>"; };
@@ -106,7 +110,7 @@
 		848A7F0F1EE01F3300A9F88E /* APIConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIConnector.swift; sourceTree = "<group>"; };
 		848A7F131EE0228F00A9F88E /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		848A7F151EE025B400A9F88E /* MapFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapFunctions.swift; sourceTree = "<group>"; };
-		848A7F171EE0288600A9F88E /* SearchZoneView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchZoneView.swift; sourceTree = "<group>"; };
+		848A7F171EE0288600A9F88E /* MapReloaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapReloaderView.swift; sourceTree = "<group>"; };
 		848A7F1C1EE02A5300A9F88E /* NVActivityIndicatorAnimationAudioEqualizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationAudioEqualizer.swift; sourceTree = "<group>"; };
 		848A7F1D1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallBeat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallBeat.swift; sourceTree = "<group>"; };
 		848A7F1E1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NVActivityIndicatorAnimationBallClipRotate.swift; sourceTree = "<group>"; };
@@ -175,6 +179,7 @@
 			children = (
 				848A7F751EE0343300A9F88E /* CinemaAnnotation.swift */,
 				8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */,
+				84572D2D1EE6EAE700D8CE05 /* DebugAnnot.swift */,
 			);
 			name = CinemaHoursAnnotations;
 			sourceTree = "<group>";
@@ -183,7 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				8425BF261EE2D691009E15A3 /* AutocompleteView.swift */,
-				848A7F171EE0288600A9F88E /* SearchZoneView.swift */,
+				84572D2B1EE6AFBF00D8CE05 /* SearchBarView.swift */,
+				848A7F171EE0288600A9F88E /* MapReloaderView.swift */,
 				8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */,
 				8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */,
 				84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */,
@@ -531,8 +537,9 @@
 				848A7F481EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulse.swift in Sources */,
 				84572D241EE5525800D8CE05 /* MovieVC.swift in Sources */,
 				848A7F781EE039C100A9F88E /* WOMovie.swift in Sources */,
-				848A7F181EE0288600A9F88E /* SearchZoneView.swift in Sources */,
+				848A7F181EE0288600A9F88E /* MapReloaderView.swift in Sources */,
 				8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */,
+				84572D2E1EE6EAE700D8CE05 /* DebugAnnot.swift in Sources */,
 				848A7F531EE02A5300A9F88E /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
 				848A7F641EE02A5300A9F88E /* NVActivityIndicatorView.swift in Sources */,
 				848A7F4C1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
@@ -561,6 +568,7 @@
 				848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */,
 				848A7F631EE02A5300A9F88E /* NVActivityIndicatorShape.swift in Sources */,
 				848A7F431EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotate.swift in Sources */,
+				84572D2C1EE6AFBF00D8CE05 /* SearchBarView.swift in Sources */,
 				84572D281EE60D6C00D8CE05 /* ClickablePickerView.swift in Sources */,
 				848A7F581EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */,

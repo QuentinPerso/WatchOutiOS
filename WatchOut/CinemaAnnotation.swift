@@ -12,7 +12,7 @@ import MapKit
 class CinemaAnnotation:NSObject, MKAnnotation {
     
     var theaterShowTime:WOTheaterShowtime!
-//    let !
+
     let coordinate: CLLocationCoordinate2D
     
     var title: String?
@@ -23,7 +23,7 @@ class CinemaAnnotation:NSObject, MKAnnotation {
         self.coordinate = theaterShowTime.cinema.coordinate
 
         self.title = theaterShowTime.cinema.name
-//        self.subtitle = cinema.address
+
         
         super.init()
     }

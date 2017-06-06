@@ -22,17 +22,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="yPa-M5-RIQ">
-                                <rect key="frame" x="100" y="230.5" width="175" height="206"/>
+                                <rect key="frame" x="100" y="246" width="175" height="175"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="yPa-M5-RIQ" secondAttribute="height" multiplier="11:13" id="6Im-nX-Cl8"/>
+                                    <constraint firstAttribute="width" secondItem="yPa-M5-RIQ" secondAttribute="height" multiplier="1:1" id="5oR-b2-ULw"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="yPa-M5-RIQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7qG-we-sKL"/>
-                            <constraint firstItem="yPa-M5-RIQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="100" id="TeY-wn-Mwg"/>
                             <constraint firstItem="yPa-M5-RIQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="Vja-B6-HjN"/>
+                            <constraint firstItem="yPa-M5-RIQ" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="100" id="ePJ-i5-v4d"/>
                         </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -43,6 +43,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="242" height="286"/>
+        <image name="logo" width="256" height="256"/>
     </resources>
 </document>

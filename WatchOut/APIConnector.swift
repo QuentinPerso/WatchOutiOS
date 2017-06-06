@@ -17,31 +17,31 @@ class APIConnector: NSObject{
     
     static let partner = "YW5kcm9pZC12Mg"
     
-    static var userAgent:String {
-        
-        let appName:String = Bundle.main.infoDictionary?[kCFBundleExecutableKey as String] as! String
-        
-        let appVersion:String = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as! String
-        
-        let osVersion:String = UIDevice.current.systemVersion
-        
-        let deviceType:String = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? "Tablet": "Mobile"
-        
-        let locale:String = Locale.current.languageCode!
-        
-        var systemInfo = utsname()
-        uname(&systemInfo)
-        let machineMirror = Mirror(reflecting: systemInfo.machine)
-        let device = machineMirror.children.reduce("") { identifier, element in
-            guard let value = element.value as? Int8 , value != 0 else { return identifier }
-            return identifier + String(UnicodeScalar(UInt8(value)))
-        }
-        
-        let ua = appName + "/" + appVersion + " (iOS;" + osVersion + ";" + deviceType + ";" + locale + ") " + device
-        
-        return ua
-        
-    }
+//    static var userAgent:String {
+//        
+//        let appName:String = Bundle.main.infoDictionary?[kCFBundleExecutableKey as String] as! String
+//        
+//        let appVersion:String = Bundle.main.infoDictionary?[kCFBundleVersionKey as String] as! String
+//        
+//        let osVersion:String = UIDevice.current.systemVersion
+//        
+//        let deviceType:String = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad) ? "Tablet": "Mobile"
+//        
+//        let locale:String = Locale.current.languageCode!
+//        
+//        var systemInfo = utsname()
+//        uname(&systemInfo)
+//        let machineMirror = Mirror(reflecting: systemInfo.machine)
+//        let device = machineMirror.children.reduce("") { identifier, element in
+//            guard let value = element.value as? Int8 , value != 0 else { return identifier }
+//            return identifier + String(UnicodeScalar(UInt8(value)))
+//        }
+//        
+//        let ua = appName + "/" + appVersion + " (iOS;" + osVersion + ";" + deviceType + ";" + locale + ") " + device
+//        
+//        return ua
+//        
+//    }
     
     static var sessionManager:Alamofire.SessionManager {
         let manager = Alamofire.SessionManager.default
@@ -171,7 +171,7 @@ extension APIConnector {
                 completion(nil, false)
             }
         }
-//        print(request)
+        print(request)
         return request
     }
     
@@ -243,9 +243,9 @@ extension APIConnector {
 class MashapeHeadersAdapter: RequestAdapter {
     func adapt(_ urlRequest: URLRequest) throws -> URLRequest {
         
-        var urlRequest = urlRequest
+//        var urlRequest = urlRequest
         
-        urlRequest.setValue(APIConnector.userAgent, forHTTPHeaderField: "User-Agent")
+//        urlRequest.setValue(APIConnector.userAgent, forHTTPHeaderField: "User-Agent")
         
 //        if let lat  = LocationManager.shared.lastKnownCoord?.latitude,
 //            let lon  = LocationManager.shared.lastKnownCoord?.longitude {
@@ -257,11 +257,11 @@ class MashapeHeadersAdapter: RequestAdapter {
 //        }
         
         
-        let timeOffset = TimeZone.current.secondsFromGMT()
-        urlRequest.setValue("\(timeOffset)", forHTTPHeaderField: "X-Mks-GMTOffset")
+//        let timeOffset = TimeZone.current.secondsFromGMT()
+//        urlRequest.setValue("\(timeOffset)", forHTTPHeaderField: "X-Mks-GMTOffset")
         
         
-        //        urlRequest.setValue("\(CityManager.shared.currentCity?.cityID ?? "NULL")", forHTTPHeaderField: "X-Mks-CurrentCity")
+//        urlRequest.setValue("\(CityManager.shared.currentCity?.cityID ?? "NULL")", forHTTPHeaderField: "X-Mks-CurrentCity")
         
         
         return urlRequest

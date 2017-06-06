@@ -19,13 +19,15 @@ class MapVC: UIViewController {
     @IBOutlet weak var botViewBotConstraint: NSLayoutConstraint!
     @IBOutlet weak var botViewHConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var searchBarView: SearchBarView!
+
     @IBOutlet weak var mapView: MKMapView!
-    @IBOutlet weak var bottomView: TheaterShowTimesView!
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var theaterShowsView: TheaterShowTimesView!
+
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
-    @IBOutlet weak var searchOverlay: SearchZoneView!
+    @IBOutlet weak var mapReloaderView: MapReloaderView!
     @IBOutlet weak var dateFilterView: DateFilterView!
     
     var autoCompleteRequest:DataRequest?
@@ -50,30 +52,9 @@ class MapVC: UIViewController {
         setupMap()
         setupBottomView()
         setupDateFilterView()
-        setupSearchView()
+        setupAutocompleteView()
         setupKeyboard()
-        setMapViewport()
-        setupSearchBar()
-        
-    }
-    
-    func setupBottomView() {
-        
-        bottomView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
-        
-        
-    }
-    
-    func setupTopShadow() {
-        
-        let shadowPath = UIBezierPath(roundedRect: topBarView.bounds, cornerRadius: 0)
-        
-        topBarView.layer.shadowRadius = 1
-        topBarView.layer.shadowColor = UIColor.black.cgColor
-        topBarView.layer.shadowOpacity = 0.4
-        topBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
-        topBarView.layer.shadowPath = shadowPath.cgPath
-        topBarView.clipsToBounds = false
+        setupSearchBarView()
         
     }
     
@@ -90,20 +71,31 @@ class MapVC: UIViewController {
         
         view.bringSubview(toFront: autocompleteView)
         view.bringSubview(toFront: topBarView)
+
+        style()
         
         
-        setupTopShadow()
+    }
+    
+    func style() {
         
+        let shadowPath = UIBezierPath(roundedRect: topBarView.bounds, cornerRadius: 0)
+        
+        topBarView.layer.shadowRadius = 1
+        topBarView.layer.shadowColor = UIColor.black.cgColor
+        topBarView.layer.shadowOpacity = 0.4
+        topBarView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        topBarView.layer.shadowPath = shadowPath.cgPath
+        topBarView.clipsToBounds = false
         
     }
     
 }
 
-
 //************************************
-// MARK: - Map Conf
+// MARK: - Initial setup
 //************************************
-extension MapVC:UIGestureRecognizerDelegate {
+extension MapVC {
     
     func setupMap() {
         mapView.delegate = self
@@ -113,17 +105,13 @@ extension MapVC:UIGestureRecognizerDelegate {
         
         self.mapView.addGestureRecognizer(panRec)
         
-    }
-    
-    func setMapViewport() {
-        
+        //****** ViewPort
         let locAuthStatus = CLLocationManager.authorizationStatus()
         if locAuthStatus == .notDetermined {
             
             LocationManager.shared.locationInUseGranted = {[weak self] in
                 self?.mapView.setUserTrackingMode(.follow, animated: false)
             }
-            
             LocationManager.shared.requestLocAuth()
         }
         else if LocationManager.hasLocalisationAuth {
@@ -135,20 +123,90 @@ extension MapVC:UIGestureRecognizerDelegate {
         
     }
     
-    func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
+    func setupSearchBarView() {
         
-        if gestureRecognizer.state == .began {
-            if gestureRecognizer.numberOfTouches == 1{
-                shouldStartSearch = true
-                searchOverlay.show()
+        searchBarView.searchStateChanged = { [weak self] enter in
+            if enter {
+                self?.autocompleteView.dimeBG(true, animated: true)
+            }
+            else {
+                self?.autocompleteView.dimeBG(false, animated: true)
+            }
+        }
+        searchBarView.textChangedAction = { [weak self] searchString in
+            
+            self?.autoCompleteRequest?.cancel()
+            
+            if let searchText = searchString {
+                self?.autoComplete(string: searchText)
+            }
+            else {
+                self?.resetSearch()
             }
         }
         
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
+    func setupBottomView() {
+        
+        theaterShowsView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
+        
     }
+    
+    func setupKeyboard() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+    }
+    
+    
+    func setupDateFilterView() {
+        
+        dateFilterView.otherDayAction = {
+            let alert = Bundle.main.loadNibNamed("DatePickerPopup", owner: self, options: nil)?[0] as! DatePickerPopup
+            alert.okAction = {
+                let row = alert.datePicker.selectedRow(inComponent: 0)
+                self.dateFilterView.filterDate = Date().addingTimeInterval(Double(row+1) * 24 * 3600)
+                if row == 0 {
+                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .normal)
+                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .selected)
+                }
+                else {
+                    let formater = DateFormatter()
+                    formater.dateFormat = "MM-dd"
+                    let dateString = DateFormatter.localizedString(from: self.dateFilterView.filterDate!, dateStyle: .short, timeStyle: .none)
+                    
+                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .normal)
+                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .selected)
+                }
+                self.callAPITimeLists()
+            }
+            alert.showInWindow(self.view.window!)
+        }
+        
+        dateFilterView.valueDidChangeAction = {
+            self.callAPITimeLists()
+        }
+        
+    }
+    
+    func setupAutocompleteView() {
+        
+        autocompleteView.autocompletes = []
+        autocompleteView.didSelectSuggestion = { suggestion in
+            self.searchBarView.searchBar.text = suggestion.name
+            self.searchedObject = suggestion
+            self.callAPITimeLists()
+            self.autocompleteView.autocompletes = []
+            self.searchBarView.searchBar.resignFirstResponder()
+        }
+        autocompleteView.didTapBG = {
+            
+            self.searchBarView.searchBar.resignFirstResponder()
+            
+        }
+        
+        
+    }
+
     
 }
 
@@ -159,19 +217,19 @@ extension MapVC {
     
     func callAPITimeLists() {
         
-        if searchOverlay != nil{
-            if searchOverlay.alpha == 0 {
-                searchOverlay.show()
-            }
-            searchOverlay.startLoading()
+        
+        if mapReloaderView.alpha == 0 {
+            mapReloaderView.show()
         }
+        mapReloaderView.startLoading()
         
         
-        let mapSearchSidePadding = SearchZoneView.mapSearchSidePadding
-        let mapSearchBotAdditionalPadding = SearchZoneView.mapSearchBotAdditionalPadding
-        let mapSearchTopAdditionalPadding = SearchZoneView.mapSearchTopAdditionalPadding
         
-        //CENTER DISTANCE SHIT
+        let mapSearchSidePadding = MapReloaderView.mapSearchSidePadding
+        let mapSearchBotAdditionalPadding = MapReloaderView.mapSearchBotAdditionalPadding
+        let mapSearchTopAdditionalPadding = MapReloaderView.mapSearchTopAdditionalPadding
+        
+        //CENTER DISTANCE
         let camPos = mapView.camera.centerCoordinate
         
         let centerY = mapView.bounds.origin.y + mapView.layoutMargins.top + mapSearchTopAdditionalPadding + ((mapView.bounds.origin.y + mapView.bounds.size.height - mapView.layoutMargins.bottom - mapSearchBotAdditionalPadding) - mapView.bounds.origin.y + mapView.layoutMargins.top + mapSearchTopAdditionalPadding)/2
@@ -204,10 +262,10 @@ extension MapVC {
         else if dateFilterView.otherDayButton.isSelected, let date = dateFilterView.filterDate {
             dateString = formater.string(from: date)
         }
-        
+                
         timeListRequest = APIConnector.getCinemasTimeList(position: camPos, radius: CGFloat(distance), movieCode:searchedMovieCode, person:seachedPersonName,date:dateString, timeInterval:hoursTimeInterval, completion: { [weak self] theaterShowTimes, canceled in
             
-            if !canceled { self?.searchOverlay.hide() }
+            if !canceled { self?.mapReloaderView.hide() }
             if theaterShowTimes == nil { return }
             self?.reloadMap(theaterShowTimes: theaterShowTimes!)
             
@@ -215,6 +273,30 @@ extension MapVC {
             
         })
         
+    }
+    
+}
+
+//************************************
+// MARK: - Map Functions
+//************************************
+extension MapVC:UIGestureRecognizerDelegate {
+    
+    
+    
+    func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
+        
+        if gestureRecognizer.state == .began {
+            if gestureRecognizer.numberOfTouches == 1{
+                shouldStartSearch = true
+                mapReloaderView.show()
+            }
+        }
+        
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
     
     func reloadMap(theaterShowTimes:[WOTheaterShowtime]){
@@ -241,7 +323,7 @@ extension MapVC {
             else if selectedAnnot == nil {
                 mapView.removeAnnotation(annot)
             }
-        }        
+        }
         
         for tst in theaterShowTimes {
             if let selAnnot = selectedAnnot {
@@ -252,7 +334,7 @@ extension MapVC {
                 }
                 else {
                     selAnnot.theaterShowTime = tst
-                    bottomView.theaterShowTime = tst
+                    theaterShowsView.theaterShowTime = tst
                 }
                 
             }
@@ -266,61 +348,10 @@ extension MapVC {
 }
 
 //************************************
-// MARK: - Search Bar delegate
+// MARK: - Search Functions
 //************************************
 
-extension MapVC : UISearchBarDelegate{
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        autoCompleteRequest?.cancel()
-        
-        if !searchBar.isFirstResponder {
-            resetSearch()
-        }
-        else {
-            if searchText == "" {
-                resetSearch()
-            }
-            else {
-                autoComplete(string: searchText)
-            }
-        }
-    }
-    
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        
-        enterSearch()
-        
-        return true
-    }
-    
-    func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
-        
-        exitSearch()
-        
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    
-    func enterSearch() {
-        autocompleteView.dimeBG(true, animated: true)
-        searchBar.setShowsCancelButton(true, animated: true)
-        
-    }
-    
-    func exitSearch() {
-        autocompleteView.dimeBG(false, animated: true)
-        searchBar.setShowsCancelButton(false, animated: true)
-    }
+extension MapVC{
     
     func resetSearch() {
         autocompleteView.autocompletes = []
@@ -345,101 +376,10 @@ extension MapVC : UISearchBarDelegate{
 }
 
 //************************************
-// MARK: - Search Setup
+// MARK: - Keyboard Functions
 //************************************
 
 extension MapVC {
-    
-    func setupKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
-    }
-    
-    func setupSearchBar(){
-        
-        searchBar.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0)
-        
-        self.searchBar.delegate = self
-        
-        searchBar.backgroundImage = UIImage()
-        
-        
-        if let textField = self.searchBar.value(forKey: "searchField") as? UITextField {
-            //Magnifying glass
-            if let glassIconView = textField.leftView as? UIImageView {
-                glassIconView.image = #imageLiteral(resourceName: "search")
-                glassIconView.tintColor = UIColor.white
-            }
-            
-            let buttonAttribute = [NSForegroundColorAttributeName : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                                   NSFontAttributeName : UIFont.woFont(size: 13, weight: .demibold)] as [String : Any]
-            
-            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(buttonAttribute, for: .normal)
-            
-            textField.textColor = UIColor.white
-            textField.tintColor = UIColor.white
-            
-            textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726)
-            textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726).cgColor
-            textField.layer.cornerRadius = 2
-            textField.clipsToBounds = true
-            textField.font = UIFont.woFont(size: 16)
-            
-            
-            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .normal)
-            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .highlighted)
-            
-        }
-        searchBar.keyboardAppearance = .dark
-    }
-    
-    func setupDateFilterView() {
-        
-        dateFilterView.otherDayAction = {
-            let alert = Bundle.main.loadNibNamed("DatePickerPopup", owner: self, options: nil)?[0] as! DatePickerPopup
-            alert.okAction = {
-                let row = alert.datePicker.selectedRow(inComponent: 0)
-                self.dateFilterView.filterDate = Date().addingTimeInterval(Double(row+1) * 24 * 3600)
-                if row == 0 {
-                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .normal)
-                    self.dateFilterView.otherDayButton.setTitle("tomorow", for: .selected)
-                }
-                else {
-                    let formater = DateFormatter()
-                    formater.dateFormat = "MM-dd"
-                    let dateString = DateFormatter.localizedString(from: self.dateFilterView.filterDate!, dateStyle: .short, timeStyle: .none)
-                    
-                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .normal)
-                    self.dateFilterView.otherDayButton.setTitle(dateString, for: .selected)
-                }
-                self.callAPITimeLists()
-            }
-            alert.showInWindow(self.view.window!)
-        }
-        
-        dateFilterView.valueDidChangeAction = {
-            self.callAPITimeLists()
-        }
-        
-    }
-    
-    func setupSearchView() {
-        
-        autocompleteView.autocompletes = []
-        autocompleteView.didSelectSuggestion = { suggestion in
-            self.searchBar.text = suggestion.name
-            self.searchedObject = suggestion
-            self.callAPITimeLists()
-            self.autocompleteView.autocompletes = []
-            self.searchBar.resignFirstResponder()
-        }
-        autocompleteView.didTapBG = {
-            
-            self.searchBar.resignFirstResponder()
-            
-        }
-        
-        
-    }
     
     func keyboardWillChange(notification:NSNotification) {
         
@@ -450,6 +390,26 @@ extension MapVC {
         
         autocompleteView.tableView.contentInset.bottom = max(yOffset, 0) // -50 cause of tabBar
         
+    }
+    
+}
+
+//************************************
+// MARK: - ShowTimesView Functions
+//************************************
+
+extension MapVC {
+
+    func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
+        
+        botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -theaterShowsView.padInsetBot
+        mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - theaterShowsView.padInsetBot
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
+            
+            self?.view.layoutIfNeeded()
+            
+            }, completion: nil)
     }
     
 }
@@ -493,9 +453,9 @@ extension MapVC : MKMapViewDelegate{
         if let cineAnnot = view.annotation as? CinemaAnnotation {
             
             timeListRequest?.cancel()
-            searchOverlay.hide()
+            mapReloaderView.hide()
             
-            bottomView.theaterShowTime = cineAnnot.theaterShowTime
+            theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
             
             setBottomViewHidden(false, animated: true)
             centerMapOnAnnotation(cineAnnot)
@@ -533,21 +493,6 @@ extension MapVC : MKMapViewDelegate{
                 setBottomViewHidden(true, animated: true)
             }
         }
-    }
-    
-    
-    
-    func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
-        
-        botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -bottomView.padInsetBot
-        mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - bottomView.padInsetBot
-        
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
-            
-            self?.view.layoutIfNeeded()
-            
-            }, completion: nil)
-        
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {

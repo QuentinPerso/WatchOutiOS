@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class SearchZoneView: UIView {
+class MapReloaderView: UIView {
 
     
     @IBOutlet weak var loaderView: UIView!

@@ -49,7 +49,7 @@ class SearchZoneView: UIView {
         case 4:
             cat = .ballRotateChase
         case 5:
-            cat = .ballPulseSync
+            cat = .ballClipRotatePulse
         case 6:
             cat = .ballClipRotateMultiple
         default:

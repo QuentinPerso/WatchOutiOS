@@ -27,6 +27,7 @@ class DateFilterView: UIView {
     }
     
     @IBAction func didSelectTimeFilter(_ sender: UIButton) {
+        if sender.isSelected, sender != otherDayButton { return }
         sender.isSelected = true
         let buttons = [oneHourButton,todayButton,otherDayButton,allButton]
         

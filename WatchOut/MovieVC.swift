@@ -52,7 +52,13 @@ class MovieVC: UIViewController {
         moviePosterImage.af_setImage(withURL: movie.imageURL)
         
         titleLabel.text = movie.name.uppercased()
-        durationAndGenreLabel.text = movie.duration! + " - " + movie.genre
+        if let duration = movie.duration {
+            durationAndGenreLabel.text = duration + " - " + movie.genre
+        }
+        else {
+            durationAndGenreLabel.text = movie.genre
+        }
+        
         
         if let date = movie.releaseDate {
             releaseDateLabel.text = "Released on " + date

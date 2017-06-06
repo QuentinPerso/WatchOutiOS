@@ -11,7 +11,7 @@ import MapKit
 
 class CinemaAnnotation:NSObject, MKAnnotation {
     
-    let theaterShowTime:WOTheaterShowtime
+    var theaterShowTime:WOTheaterShowtime!
 //    let !
     let coordinate: CLLocationCoordinate2D
     

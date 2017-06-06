@@ -19,8 +19,6 @@ class TheaterShowTimesView : UIView {
     
     @IBOutlet weak var titleHConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var bottomHConstraint: NSLayoutConstraint!
-    
     var didSelectMovieAction:((WOMovie) -> (Void))?
     
     var theaterShowTime:WOTheaterShowtime! {
@@ -50,7 +48,7 @@ class TheaterShowTimesView : UIView {
     
     func style() {
         
-        let cornerR = CGFloat(8.0)
+        let cornerR = CGFloat(10.0)
         
         layer.cornerRadius = cornerR
         
@@ -59,10 +57,10 @@ class TheaterShowTimesView : UIView {
         
         let shadowPath = UIBezierPath(roundedRect: (bounds), cornerRadius: cornerR)
     
-        layer.shadowRadius = 10
+        layer.shadowRadius = 1
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.4
-        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowOffset = CGSize(width: 0, height: -1)
         layer.shadowPath = shadowPath.cgPath
         clipsToBounds = false
         

@@ -17,6 +17,7 @@ class MovieVC: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     
+    
     @IBOutlet weak var moviePosterImage: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -26,8 +27,15 @@ class MovieVC: UIViewController {
     @IBOutlet weak var releaseDateLabel: UILabel!
     
     @IBOutlet weak var ratingLabel: UILabel!
+    
     @IBOutlet weak var presseLabel: UILabel!
+    @IBOutlet weak var pressStarsView: StarRatingView!
+    @IBOutlet weak var pressRatingValue: UILabel!
+    
+    
     @IBOutlet weak var viewersLabel: UILabel!
+    @IBOutlet weak var viewersStarsView: StarRatingView!
+    @IBOutlet weak var viewerRatingValue: UILabel!
     
     @IBOutlet weak var castingLabel: UILabel!
     @IBOutlet weak var realisatorAndActorsLabel: UILabel!
@@ -49,9 +57,14 @@ class MovieVC: UIViewController {
     
     func setupMovie() {
         
+        //******* Background Images
         moviePosterImage.af_setImage(withURL: movie.imageURL)
         
+        //******* Movie title
         titleLabel.text = movie.name.uppercased()
+        
+        
+        //******* Movie Infos
         if let duration = movie.duration {
             durationAndGenreLabel.text = duration + " - " + movie.genre
         }
@@ -59,7 +72,7 @@ class MovieVC: UIViewController {
             durationAndGenreLabel.text = movie.genre
         }
         
-        
+        //******* Release Date
         if let date = movie.releaseDate {
             releaseDateLabel.text = "Released on " + date
         }
@@ -68,6 +81,19 @@ class MovieVC: UIViewController {
             releaseDateLabel.text = ""
         }
         
+        //******* Ratings
+        if let pressRating = movie.pressRating {
+            pressStarsView.rating = CGFloat(pressRating)
+            pressRatingValue.text = "(\(String(format: "%.1f", pressRating)))"
+            
+        }
+        if let viewerRating = movie.userRating {
+            viewersStarsView.rating = CGFloat(viewerRating)
+            viewerRatingValue.text = "(\(String(format: "%.1f", viewerRating)))"
+            
+        }
+        
+        //******* Casting Infos
         if let actors = movie.actors {
             if let directors = movie.directors {
                 realisatorAndActorsLabel.text = "Director : " + directors.joined(separator: ", ") + "\n" + "Actors : " + actors.joined(separator: ", ")
@@ -86,6 +112,7 @@ class MovieVC: UIViewController {
             realisatorAndActorsLabel.text = ""
         }
         
+        //******* Synopsis
         if let synopsis = movie.synopsis {
             synopsisLabel.text = synopsis
             if synopsisLabel.alpha == 0 {

@@ -74,7 +74,7 @@
                                                         <rect key="frame" x="20" y="273.5" width="335" height="51.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJj-mB-icB">
-                                                                <rect key="frame" x="0.0" y="0.0" width="36" height="22"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="60" height="22"/>
                                                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -85,14 +85,125 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g1X-j2-LIZ">
+                                                                <rect key="frame" x="68" y="0.0" width="267" height="52"/>
+                                                                <subviews>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P04-LX-JXa" customClass="StarRatingView" customModule="WatchOut" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="3" width="80" height="16"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDL-xr-nvo">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="16"/>
+                                                                                <subviews>
+                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="OU3-Rc-xBQ">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="0Cv-LT-tk1">
+                                                                                        <rect key="frame" x="16" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="Q5T-4z-a3A">
+                                                                                        <rect key="frame" x="32" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="5ej-yu-f70">
+                                                                                        <rect key="frame" x="48" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="qr2-vr-6D2">
+                                                                                        <rect key="frame" x="64" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="kDL-xr-nvo" firstAttribute="top" secondItem="P04-LX-JXa" secondAttribute="top" id="N4m-dP-6C6"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="kDL-xr-nvo" secondAttribute="trailing" id="Oeh-U9-5en"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="kDL-xr-nvo" secondAttribute="bottom" id="TGM-OW-JeH"/>
+                                                                            <constraint firstItem="kDL-xr-nvo" firstAttribute="leading" secondItem="P04-LX-JXa" secondAttribute="leading" id="eR8-ef-iIr"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outletCollection property="starImagesArray" destination="OU3-Rc-xBQ" collectionClass="NSMutableArray" id="TSc-ck-Xyl"/>
+                                                                            <outletCollection property="starImagesArray" destination="0Cv-LT-tk1" collectionClass="NSMutableArray" id="SFF-Rn-mGA"/>
+                                                                            <outletCollection property="starImagesArray" destination="Q5T-4z-a3A" collectionClass="NSMutableArray" id="s9q-kp-zu8"/>
+                                                                            <outletCollection property="starImagesArray" destination="5ej-yu-f70" collectionClass="NSMutableArray" id="1fv-dI-fSF"/>
+                                                                            <outletCollection property="starImagesArray" destination="qr2-vr-6D2" collectionClass="NSMutableArray" id="40h-dQ-IgP"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(3.45)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJH-cm-QyS">
+                                                                        <rect key="frame" x="88" y="0.0" width="34.5" height="22"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(3.45)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qDz-Wl-sCk">
+                                                                        <rect key="frame" x="88" y="29.5" width="34.5" height="22"/>
+                                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
+                                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Teb-dQ-87l" customClass="StarRatingView" customModule="WatchOut" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="32.5" width="80" height="16"/>
+                                                                        <subviews>
+                                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09y-Eb-TPa">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="80" height="16"/>
+                                                                                <subviews>
+                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="cjA-q6-AsV">
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="jku-73-wIB">
+                                                                                        <rect key="frame" x="16" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="H5h-TS-AyR">
+                                                                                        <rect key="frame" x="32" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="NRG-eB-uD8">
+                                                                                        <rect key="frame" x="48" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                    <imageView userInteractionEnabled="NO" tag="4" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starRating" translatesAutoresizingMaskIntoConstraints="NO" id="ujQ-HW-LS1">
+                                                                                        <rect key="frame" x="64" y="0.0" width="16" height="16"/>
+                                                                                    </imageView>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                        <constraints>
+                                                                            <constraint firstItem="09y-Eb-TPa" firstAttribute="leading" secondItem="Teb-dQ-87l" secondAttribute="leading" id="Egt-bI-bV7"/>
+                                                                            <constraint firstItem="09y-Eb-TPa" firstAttribute="top" secondItem="Teb-dQ-87l" secondAttribute="top" id="IIB-eB-9Sw"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="09y-Eb-TPa" secondAttribute="trailing" id="Ryx-44-cab"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="09y-Eb-TPa" secondAttribute="bottom" id="SUi-r6-nui"/>
+                                                                        </constraints>
+                                                                        <connections>
+                                                                            <outletCollection property="starImagesArray" destination="cjA-q6-AsV" collectionClass="NSMutableArray" id="I9X-Pq-Em3"/>
+                                                                            <outletCollection property="starImagesArray" destination="jku-73-wIB" collectionClass="NSMutableArray" id="CKV-26-2Tg"/>
+                                                                            <outletCollection property="starImagesArray" destination="H5h-TS-AyR" collectionClass="NSMutableArray" id="WER-wv-TSz"/>
+                                                                            <outletCollection property="starImagesArray" destination="NRG-eB-uD8" collectionClass="NSMutableArray" id="YcZ-S8-Yur"/>
+                                                                            <outletCollection property="starImagesArray" destination="ujQ-HW-LS1" collectionClass="NSMutableArray" id="gil-sE-Imq"/>
+                                                                        </connections>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="Teb-dQ-87l" firstAttribute="leading" secondItem="g1X-j2-LIZ" secondAttribute="leading" id="Lsb-65-hfp"/>
+                                                                    <constraint firstItem="qDz-Wl-sCk" firstAttribute="leading" secondItem="Teb-dQ-87l" secondAttribute="trailing" constant="8" id="VvK-fz-QR9"/>
+                                                                    <constraint firstItem="CJH-cm-QyS" firstAttribute="leading" secondItem="P04-LX-JXa" secondAttribute="trailing" constant="8" id="cZg-Zm-krG"/>
+                                                                    <constraint firstItem="P04-LX-JXa" firstAttribute="leading" secondItem="g1X-j2-LIZ" secondAttribute="leading" id="hnL-ai-NmY"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
                                                             <constraint firstItem="sJj-mB-icB" firstAttribute="leading" secondItem="ioD-eD-Kmv" secondAttribute="leading" id="620-zr-v80"/>
                                                             <constraint firstItem="sJj-mB-icB" firstAttribute="top" secondItem="ioD-eD-Kmv" secondAttribute="top" id="APh-Hc-rol"/>
+                                                            <constraint firstItem="qDz-Wl-sCk" firstAttribute="centerY" secondItem="vNp-tb-WLw" secondAttribute="centerY" id="BY4-0V-2Lu"/>
                                                             <constraint firstItem="vNp-tb-WLw" firstAttribute="leading" secondItem="ioD-eD-Kmv" secondAttribute="leading" id="Bsk-1A-4FO"/>
+                                                            <constraint firstAttribute="bottom" secondItem="g1X-j2-LIZ" secondAttribute="bottom" id="Cgm-OG-LAZ"/>
                                                             <constraint firstAttribute="bottom" secondItem="vNp-tb-WLw" secondAttribute="bottom" id="Iab-Du-QbZ"/>
+                                                            <constraint firstItem="CJH-cm-QyS" firstAttribute="centerY" secondItem="sJj-mB-icB" secondAttribute="centerY" id="UgO-J4-Ami"/>
+                                                            <constraint firstItem="P04-LX-JXa" firstAttribute="centerY" secondItem="sJj-mB-icB" secondAttribute="centerY" id="ZV3-WU-tsU"/>
+                                                            <constraint firstItem="g1X-j2-LIZ" firstAttribute="top" secondItem="ioD-eD-Kmv" secondAttribute="top" id="Zne-rK-uoe"/>
+                                                            <constraint firstAttribute="trailing" secondItem="g1X-j2-LIZ" secondAttribute="trailing" id="key-Eh-i8N"/>
+                                                            <constraint firstItem="g1X-j2-LIZ" firstAttribute="leading" secondItem="sJj-mB-icB" secondAttribute="trailing" constant="8" id="l2r-NI-Ji7"/>
                                                             <constraint firstItem="vNp-tb-WLw" firstAttribute="top" secondItem="sJj-mB-icB" secondAttribute="bottom" constant="8" id="lEo-hw-u5K"/>
+                                                            <constraint firstItem="Teb-dQ-87l" firstAttribute="centerY" secondItem="vNp-tb-WLw" secondAttribute="centerY" id="wx5-SB-Zvm"/>
+                                                            <constraint firstItem="g1X-j2-LIZ" firstAttribute="leading" secondItem="vNp-tb-WLw" secondAttribute="trailing" constant="8" id="zQ1-Yc-Pfu"/>
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CASTING" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENB-US-BzF">
@@ -247,6 +358,8 @@
                         <outlet property="durationAndGenreLabel" destination="2hb-4r-5FI" id="egJ-fv-siL"/>
                         <outlet property="infosLabel" destination="OQ9-56-tb2" id="hFo-aO-ieI"/>
                         <outlet property="moviePosterImage" destination="sI3-B2-WB6" id="79r-4a-W3s"/>
+                        <outlet property="pressRatingValue" destination="CJH-cm-QyS" id="NmL-uX-e3j"/>
+                        <outlet property="pressStarsView" destination="P04-LX-JXa" id="FY3-Ke-IjM"/>
                         <outlet property="presseLabel" destination="sJj-mB-icB" id="mKc-aR-iiN"/>
                         <outlet property="ratingLabel" destination="Gf3-Kl-u6A" id="fi7-pV-Rlg"/>
                         <outlet property="realisatorAndActorsLabel" destination="3YW-cF-gxJ" id="ppj-tm-agQ"/>
@@ -257,7 +370,9 @@
                         <outlet property="synopsisTitleLabel" destination="wwn-aq-k9V" id="QOU-E4-BHN"/>
                         <outlet property="titleLabel" destination="G6h-Dh-vee" id="XJj-VT-wN1"/>
                         <outlet property="topGradient" destination="4QX-5h-HJc" id="QHH-yd-T5t"/>
+                        <outlet property="viewerRatingValue" destination="qDz-Wl-sCk" id="vQg-de-PbX"/>
                         <outlet property="viewersLabel" destination="vNp-tb-WLw" id="hGF-e2-rGB"/>
+                        <outlet property="viewersStarsView" destination="Teb-dQ-87l" id="roa-I7-Pw9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fJg-Tl-j8g" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -270,5 +385,6 @@
         <image name="Bookmark-active" width="19" height="22"/>
         <image name="TopGradien" width="375" height="112"/>
         <image name="backArrow" width="10" height="17"/>
+        <image name="starRating" width="16" height="16"/>
     </resources>
 </document>

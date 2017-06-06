@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DatePickerPopup: UIView, UIGestureRecognizerDelegate {
+class DatePickerPopup: UIView {
     
     @IBOutlet weak var mainView: UIView!
 
@@ -89,8 +89,7 @@ class DatePickerPopup: UIView, UIGestureRecognizerDelegate {
 
     
     @IBAction func closeClicked(_ sender: Any) {
-        print("eeeee")
-        //hide(good: false)
+       // clickOkButton(sender)
         
     }
     

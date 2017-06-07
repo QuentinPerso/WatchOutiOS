@@ -116,19 +116,30 @@
                                                                     </collectionViewCell>
                                                                 </cells>
                                                             </collectionView>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍿 No saved movies.... Yet ! 🍿" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xsN-cD-7gj">
+                                                                <rect key="frame" x="40" y="42" width="240" height="170"/>
+                                                                <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="16"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                         <constraints>
+                                                            <constraint firstItem="xsN-cD-7gj" firstAttribute="leading" secondItem="gVJ-SS-Bmm" secondAttribute="leading" constant="40" id="53j-su-tLo"/>
                                                             <constraint firstItem="DwP-jN-xh4" firstAttribute="top" secondItem="BHP-Xg-VQJ" secondAttribute="bottom" constant="12" id="Arq-aj-FbJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="xsN-cD-7gj" secondAttribute="trailing" constant="40" id="EZk-Pt-g1y"/>
                                                             <constraint firstAttribute="bottom" secondItem="DwP-jN-xh4" secondAttribute="bottom" id="ISc-hS-Sh6"/>
                                                             <constraint firstItem="BHP-Xg-VQJ" firstAttribute="top" secondItem="gVJ-SS-Bmm" secondAttribute="top" id="P3B-SD-lWE"/>
                                                             <constraint firstAttribute="trailing" secondItem="DwP-jN-xh4" secondAttribute="trailing" id="SAN-hF-xR2"/>
+                                                            <constraint firstItem="xsN-cD-7gj" firstAttribute="top" secondItem="BHP-Xg-VQJ" secondAttribute="bottom" constant="11.5" id="SM2-iC-EcW"/>
                                                             <constraint firstAttribute="trailing" secondItem="BHP-Xg-VQJ" secondAttribute="trailing" constant="20" id="VGF-Cm-ref"/>
+                                                            <constraint firstAttribute="bottom" secondItem="xsN-cD-7gj" secondAttribute="bottom" id="Zzx-zh-hDt"/>
                                                             <constraint firstItem="BHP-Xg-VQJ" firstAttribute="leading" secondItem="gVJ-SS-Bmm" secondAttribute="leading" constant="20" id="kT9-G1-339"/>
                                                             <constraint firstItem="DwP-jN-xh4" firstAttribute="leading" secondItem="gVJ-SS-Bmm" secondAttribute="leading" id="tIj-HE-14Z"/>
                                                         </constraints>
                                                         <connections>
                                                             <outlet property="collectionView" destination="DwP-jN-xh4" id="wYb-nO-qDX"/>
+                                                            <outlet property="placeHolderLabel" destination="xsN-cD-7gj" id="ujS-sV-B3d"/>
                                                         </connections>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-4L-USA" customClass="UserMemberCardsView" customModule="WatchOut" customModuleProvider="target">

@@ -12,6 +12,7 @@ import AlamofireImage
 class UserMoviesView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var placeHolderLabel: UILabel!
 
     var savedMovies = SaveManager.savedMovies
     
@@ -22,6 +23,14 @@ class UserMoviesView: UIView {
         super.awakeFromNib()
         collectionView.delegate = self
         collectionView.dataSource = self
+    }
+    
+    func reload() {
+        savedMovies = SaveManager.savedMovies
+        collectionView.reloadData()
+
+        placeHolderLabel.isHidden = savedMovies.count != 0
+        
     }
 
 }

@@ -39,7 +39,7 @@ class UserPageVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        myMoviesView.collectionView.reloadData()
+        myMoviesView.reload()
     }
     
     override func viewDidLayoutSubviews() {

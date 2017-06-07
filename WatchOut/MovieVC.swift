@@ -15,9 +15,7 @@ class MovieVC: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var saveButton: UIButton!
-    
-    
-    
+
     @IBOutlet weak var moviePosterImage: UIImageView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -52,6 +50,8 @@ class MovieVC: UIViewController {
         self.automaticallyAdjustsScrollViewInsets = false
         
         setupMovie()
+        
+        saveButton.isSelected = SaveManager.savedMovies.contains(movie)
         
     }
     
@@ -139,6 +139,7 @@ class MovieVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.bringSubview(toFront: topGradient)
+        
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -148,10 +149,16 @@ class MovieVC: UIViewController {
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
         sender.isSelected = !sender.isSelected
+        SaveManager.save(movie: movie)
     }
 
     @IBAction func backButtonClicked(_ sender: Any) {
+        
         self.navigationController?.popViewController(animated: true)
+
+        for movie in SaveManager.savedMovies {
+            print("lalalal", movie.name)
+        }
     }
 }
 

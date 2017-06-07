@@ -15,6 +15,7 @@ class WOCinema : NSObject {
     var coordinate: CLLocationCoordinate2D!
     var name:String!
     var address:String!
+    var memberCards:[WOMemberCard]?
     
     init(dictionary:[String : AnyObject]) {
         super.init()
@@ -34,6 +35,22 @@ class WOCinema : NSObject {
  
         }
         return CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        
+    }
+    
+    func update(dictionary:[String : AnyObject]) {
+        
+        if let cardsDicts = dictionary["memberCard"] as? [[String : AnyObject]] {
+            memberCards = [WOMemberCard]()
+            for cardDict in cardsDicts {
+                let card = WOMemberCard(dictionary: cardDict)
+                SaveManager.saveBaseMemberCard(card)
+                memberCards!.append(card)
+                
+            }
+            
+        }
+        
         
     }
 

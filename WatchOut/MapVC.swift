@@ -259,7 +259,6 @@ extension MapVC {
         if dateFilterView.soonButton.isSelected {
             dateString = formater.string(from: Date())
             hoursTimeInterval = Double(dateFilterView.slider.value)
-            print(hoursTimeInterval)
         }
         else if dateFilterView.todayButton.isSelected {
             dateString = formater.string(from: Date())
@@ -280,6 +279,33 @@ extension MapVC {
         
     }
     
+}
+
+//************************************
+// MARK: - Actions
+//************************************
+
+extension MapVC {
+    
+    
+    @IBAction func localButtonClick(_ sender: UIButton) {
+        
+        if LocationManager.hasLocalisationAuth {
+            let coord = mapView.userLocation.coordinate
+            mapView?.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: true)
+        }
+        
+    }
+    
+    @IBAction func profileButtonClicked(_ sender: UIButton) {
+        
+        if let viewCtrl = UIStoryboard(name: "UserPage", bundle: nil).instantiateInitialViewController(){
+            
+            self.present(viewCtrl, animated: true, completion: nil)
+            
+        }
+        
+    }
 }
 
 //************************************

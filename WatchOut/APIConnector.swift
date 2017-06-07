@@ -117,12 +117,13 @@ extension APIConnector {
     
     static func getCinemasTimeList(position:CLLocationCoordinate2D,
                                           radius:CGFloat,
-                                          cinemaChain:String? = nil,
                                           movieCode:Int? = nil,
                                           person:String? = nil,
                                           date:String? = nil,
                                           timeInterval:Double? = nil,
                                           completion:@escaping ([WOTheaterShowtime]?, _ canceled:Bool) -> Void) -> DataRequest{
+        
+        let memberCards = SaveManager.userMemberCard
         
         let radius = max(radius, 1000)
         var queryParams:[String:String] = [
@@ -132,8 +133,7 @@ extension APIConnector {
             "radius" : "\(Int(radius/1000))",
             "format" : "json",
             ]
-        
-        if cinemaChain != nil { queryParams["location"] = cinemaChain }
+    
         if movieCode != nil { queryParams["movie"] = "\(movieCode!)" }
         if person != nil { queryParams["count"] = "30" } // increase count for post search treatment
         if date != nil { queryParams["date"] = date }
@@ -148,14 +148,44 @@ extension APIConnector {
                     if let rawObjs = rawSObj["theaterShowtimes"] as? [[String : AnyObject]] {
                         
                         var woObjs = [WOTheaterShowtime]()
-                        
+                    
+                        var index = 0
                         for rawObj in rawObjs {
                             let theaterShowTime = WOTheaterShowtime(dictionary: rawObj, person: person, timeIntervalFromNow: timeInterval)
                             if theaterShowTime.moviesShowTime.count > 0 {
-                                woObjs.append(theaterShowTime)
+ 
+                                if memberCards.count > 0 {
+
+                                    getCinemaDetails(theaterShowTime.cinema, completion: { (cinema) in
+                                        if let cards = cinema.memberCards {
+                                            for card in memberCards {
+                                                if cards.contains(card) {
+                                                    woObjs.append(theaterShowTime)
+                                                    break
+                                                }
+                                            }
+                                        }
+                                        if index == rawObjs.count {
+                                            completion(woObjs, false)
+                                        }
+                                    })
+                                }
+                                else if SaveManager.savedBaseMemberCard.count < 15 {
+                                    getCinemaDetails(theaterShowTime.cinema, completion: { (cinema) in })
+                                    woObjs.append(theaterShowTime)
+                                }
+                                else {
+                                    woObjs.append(theaterShowTime)
+                                }
+                                
+                                
                             }
+                            index += 1
                         }
-                        completion(woObjs, false)
+                        if memberCards.count == 0 {
+                            completion(woObjs, false)
+                        }
+                        
                         
                     }
                     else { // no result
@@ -175,11 +205,12 @@ extension APIConnector {
         return request
     }
     
+    
 }
 
 
 //************************************
-// MARK: - TimeList
+// MARK: - Synopsis
 //************************************
 
 extension APIConnector {
@@ -214,6 +245,41 @@ extension APIConnector {
         }
 
         return request
+    }
+    
+}
+
+//************************************
+// MARK: - Cinema details
+//************************************
+
+extension APIConnector {
+    
+    static func getCinemaDetails(_ cinema:WOCinema, completion:@escaping (WOCinema) -> Void){
+        
+        let queryParams:[String:String] = [
+            "partner" : partner,
+            "code" : "\(cinema.uniqID!)",
+            "format" : "json",
+        ]
+        
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        sessionManager.request("http://api.allocine.fr/rest/v3/theater", parameters: queryParams).responseJSON { response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let jsonDict = response.result.value as? [String: AnyObject]{
+                if let rawObj = jsonDict["theater"] as? [String : AnyObject] {
+                    cinema.update(dictionary: rawObj)
+                }
+                completion(cinema)
+                
+            }
+            else{
+                completion(cinema)
+            }
+        }
+    
     }
     
 }

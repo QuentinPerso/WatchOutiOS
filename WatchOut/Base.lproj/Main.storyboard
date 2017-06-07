@@ -181,6 +181,20 @@
                                     <outlet property="loadingIndicator" destination="i1X-Y7-ZFs" id="q4D-KI-eUa"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ufU-HT-1x9">
+                                <rect key="frame" x="311" y="363" width="64" height="64"/>
+                                <state key="normal" image="LocButton"/>
+                                <connections>
+                                    <action selector="localButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ieQ-qz-ffA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lo3-lV-wrE">
+                                <rect key="frame" x="0.0" y="363" width="64" height="64"/>
+                                <state key="normal" image="profileButton"/>
+                                <connections>
+                                    <action selector="profileButtonClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aLp-BE-yRr"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1F-H2-VJI" customClass="TheaterShowTimesView" customModule="WatchOut" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="427" width="375" height="300"/>
                                 <subviews>
@@ -444,7 +458,9 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="f1F-H2-VJI" firstAttribute="top" secondItem="ufU-HT-1x9" secondAttribute="bottom" id="1Gw-rf-Fgh"/>
                             <constraint firstItem="f1F-H2-VJI" firstAttribute="top" secondItem="A4K-UB-ANk" secondAttribute="bottom" id="23e-jf-XBs"/>
+                            <constraint firstItem="f1F-H2-VJI" firstAttribute="top" secondItem="lo3-lV-wrE" secondAttribute="bottom" id="6Ee-3c-ggd"/>
                             <constraint firstItem="vB0-BK-6e4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="6sW-mj-U2f"/>
                             <constraint firstItem="lwq-31-0eT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="9Kk-uN-P00"/>
                             <constraint firstAttribute="trailing" secondItem="tCe-Jv-yMm" secondAttribute="trailing" id="ERG-oK-T48"/>
@@ -461,8 +477,10 @@
                             <constraint firstItem="tCe-Jv-yMm" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hfQ-6X-sHm"/>
                             <constraint firstItem="tCe-Jv-yMm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jy7-ws-dr0"/>
                             <constraint firstItem="vB0-BK-6e4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="rPp-pP-5Vx"/>
+                            <constraint firstAttribute="trailing" secondItem="ufU-HT-1x9" secondAttribute="trailing" id="u12-dk-IIE"/>
                             <constraint firstItem="lwq-31-0eT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="uR1-c6-GIT"/>
                             <constraint firstItem="vB0-BK-6e4" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="un9-tJ-Yw4"/>
+                            <constraint firstItem="lo3-lV-wrE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zwG-hs-9GW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0eZ-XG-mN1"/>
@@ -487,7 +505,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1086" y="139"/>
+            <point key="canvasLocation" x="1085.5999999999999" y="138.98050974512745"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ymj-vf-FSa">
@@ -510,6 +528,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LocButton" width="64" height="64"/>
+        <image name="profileButton" width="64" height="64"/>
         <image name="searchViewIcon" width="32" height="32"/>
     </resources>
 </document>

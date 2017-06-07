@@ -107,17 +107,20 @@ extension MapVC {
         //****** ViewPort
         let locAuthStatus = CLLocationManager.authorizationStatus()
         if locAuthStatus == .notDetermined {
-            
             LocationManager.shared.locationInUseGranted = {[weak self] in
                 self?.mapView.setUserTrackingMode(.follow, animated: false)
             }
             LocationManager.shared.requestLocAuth()
         }
         else if LocationManager.hasLocalisationAuth {
-            mapView.setUserTrackingMode(.follow, animated: false)
-        }
-        else {
-            
+            mapView.showsUserLocation = true
+            LocationManager.shared.autoUpdate = true
+            LocationManager.shared.startUpdatingLocation({ (coord, error) in
+                self.mapView.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: false)
+                self.callAPITimeLists()
+                LocationManager.shared.stopUpdatingLocation()
+                LocationManager.shared.autoUpdate = false
+            })
         }
         
     }
@@ -293,6 +296,9 @@ extension MapVC {
         if LocationManager.hasLocalisationAuth {
             let coord = mapView.userLocation.coordinate
             mapView?.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: true)
+        }
+        else {
+            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
         }
         
     }

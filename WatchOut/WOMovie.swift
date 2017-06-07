@@ -22,6 +22,14 @@ class WOMovie : NSObject, NSCoding {
     var pressRating:Double?
     var synopsis:String?
     
+    override func isEqual(_ object: Any?) -> Bool {
+        if let object = object as? WOMovie {
+            return self.uniqID == object.uniqID
+        } else {
+            return false
+        }
+    }
+    
     public func encode(with aCoder: NSCoder) {
         aCoder.encode(uniqID, forKey: "uniqID")
         aCoder.encode(name, forKey: "name")

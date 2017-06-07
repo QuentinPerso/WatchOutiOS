@@ -37,6 +37,11 @@ class UserPageVC: UIViewController {
         return .lightContent
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        myMoviesView.collectionView.reloadData()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.view.bringSubview(toFront: topGradient)

@@ -146,19 +146,19 @@ class MovieVC: UIViewController {
         return .lightContent
     }
     
+    
+    
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
         sender.isSelected = !sender.isSelected
-        SaveManager.save(movie: movie)
+        sender.isSelected ? SaveManager.save(movie: movie) : SaveManager.unsave(movie: movie)
+        
     }
 
     @IBAction func backButtonClicked(_ sender: Any) {
         
         self.navigationController?.popViewController(animated: true)
 
-        for movie in SaveManager.savedMovies {
-            print("lalalal", movie.name)
-        }
     }
 }
 

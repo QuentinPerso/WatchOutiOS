@@ -133,10 +133,10 @@
                                 <color key="tintColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </mapView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A4K-UB-ANk" customClass="MapReloaderView" customModule="WatchOut" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="130" width="375" height="297"/>
+                                <rect key="frame" x="0.0" y="134" width="375" height="293"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dak-Au-zjv">
-                                        <rect key="frame" x="165.5" y="126.5" width="44" height="44"/>
+                                        <rect key="frame" x="165.5" y="124.5" width="44" height="44"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1X-Y7-ZFs" customClass="NVActivityIndicatorView" customModule="WatchOut" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
@@ -180,150 +180,6 @@
                                     <outlet property="loaderView" destination="dak-Au-zjv" id="0mM-M5-8FI"/>
                                     <outlet property="loadingIndicator" destination="i1X-Y7-ZFs" id="q4D-KI-eUa"/>
                                 </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwq-31-0eT" userLabel="Top bar">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-Xi-QN9" customClass="SearchBarView" customModule="WatchOut" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                        <subviews>
-                                            <searchBar contentMode="redraw" text="" placeholder="Search movie, directors, actors" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-q4-za1">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
-                                            </searchBar>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="r1J-q4-za1" secondAttribute="bottom" id="8dA-Ra-KCt"/>
-                                            <constraint firstItem="r1J-q4-za1" firstAttribute="top" secondItem="Lbn-Xi-QN9" secondAttribute="top" id="J5S-XD-zr8"/>
-                                            <constraint firstAttribute="trailing" secondItem="r1J-q4-za1" secondAttribute="trailing" id="l9q-89-KMu"/>
-                                            <constraint firstItem="r1J-q4-za1" firstAttribute="leading" secondItem="Lbn-Xi-QN9" secondAttribute="leading" id="sfO-hm-htZ"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="searchBar" destination="r1J-q4-za1" id="TsK-57-TnM"/>
-                                        </connections>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6y-pu-Qpi" customClass="DateFilterView" customModule="WatchOut" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66" width="375" height="64"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcB-2p-fvl">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6K-oc-6zh">
-                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" title="1 hour">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="4jN-uV-c5C"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiM-vM-wFl">
-                                                        <rect key="frame" x="94" y="0.0" width="93.5" height="30"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" title="Today">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="FHc-fT-Z3o"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTR-L8-Kzj">
-                                                        <rect key="frame" x="187.5" y="0.0" width="94" height="30"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" title="Another day">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="fwT-gs-CUu"/>
-                                                        </connections>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYr-uO-XwJ">
-                                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="30"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
-                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <state key="normal" title="All">
-                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        </state>
-                                                        <connections>
-                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="0G4-Uy-71q"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="EiM-vM-wFl" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="DV9-M7-OSh"/>
-                                                    <constraint firstItem="Z6K-oc-6zh" firstAttribute="width" secondItem="EiM-vM-wFl" secondAttribute="width" id="gDj-at-Ia3"/>
-                                                    <constraint firstItem="TYr-uO-XwJ" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="iP4-Ki-5Zt"/>
-                                                </constraints>
-                                            </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iY3-qx-gZn">
-                                                <rect key="frame" x="0.0" y="34" width="375" height="30"/>
-                                                <subviews>
-                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="TPj-q5-bH8">
-                                                        <rect key="frame" x="48.5" y="0.0" width="278" height="31"/>
-                                                        <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </slider>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vul-JW-Gpv">
-                                                        <rect key="frame" x="12" y="7.5" width="30.5" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcJ-5j-bfA">
-                                                        <rect key="frame" x="332.5" y="7.5" width="30.5" height="16.5"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
-                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstItem="vcJ-5j-bfA" firstAttribute="centerY" secondItem="TPj-q5-bH8" secondAttribute="centerY" id="4dh-SG-4He"/>
-                                                    <constraint firstAttribute="trailing" secondItem="vcJ-5j-bfA" secondAttribute="trailing" constant="12" id="4y7-Sx-YLf"/>
-                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="top" secondItem="iY3-qx-gZn" secondAttribute="top" id="Fec-pa-Cyh"/>
-                                                    <constraint firstItem="Vul-JW-Gpv" firstAttribute="centerY" secondItem="TPj-q5-bH8" secondAttribute="centerY" id="IwV-Ep-o2q"/>
-                                                    <constraint firstAttribute="bottom" secondItem="TPj-q5-bH8" secondAttribute="bottom" id="Yij-nY-2eH"/>
-                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="leading" secondItem="Vul-JW-Gpv" secondAttribute="trailing" constant="8" id="dfl-7b-Igu"/>
-                                                    <constraint firstItem="vcJ-5j-bfA" firstAttribute="leading" secondItem="TPj-q5-bH8" secondAttribute="trailing" constant="8" id="e3R-S5-acg"/>
-                                                    <constraint firstItem="Vul-JW-Gpv" firstAttribute="leading" secondItem="iY3-qx-gZn" secondAttribute="leading" constant="12" id="mz0-TR-kEE"/>
-                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="centerX" secondItem="iY3-qx-gZn" secondAttribute="centerX" id="u6g-c8-ZC8"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <constraints>
-                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" id="2Ne-Au-bze"/>
-                                            <constraint firstItem="iY3-qx-gZn" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" id="A9Q-ln-SOd"/>
-                                            <constraint firstItem="iY3-qx-gZn" firstAttribute="top" secondItem="vcB-2p-fvl" secondAttribute="bottom" constant="4" id="CFA-0N-gX3"/>
-                                            <constraint firstAttribute="bottom" secondItem="iY3-qx-gZn" secondAttribute="bottom" id="E3s-w5-1Cf"/>
-                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="top" secondItem="s6y-pu-Qpi" secondAttribute="top" id="OfN-Qh-GEl"/>
-                                            <constraint firstAttribute="trailing" secondItem="vcB-2p-fvl" secondAttribute="trailing" id="WV5-cX-vuR"/>
-                                            <constraint firstAttribute="trailing" secondItem="iY3-qx-gZn" secondAttribute="trailing" id="ieh-z5-8E9"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="allButton" destination="TYr-uO-XwJ" id="vGq-s4-sRR"/>
-                                            <outlet property="oneHourButton" destination="Z6K-oc-6zh" id="iCP-bS-IvA"/>
-                                            <outlet property="otherDayButton" destination="qTR-L8-Kzj" id="Bxn-oW-IGE"/>
-                                            <outlet property="todayButton" destination="EiM-vM-wFl" id="c55-Zc-AVR"/>
-                                        </connections>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Lbn-Xi-QN9" secondAttribute="trailing" id="1G6-Tu-zNj"/>
-                                    <constraint firstItem="s6y-pu-Qpi" firstAttribute="top" secondItem="Lbn-Xi-QN9" secondAttribute="bottom" constant="2" id="A7h-8o-jyS"/>
-                                    <constraint firstAttribute="trailing" secondItem="s6y-pu-Qpi" secondAttribute="trailing" id="JCt-ua-GWV"/>
-                                    <constraint firstItem="Lbn-Xi-QN9" firstAttribute="leading" secondItem="lwq-31-0eT" secondAttribute="leading" id="Jsz-PT-WlO"/>
-                                    <constraint firstItem="s6y-pu-Qpi" firstAttribute="leading" secondItem="lwq-31-0eT" secondAttribute="leading" id="NBX-uV-6vR"/>
-                                    <constraint firstAttribute="bottom" secondItem="s6y-pu-Qpi" secondAttribute="bottom" id="Rij-oY-ks3"/>
-                                    <constraint firstAttribute="height" priority="250" constant="130" id="ljF-eY-jLX"/>
-                                    <constraint firstItem="Lbn-Xi-QN9" firstAttribute="top" secondItem="lwq-31-0eT" secondAttribute="top" constant="20" id="oeI-1n-yg3"/>
-                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1F-H2-VJI" customClass="TheaterShowTimesView" customModule="WatchOut" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="427" width="375" height="300"/>
@@ -437,6 +293,154 @@
                                     <outlet property="titleLabel" destination="VkM-Re-pfH" id="LiQ-ci-kLd"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lwq-31-0eT" userLabel="Top bar">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lbn-Xi-QN9" customClass="SearchBarView" customModule="WatchOut" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                        <subviews>
+                                            <searchBar contentMode="redraw" text="" placeholder="Search movie, directors, actors" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1J-q4-za1">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <textInputTraits key="textInputTraits" keyboardAppearance="alert"/>
+                                            </searchBar>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="r1J-q4-za1" secondAttribute="bottom" id="8dA-Ra-KCt"/>
+                                            <constraint firstItem="r1J-q4-za1" firstAttribute="top" secondItem="Lbn-Xi-QN9" secondAttribute="top" id="J5S-XD-zr8"/>
+                                            <constraint firstAttribute="trailing" secondItem="r1J-q4-za1" secondAttribute="trailing" id="l9q-89-KMu"/>
+                                            <constraint firstItem="r1J-q4-za1" firstAttribute="leading" secondItem="Lbn-Xi-QN9" secondAttribute="leading" id="sfO-hm-htZ"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="searchBar" destination="r1J-q4-za1" id="TsK-57-TnM"/>
+                                        </connections>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6y-pu-Qpi" customClass="DateFilterView" customModule="WatchOut" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="66" width="375" height="68"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcB-2p-fvl">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6K-oc-6zh">
+                                                        <rect key="frame" x="0.0" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="1 hour">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="VWO-V4-xA9"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiM-vM-wFl">
+                                                        <rect key="frame" x="94" y="0.0" width="93.5" height="30"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Today">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="FHc-fT-Z3o"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qTR-L8-Kzj">
+                                                        <rect key="frame" x="187.5" y="0.0" width="94" height="30"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="Another day">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="fwT-gs-CUu"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYr-uO-XwJ">
+                                                        <rect key="frame" x="281.5" y="0.0" width="93.5" height="30"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="13"/>
+                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" title="All">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="didSelectTimeFilter:" destination="s6y-pu-Qpi" eventType="touchUpInside" id="0G4-Uy-71q"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="EiM-vM-wFl" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="DV9-M7-OSh"/>
+                                                    <constraint firstItem="Z6K-oc-6zh" firstAttribute="width" secondItem="EiM-vM-wFl" secondAttribute="width" id="gDj-at-Ia3"/>
+                                                    <constraint firstItem="TYr-uO-XwJ" firstAttribute="width" secondItem="qTR-L8-Kzj" secondAttribute="width" id="iP4-Ki-5Zt"/>
+                                                </constraints>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iY3-qx-gZn">
+                                                <rect key="frame" x="0.0" y="38" width="375" height="30"/>
+                                                <subviews>
+                                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="3600" minValue="600" maxValue="7200" translatesAutoresizingMaskIntoConstraints="NO" id="TPj-q5-bH8">
+                                                        <rect key="frame" x="48.5" y="0.0" width="278" height="31"/>
+                                                        <color key="minimumTrackTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </slider>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 min" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vul-JW-Gpv">
+                                                        <rect key="frame" x="12" y="7.5" width="30.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcJ-5j-bfA">
+                                                        <rect key="frame" x="332.5" y="7.5" width="30.5" height="16.5"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="12"/>
+                                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstItem="vcJ-5j-bfA" firstAttribute="centerY" secondItem="TPj-q5-bH8" secondAttribute="centerY" id="4dh-SG-4He"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vcJ-5j-bfA" secondAttribute="trailing" constant="12" id="4y7-Sx-YLf"/>
+                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="top" secondItem="iY3-qx-gZn" secondAttribute="top" id="Fec-pa-Cyh"/>
+                                                    <constraint firstItem="Vul-JW-Gpv" firstAttribute="centerY" secondItem="TPj-q5-bH8" secondAttribute="centerY" id="IwV-Ep-o2q"/>
+                                                    <constraint firstAttribute="bottom" secondItem="TPj-q5-bH8" secondAttribute="bottom" id="Yij-nY-2eH"/>
+                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="leading" secondItem="Vul-JW-Gpv" secondAttribute="trailing" constant="8" id="dfl-7b-Igu"/>
+                                                    <constraint firstItem="vcJ-5j-bfA" firstAttribute="leading" secondItem="TPj-q5-bH8" secondAttribute="trailing" constant="8" id="e3R-S5-acg"/>
+                                                    <constraint firstAttribute="height" constant="30" id="fiy-yY-mMf"/>
+                                                    <constraint firstItem="Vul-JW-Gpv" firstAttribute="leading" secondItem="iY3-qx-gZn" secondAttribute="leading" constant="12" id="mz0-TR-kEE"/>
+                                                    <constraint firstItem="TPj-q5-bH8" firstAttribute="centerX" secondItem="iY3-qx-gZn" secondAttribute="centerX" id="u6g-c8-ZC8"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" id="2Ne-Au-bze"/>
+                                            <constraint firstItem="iY3-qx-gZn" firstAttribute="leading" secondItem="s6y-pu-Qpi" secondAttribute="leading" id="A9Q-ln-SOd"/>
+                                            <constraint firstItem="iY3-qx-gZn" firstAttribute="top" secondItem="vcB-2p-fvl" secondAttribute="bottom" constant="8" id="CFA-0N-gX3"/>
+                                            <constraint firstAttribute="bottom" secondItem="iY3-qx-gZn" secondAttribute="bottom" id="E3s-w5-1Cf"/>
+                                            <constraint firstItem="vcB-2p-fvl" firstAttribute="top" secondItem="s6y-pu-Qpi" secondAttribute="top" id="OfN-Qh-GEl"/>
+                                            <constraint firstAttribute="trailing" secondItem="vcB-2p-fvl" secondAttribute="trailing" id="WV5-cX-vuR"/>
+                                            <constraint firstAttribute="trailing" secondItem="iY3-qx-gZn" secondAttribute="trailing" id="ieh-z5-8E9"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="allButton" destination="TYr-uO-XwJ" id="vGq-s4-sRR"/>
+                                            <outlet property="otherDayButton" destination="qTR-L8-Kzj" id="Bxn-oW-IGE"/>
+                                            <outlet property="slider" destination="TPj-q5-bH8" id="Ihi-dN-fQU"/>
+                                            <outlet property="sliderView" destination="iY3-qx-gZn" id="Ejf-X1-Xhb"/>
+                                            <outlet property="sliderViewHConstraint" destination="fiy-yY-mMf" id="qsi-nk-jnj"/>
+                                            <outlet property="soonButton" destination="Z6K-oc-6zh" id="2ax-GO-7rG"/>
+                                            <outlet property="todayButton" destination="EiM-vM-wFl" id="c55-Zc-AVR"/>
+                                        </connections>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="0.92000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="Lbn-Xi-QN9" secondAttribute="trailing" id="1G6-Tu-zNj"/>
+                                    <constraint firstItem="s6y-pu-Qpi" firstAttribute="top" secondItem="Lbn-Xi-QN9" secondAttribute="bottom" constant="2" id="A7h-8o-jyS"/>
+                                    <constraint firstAttribute="trailing" secondItem="s6y-pu-Qpi" secondAttribute="trailing" id="JCt-ua-GWV"/>
+                                    <constraint firstItem="Lbn-Xi-QN9" firstAttribute="leading" secondItem="lwq-31-0eT" secondAttribute="leading" id="Jsz-PT-WlO"/>
+                                    <constraint firstItem="s6y-pu-Qpi" firstAttribute="leading" secondItem="lwq-31-0eT" secondAttribute="leading" id="NBX-uV-6vR"/>
+                                    <constraint firstAttribute="bottom" secondItem="s6y-pu-Qpi" secondAttribute="bottom" id="Rij-oY-ks3"/>
+                                    <constraint firstAttribute="height" priority="250" constant="130" id="ljF-eY-jLX"/>
+                                    <constraint firstItem="Lbn-Xi-QN9" firstAttribute="top" secondItem="lwq-31-0eT" secondAttribute="top" constant="20" id="oeI-1n-yg3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -483,7 +487,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1044" y="138.98050974512745"/>
+            <point key="canvasLocation" x="1086" y="139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ymj-vf-FSa">

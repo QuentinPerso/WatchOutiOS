@@ -72,8 +72,7 @@ class MapVC: UIViewController {
         view.bringSubview(toFront: autocompleteView)
         view.bringSubview(toFront: topBarView)
 
-        style()
-        
+        //style()
         
     }
     
@@ -185,8 +184,13 @@ extension MapVC {
         dateFilterView.valueDidChangeAction = {
             self.callAPITimeLists()
         }
+        dateFilterView.showSliderAction = { [weak self] sliderShown in
+            self?.setFilterSliderHidden(!sliderShown)
+        }
         
     }
+    
+    
     
     func setupAutocompleteView() {
         
@@ -252,9 +256,10 @@ extension MapVC {
         let formater = DateFormatter()
         formater.dateFormat = "yyyy-MM-dd"
         
-        if dateFilterView.oneHourButton.isSelected {
+        if dateFilterView.soonButton.isSelected {
             dateString = formater.string(from: Date())
-            hoursTimeInterval = 3600.0
+            hoursTimeInterval = Double(dateFilterView.slider.value)
+            print(hoursTimeInterval)
         }
         else if dateFilterView.todayButton.isSelected {
             dateString = formater.string(from: Date())
@@ -371,6 +376,24 @@ extension MapVC{
         })
         
         
+    }
+    
+}
+
+//************************************
+// MARK: - TimeFilters Functions
+//************************************
+
+extension MapVC{
+    
+    func setFilterSliderHidden(_ hidden:Bool) {
+        
+        dateFilterView.nowSliderHidden = hidden
+
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
+            self?.dateFilterView.sliderView.alpha = hidden ? 0 :1
+            self?.view.layoutIfNeeded()
+            }, completion: nil)
     }
     
 }

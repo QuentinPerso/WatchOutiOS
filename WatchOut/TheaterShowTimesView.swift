@@ -48,7 +48,7 @@ class TheaterShowTimesView : UIView {
     
     func style() {
         
-        let cornerR = CGFloat(10.0)
+        let cornerR = CGFloat(12.0)
         
         layer.cornerRadius = cornerR
         

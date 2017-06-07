@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WOMovie : NSObject {
+class WOMovie : NSObject{
     
     var uniqID:Int!
     var name: String!
@@ -21,6 +21,36 @@ class WOMovie : NSObject {
     var userRating:Double?
     var pressRating:Double?
     var synopsis:String?
+    
+//    public func encode(with aCoder: NSCoder) {
+//        aCoder.encode(uniqID, forKey: "uniqID")
+//        aCoder.encode(name, forKey: "name")
+//        aCoder.encode(duration, forKey: "duration")
+//        aCoder.encode(actors, forKey: "actors")
+//        aCoder.encode(genre, forKey: "genre")
+//        aCoder.encode(releaseDate, forKey: "releaseDate")
+//        aCoder.encode(imageURL, forKey: "imageURL")
+//        aCoder.encode(userRating, forKey: "userRating")
+//        aCoder.encode(pressRating, forKey: "pressRating")
+//        aCoder.encode(synopsis, forKey: "synopsis")
+//    }
+//    
+//    required init?(coder aDecoder: NSCoder) {
+//        
+//        uniqID = aDecoder.decodeObject(forKey: "uniqID") as! Int
+//        name = aDecoder.decodeObject(forKey: "name") as! String
+//        duration = aDecoder.decodeObject(forKey: "duration") as? String
+//        directors = aDecoder.decodeObject(forKey: "directors") as? [String]
+//        actors = aDecoder.decodeObject(forKey: "uniqueId") as? [String]
+//        genre = aDecoder.decodeObject(forKey: "uniqueId") as! String
+//        releaseDate = aDecoder.decodeObject(forKey: "uniqueId") as? String
+//        imageURL = aDecoder.decodeObject(forKey: "uniqueId") as! URL
+//        userRating = aDecoder.decodeObject(forKey: "uniqueId") as? Double
+//        pressRating = aDecoder.decodeObject(forKey: "uniqueId") as? Double
+//        synopsis = aDecoder.decodeObject(forKey: "uniqueId") as? String
+//        
+//        super.init()
+//    }
     
     init(dictionary:[String : AnyObject]) {
         super.init()
@@ -67,6 +97,7 @@ class WOMovie : NSObject {
             }
         }
     }
+    
     
 
     

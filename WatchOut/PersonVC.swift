@@ -41,10 +41,11 @@ class PersonVC: UIViewController {
             UIView.transition(with: self!.view, duration: 0.2, options: .transitionCrossDissolve, animations: {
                 self?.setupPerson(person!)
             }, completion: nil)
+            self?.saveButton.isSelected = SavedPersons.persons.contains(person!)
             
         }
         
-//        saveButton.isSelected = SaveManager.savedMovies.contains(movie)
+        
         
     }
     
@@ -71,14 +72,12 @@ class PersonVC: UIViewController {
 
         //******* Activities
         if let activities = person.activities {
-            print(activities)
             activityLabel.text = activities
         }
         
         //******* Filmography
         if let participation = person.particiations {
-            print(participation)
-           filmographyView.participations = participation
+            filmographyView.participations = participation
             filmographyView.selectMovieAction = { [weak self] movie in
                 self?.showMovieVC(movie)
             }
@@ -102,8 +101,10 @@ class PersonVC: UIViewController {
     
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
+        if person == nil { return }
+        
         sender.isSelected = !sender.isSelected
-//        sender.isSelected ? SaveManager.save(movie: movie) : SaveManager.unsave(movie: movie)
+        sender.isSelected ? SavedPersons.save(person!) : SavedPersons.unsave(person!)
         
     }
 

@@ -8,15 +8,40 @@
 
 import Foundation
 
-class WOPerson : NSObject {
+class WOPerson : NSObject, NSCoding {
     
     var uniqID:Int!
     var name: String!
     var imageURL:URL!
+    
     var activities:String?
     var birthDate:String?
     var nationality:String?
     var particiations:[WOPersonParticipation]?
+    
+    override func isEqual(_ object: Any?) -> Bool {
+        if let object = object as? WOPerson {
+            return self.uniqID == object.uniqID
+        }
+        else {
+            return false
+        }
+    }
+    
+    public func encode(with aCoder: NSCoder) {
+        aCoder.encode(uniqID, forKey: "uniqID")
+        aCoder.encode(name, forKey: "name")
+        aCoder.encode(imageURL, forKey: "imageURL")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        uniqID = aDecoder.decodeObject(forKey: "uniqID") as! Int
+        name = aDecoder.decodeObject(forKey: "name") as! String
+        imageURL = aDecoder.decodeObject(forKey: "imageURL") as! URL
+        
+        super.init()
+    }
 
     init(dictionary:[String : AnyObject]) {
         super.init()

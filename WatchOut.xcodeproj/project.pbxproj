@@ -89,6 +89,7 @@
 		84FA97AC1EE955B10067F385 /* PersonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97AA1EE955B10067F385 /* PersonVC.swift */; };
 		84FA97AD1EE955B10067F385 /* PersonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FA97AB1EE955B10067F385 /* PersonDetails.storyboard */; };
 		84FA97AF1EE95E310067F385 /* FilmographyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97AE1EE95E310067F385 /* FilmographyView.swift */; };
+		84FA97B11EE98A140067F385 /* UserPersonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97B01EE98A140067F385 /* UserPersonsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +177,7 @@
 		84FA97AA1EE955B10067F385 /* PersonVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonVC.swift; sourceTree = "<group>"; };
 		84FA97AB1EE955B10067F385 /* PersonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonDetails.storyboard; sourceTree = "<group>"; };
 		84FA97AE1EE95E310067F385 /* FilmographyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmographyView.swift; sourceTree = "<group>"; };
+		84FA97B01EE98A140067F385 /* UserPersonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPersonsView.swift; sourceTree = "<group>"; };
 		AB65BCAE556DB0CE3082FDA7 /* Pods-WatchOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.debug.xcconfig"; sourceTree = "<group>"; };
 		B409C304750759525FA2F39E /* Pods-WatchOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -412,6 +414,7 @@
 				84FA979D1EE80A9B0067F385 /* UserPage.storyboard */,
 				84FA979E1EE80A9B0067F385 /* UserPageVC.swift */,
 				84FA97A11EE81FB00067F385 /* UserMoviesView.swift */,
+				84FA97B01EE98A140067F385 /* UserPersonsView.swift */,
 				84FA97A51EE8A2860067F385 /* UserMemberCardsView.swift */,
 			);
 			name = UserPageVC;
@@ -573,6 +576,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8405CB9F1EE2BB8F005B373E /* TheaterShowTimesView.swift in Sources */,
+				84FA97B11EE98A140067F385 /* UserPersonsView.swift in Sources */,
 				848A7F6F1EE02AE000A9F88E /* String+Functions.swift in Sources */,
 				848A7F461EE02A5300A9F88E /* NVActivityIndicatorAnimationBallGridBeat.swift in Sources */,
 				84FA97A21EE81FB00067F385 /* UserMoviesView.swift in Sources */,

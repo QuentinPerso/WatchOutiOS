@@ -119,7 +119,7 @@ extension APIConnector {
                                           timeInterval:Double? = nil,
                                           completion:@escaping ([WOTheaterShowtime]?, _ canceled:Bool) -> Void) -> DataRequest{
         
-        let memberCards = SaveManager.userMemberCard
+        let memberCards = SavedMemberCards.userMemberCard
         
         let radius = max(radius, 1000)
         var queryParams:[String:String] = [
@@ -167,7 +167,7 @@ extension APIConnector {
                                         }
                                     })
                                 }
-                                else if SaveManager.savedBaseMemberCard.count < 15 {
+                                else if SavedMemberCards.savedBaseMemberCard.count < 15 {
                                     getCinemaDetails(theaterShowTime.cinema, completion: { (cinema) in })
                                     woObjs.append(theaterShowTime)
                                 }

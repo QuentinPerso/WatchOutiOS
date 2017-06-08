@@ -18,7 +18,7 @@ class WOMovie : NSObject, NSCoding {
     var genre = ""
     var releaseDate = ""
     var productionYear = ""
-    var imageURL:URL!
+    var imageURL:URL?
     var userRating:Double?
     var pressRating:Double?
     var synopsis:String?
@@ -95,9 +95,7 @@ class WOMovie : NSObject, NSCoding {
         if let poster = dictionary["poster"] as? [String : AnyObject], let urlStr = poster["href"] as? String {
             imageURL = URL(string:urlStr)
         }
-        else {
-            imageURL = URL(string:"blavla")!
-        }
+
         
         if let stats = dictionary["statistics"] as? [String : AnyObject] {
             userRating = stats["userRating"] as? Double

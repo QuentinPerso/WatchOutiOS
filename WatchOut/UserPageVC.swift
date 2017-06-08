@@ -13,16 +13,22 @@ class UserPageVC: UIViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var topGradient: UIImageView!
+    
     @IBOutlet weak var myMoviesView: UserMoviesView!
+    
+    @IBOutlet weak var myMenView: UserPersonsView!
+    @IBOutlet weak var myMenHConstraint: NSLayoutConstraint!
+    var originalPersonViewH:CGFloat = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
-        myMoviesView.selectMovieAction = { [weak self] movie in
-            self?.showMovieVC(movie)
-        }
+        originalPersonViewH = myMenHConstraint.constant
+        
+        myMoviesView.selectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
+        myMenView.selectPersonAction = { [weak self] person in self?.showPersonVC(person) }
     }
     
 
@@ -40,6 +46,16 @@ class UserPageVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         myMoviesView.reload()
+        myMenView.reload()
+        if SavedPersons.persons.count == 0 {
+            myMenHConstraint.constant = 0
+            myMenView.isHidden = true
+        }
+        else {
+            myMenHConstraint.constant = originalPersonViewH
+            myMenView.isHidden = false
+        }
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -80,6 +96,16 @@ extension UserPageVC {
         let viewController = UIStoryboard(name: "MovieDetails", bundle: nil).instantiateInitialViewController() as! MovieVC
         
         viewController.movie = movie
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+    func showPersonVC(_ person:WOPerson) {
+        
+        let viewController = UIStoryboard(name: "PersonDetails", bundle: nil).instantiateInitialViewController() as! PersonVC
+        
+        viewController.personID = person.uniqID
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

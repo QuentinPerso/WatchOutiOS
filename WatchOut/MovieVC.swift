@@ -51,14 +51,17 @@ class MovieVC: UIViewController {
         
         setupMovie()
         
-        saveButton.isSelected = SaveManager.savedMovies.contains(movie)
+        saveButton.isSelected = SavedMovies.movies.contains(movie)
         
     }
     
     func setupMovie() {
         
         //******* Background Images
-        moviePosterImage.af_setImage(withURL: movie.imageURL)
+        if let url = movie.imageURL {
+            moviePosterImage.af_setImage(withURL: url)
+        }
+        
         
         //******* Movie title
         titleLabel.text = movie.name.uppercased()
@@ -154,7 +157,7 @@ class MovieVC: UIViewController {
     @IBAction func saveButtonClicked(_ sender: UIButton) {
         
         sender.isSelected = !sender.isSelected
-        sender.isSelected ? SaveManager.save(movie: movie) : SaveManager.unsave(movie: movie)
+        sender.isSelected ? SavedMovies.save(movie: movie) : SavedMovies.unsave(movie: movie)
         
     }
 

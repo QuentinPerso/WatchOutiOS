@@ -14,7 +14,7 @@ class UserMoviesView: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var placeHolderLabel: UILabel!
 
-    var savedMovies = SaveManager.savedMovies
+    var savedMovies = SavedMovies.movies
     
     var selectMovieAction:((WOMovie)->())?
     
@@ -26,7 +26,7 @@ class UserMoviesView: UIView {
     }
     
     func reload() {
-        savedMovies = SaveManager.savedMovies
+        savedMovies = SavedMovies.movies
         collectionView.reloadData()
 
         placeHolderLabel.isHidden = savedMovies.count != 0
@@ -55,8 +55,14 @@ extension UserMoviesView:UICollectionViewDataSource {
             let filter = AspectScaledToFillSizeFilter(size: cell.picture.frame.size)
             let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
             cell.picture.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
+            cell.titleView.isHidden = true
         }
-        //cell.title.text = movie.name
+        else {
+            cell.picture.image = #imageLiteral(resourceName: "defaultMovie")
+            cell.titleView.isHidden = false
+            cell.title.text = movie.name
+        }
+        //
         
         return cell
     }
@@ -97,13 +103,16 @@ extension UserMoviesView:UICollectionViewDelegateFlowLayout {
     
 }
 
-
+//---------------------------------------------
+// MARK: ------------- Cell
+//---------------------------------------------
 
 
 class UserMovieColCell: UICollectionViewCell {
     
     
     @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var title: UILabel!
     
     override var isHighlighted: Bool {
@@ -116,6 +125,5 @@ class UserMovieColCell: UICollectionViewCell {
         }
         
     }
-    
-    
+ 
 }

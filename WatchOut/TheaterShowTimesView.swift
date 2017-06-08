@@ -83,17 +83,24 @@ extension TheaterShowTimesView:UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieHoursCell") as! MovieHoursCell
+        
         let movieShowtime = theaterShowTime.moviesShowTime[indexPath.row]
-        cell.pictureImage.af_setImage(withURL: movieShowtime.movie.imageURL, placeholderImage: #imageLiteral(resourceName: "defaultMovie"))
+        
+        if let url = movieShowtime.movie.imageURL {
+            cell.pictureImage.af_setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "defaultMovie"))
+        }
+        
         cell.filmTitleLabel.text = movieShowtime.movie.name
+        
         cell.versionLabel.text = movieShowtime.version + (movieShowtime.screenFormat ?? "")
+        
         if let date = movieShowtime.showTimes?[0].date, let hours = movieShowtime.showTimes?[0].hours {
             cell.hoursLabel.text = date + " -- " + hours.joined(separator: " • ")
         }
         else {
             cell.hoursLabel.text = "N/A"
-//            cell.hoursLabel.text = "Bug date: \(String(describing: movieShowtime.showTimes?[0].date)), hours[0]: \(String(describing:  movieShowtime.showTimes?[0].hours[0]))"
         }
         
         return cell

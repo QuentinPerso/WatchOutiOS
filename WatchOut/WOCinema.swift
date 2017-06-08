@@ -44,7 +44,7 @@ class WOCinema : NSObject {
             memberCards = [WOMemberCard]()
             for cardDict in cardsDicts {
                 let card = WOMemberCard(dictionary: cardDict)
-                SaveManager.saveBaseMemberCard(card)
+                SavedMemberCards.saveBaseMemberCard(card)
                 memberCards!.append(card)
                 
             }

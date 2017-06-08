@@ -8,25 +8,25 @@
 
 import Foundation
 
-class SaveManager: NSObject {
-    
-    //************************************
-    // MARK: - Saved movies
-    //************************************
+//************************************
+// MARK: - Saved movies
+//************************************
+
+class SavedMovies: NSObject {
     
     static func save(movie:WOMovie) {
-
-        var sMovies = savedMovies
+        
+        var sMovies = movies
         if !sMovies.contains(movie) {
             sMovies.append(movie)
         }
         UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: sMovies), forKey: "savedMovies")
- 
+        
     }
     
     static func unsave(movie:WOMovie) {
         
-        var sMovies = savedMovies
+        var sMovies = movies
         
         if sMovies.contains(movie) {
             sMovies.remove(movie)
@@ -35,23 +35,81 @@ class SaveManager: NSObject {
         
     }
     
-    
-    
-    static var savedMovies:[WOMovie] {
+    static var movies:[WOMovie] {
         
         if let savedMovie = UserDefaults.standard.data(forKey: "savedMovies") {
             
-                if let movies = NSKeyedUnarchiver.unarchiveObject(with: savedMovie) as? [WOMovie] {
-                    
-                    return movies
-                }
-                else {
-                    print("no saved movies")
-                }
+            if let movies = NSKeyedUnarchiver.unarchiveObject(with: savedMovie) as? [WOMovie] {
+                
+                return movies
+            }
+            else {
+                print("no saved movies")
+            }
             
         }
         return []
     }
+    
+    
+    
+}
+
+//************************************
+// MARK: - Saved Persons
+//************************************
+
+class SavedPersons: NSObject {
+    
+    
+    static let identifier = "savedPersons"
+    
+    static func save(_ person:WOPerson) {
+        
+        var sPersons = persons
+        if !sPersons.contains(person) {
+            sPersons.append(person)
+        }
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: sPersons), forKey: identifier)
+        
+    }
+    
+    static func unsave(_ person:WOPerson) {
+        
+        var sPersons = persons
+        
+        if sPersons.contains(person) {
+            sPersons.remove(person)
+        }
+        UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: sPersons), forKey: identifier)
+        
+    }
+    
+    
+    
+    static var persons:[WOPerson] {
+        
+        if let savedPersons = UserDefaults.standard.data(forKey: identifier) {
+            
+            if let persons = NSKeyedUnarchiver.unarchiveObject(with: savedPersons) as? [WOPerson] {
+                
+                return persons
+            }
+            else {
+                print("no saved persons")
+            }
+            
+        }
+        return []
+    }
+    
+}
+
+//************************************
+// MARK: - Member Cards
+//************************************
+
+class SavedMemberCards: NSObject {
     
     //************************************
     // MARK: - Member Cards Data Base
@@ -123,5 +181,6 @@ class SaveManager: NSObject {
         }
         return []
     }
+    
     
 }

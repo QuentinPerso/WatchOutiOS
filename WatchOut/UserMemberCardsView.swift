@@ -17,11 +17,11 @@ class UserMemberCardsView: UIView {
     
     var selectMovieAction:((WOMovie)->())?
     
-    var baseCards = SaveManager.savedBaseMemberCard
+    var baseCards = SavedMemberCards.savedBaseMemberCard
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseCards = SaveManager.savedBaseMemberCard
+        baseCards = SavedMemberCards.savedBaseMemberCard
         if baseCards.count == 0 {
             self.isHidden = true
         }
@@ -58,7 +58,7 @@ extension UserMemberCardsView:UICollectionViewDataSource {
 
         cell.button.setTitle(card.label, for: .normal)
         
-        cell.button.isSelected = SaveManager.userMemberCard.contains(card)
+        cell.button.isSelected = SavedMemberCards.userMemberCard.contains(card)
         
         cell.button.tag = indexPath.row
         
@@ -82,10 +82,10 @@ extension UserMemberCardsView:UICollectionViewDelegate {
         
         sender.isSelected = !sender.isSelected
         if sender.isSelected {
-            SaveManager.saveUserMemberCard(baseCards[sender.tag])
+            SavedMemberCards.saveUserMemberCard(baseCards[sender.tag])
         }
         else {
-            SaveManager.unsaveUserMemberCard(baseCards[sender.tag])
+            SavedMemberCards.unsaveUserMemberCard(baseCards[sender.tag])
         }
         
     }

@@ -340,8 +340,6 @@ extension MapVC:UIGestureRecognizerDelegate {
         
         var selectedAnnot:CinemaAnnotation?
         
-        //        if keepSelected {
-        
         for annot in mapView.selectedAnnotations {
             if let cAnnot = annot as? CinemaAnnotation {
                 if !theaterShowTimes.contains(cAnnot.theaterShowTime) {
@@ -352,7 +350,6 @@ extension MapVC:UIGestureRecognizerDelegate {
                 }
             }
         }
-        
         for annot in mapView.annotations {
             if let cAnnot = annot as? CinemaAnnotation, let selAnnot = selectedAnnot, cAnnot != selAnnot {
                 mapView.removeAnnotation(annot)
@@ -361,7 +358,7 @@ extension MapVC:UIGestureRecognizerDelegate {
                 mapView.removeAnnotation(annot)
             }
         }
-        
+    
         for tst in theaterShowTimes {
             if let selAnnot = selectedAnnot {
                 
@@ -493,11 +490,22 @@ extension MapVC : MKMapViewDelegate{
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
-        if annotation is CinemaAnnotation {
-            let cineView = CinemaShowsAnnotationView(annotation: annotation, reuseIdentifier: nil)
-            cineView.pinTintColor = #colorLiteral(red: 0.0862745098, green: 0.09019607843, blue: 0.09803921569, alpha: 1)
-            cineView.setSelected(false, animated: false)
-            return cineView
+        if let annotation = annotation as? CinemaAnnotation {
+            
+            let identifier = "cinemaAnotView"
+            var annotationView: CinemaAnnotationView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CinemaAnnotationView{
+                dequeuedView.annotation = annotation
+                annotationView = dequeuedView
+                annotationView.initLayout()
+            }
+            else {
+                annotationView = CinemaAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                annotationView.initLayout()
+            }
+            
+            return annotationView
+            
         }
         
         return nil
@@ -563,6 +571,26 @@ extension MapVC : MKMapViewDelegate{
         }
         //callAPITimeLists()
         
+    }
+    
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        
+        var delay = 0.0
+        for annotView in views {
+            if let placeAnnotView = annotView as? CinemaAnnotationView {
+                
+                annotView.transform = CGAffineTransform(translationX: 0, y: placeAnnotView.frame.size.height).scaledBy(x: 0, y: 0)
+                UIView.animate(withDuration: 0.2, delay: delay, options: .curveEaseInOut, animations: {
+                    annotView.transform = annotView.isSelected ? .identity : placeAnnotView.unselectedTransform
+                }, completion: nil)
+                delay += 0.05
+            }
+            else if annotView.annotation is MKUserLocation {
+                //addHeadingView(toAnnotationView: annotView)
+            }
+            
+        }
     }
 }
 

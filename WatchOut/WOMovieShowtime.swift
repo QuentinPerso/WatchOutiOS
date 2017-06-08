@@ -32,7 +32,7 @@ class WOMovieShowtime : NSObject {
             showTimes = [WOShowtime]()
             for dict in dictArray {
                 let showTime = WOShowtime(dictionary: dict, timeIntervalFromNow: timeIntervalFromNow)
-                if showTime.hours.count > 0 {
+                if showTime.hours != nil, showTime.hours.count > 0 {
                     showTimes!.append(showTime)
                 }
                 

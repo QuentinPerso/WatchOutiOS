@@ -15,8 +15,11 @@ class WOTheaterShowtime : NSObject {
     
     override func isEqual(_ object: Any?) -> Bool {
         if let object = object as? WOTheaterShowtime {
+            print(self.cinema.uniqID)
+            print(object.cinema.uniqID)
             return self.cinema.uniqID == object.cinema.uniqID
         } else {
+            print("zzzz")
             return false
         }
     }

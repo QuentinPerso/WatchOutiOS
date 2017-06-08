@@ -165,6 +165,7 @@ extension APIConnector {
                                                 }
                                             }
                                         }
+                                        index += 1
                                         if index == rawObjs.count {
                                             completion(woObjs, false)
                                         }
@@ -180,9 +181,11 @@ extension APIConnector {
                                 
                                 
                             }
-                            index += 1
+                            
                         }
+                        
                         if memberCards.count == 0 {
+                            print("ssqqqqsss")
                             completion(woObjs, false)
                         }
                         

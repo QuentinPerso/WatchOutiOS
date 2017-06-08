@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		7316B48AD8371A4D15F9C693 /* Pods_WatchOut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */; };
 		8405CB991EE2ADE7005B373E /* WOTheaterShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */; };
-		8405CB9B1EE2BB83005B373E /* CinemaShowsAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */; };
+		8405CB9B1EE2BB83005B373E /* CinemaAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9A1EE2BB83005B373E /* CinemaAnnotationView.swift */; };
 		8405CB9F1EE2BB8F005B373E /* TheaterShowTimesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */; };
 		8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF261EE2D691009E15A3 /* AutocompleteView.swift */; };
 		8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */; };
@@ -92,7 +92,7 @@
 /* Begin PBXFileReference section */
 		64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchOut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOTheaterShowTime.swift; sourceTree = "<group>"; };
-		8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaShowsAnnotationView.swift; sourceTree = "<group>"; };
+		8405CB9A1EE2BB83005B373E /* CinemaAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaAnnotationView.swift; sourceTree = "<group>"; };
 		8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterShowTimesView.swift; sourceTree = "<group>"; };
 		8425BF261EE2D691009E15A3 /* AutocompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
 		8425BF281EE2D88F009E15A3 /* WOMovieSearchResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOMovieSearchResult.swift; sourceTree = "<group>"; };
@@ -192,7 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				848A7F751EE0343300A9F88E /* CinemaAnnotation.swift */,
-				8405CB9A1EE2BB83005B373E /* CinemaShowsAnnotationView.swift */,
+				8405CB9A1EE2BB83005B373E /* CinemaAnnotationView.swift */,
 				84572D2D1EE6EAE700D8CE05 /* DebugAnnot.swift */,
 			);
 			name = CinemaHoursAnnotations;
@@ -588,7 +588,7 @@
 				8425BF291EE2D88F009E15A3 /* WOMovieSearchResult.swift in Sources */,
 				848A7F471EE02A5300A9F88E /* NVActivityIndicatorAnimationBallGridPulse.swift in Sources */,
 				848A7F711EE02AE000A9F88E /* Array+Functions.swift in Sources */,
-				8405CB9B1EE2BB83005B373E /* CinemaShowsAnnotationView.swift in Sources */,
+				8405CB9B1EE2BB83005B373E /* CinemaAnnotationView.swift in Sources */,
 				848A7F441EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotateMultiple.swift in Sources */,
 				848A7F761EE0343300A9F88E /* CinemaAnnotation.swift in Sources */,
 				848A7F5B1EE02A5300A9F88E /* NVActivityIndicatorAnimationLineSpinFadeLoader.swift in Sources */,

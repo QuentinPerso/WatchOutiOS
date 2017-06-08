@@ -51,7 +51,6 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func updateLayout(topBarHeight:CGFloat) {
         
-        print(topBarHeight)
         tableView.contentInset = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
         

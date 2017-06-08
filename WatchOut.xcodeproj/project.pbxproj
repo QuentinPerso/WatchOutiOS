@@ -14,6 +14,7 @@
 		8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF261EE2D691009E15A3 /* AutocompleteView.swift */; };
 		8425BF2B1EE40B5B009E15A3 /* WOPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */; };
 		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
+		842DE0E61EE9C723004084DD /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E51EE9C723004084DD /* ActionButtonsView.swift */; };
 		84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */; };
 		84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */; };
 		84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */; };
@@ -90,6 +91,11 @@
 		84FA97AD1EE955B10067F385 /* PersonDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FA97AB1EE955B10067F385 /* PersonDetails.storyboard */; };
 		84FA97AF1EE95E310067F385 /* FilmographyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97AE1EE95E310067F385 /* FilmographyView.swift */; };
 		84FA97B11EE98A140067F385 /* UserPersonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97B01EE98A140067F385 /* UserPersonsView.swift */; };
+		84FA97B61EE9B60F0067F385 /* CollectionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97B31EE9B60F0067F385 /* CollectionPopup.swift */; };
+		84FA97B71EE9B60F0067F385 /* CollectionPopupCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA97B41EE9B60F0067F385 /* CollectionPopupCell.xib */; };
+		84FA97B81EE9B60F0067F385 /* CollectionPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84FA97B51EE9B60F0067F385 /* CollectionPopup.xib */; };
+		84FA97BA1EE9B7B40067F385 /* MapLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97B91EE9B7B40067F385 /* MapLauncher.swift */; };
+		84FA97BC1EE9BE000067F385 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FA97BB1EE9BE000067F385 /* ShareManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +106,7 @@
 		8425BF261EE2D691009E15A3 /* AutocompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
 		8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOPerson.swift; sourceTree = "<group>"; };
 		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
+		842DE0E51EE9C723004084DD /* ActionButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 		84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPopup.swift; sourceTree = "<group>"; };
 		84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerPopup.xib; sourceTree = "<group>"; };
 		84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
@@ -178,6 +185,11 @@
 		84FA97AB1EE955B10067F385 /* PersonDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PersonDetails.storyboard; sourceTree = "<group>"; };
 		84FA97AE1EE95E310067F385 /* FilmographyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilmographyView.swift; sourceTree = "<group>"; };
 		84FA97B01EE98A140067F385 /* UserPersonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPersonsView.swift; sourceTree = "<group>"; };
+		84FA97B31EE9B60F0067F385 /* CollectionPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionPopup.swift; sourceTree = "<group>"; };
+		84FA97B41EE9B60F0067F385 /* CollectionPopupCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionPopupCell.xib; sourceTree = "<group>"; };
+		84FA97B51EE9B60F0067F385 /* CollectionPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionPopup.xib; sourceTree = "<group>"; };
+		84FA97B91EE9B7B40067F385 /* MapLauncher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapLauncher.swift; sourceTree = "<group>"; };
+		84FA97BB1EE9BE000067F385 /* ShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		AB65BCAE556DB0CE3082FDA7 /* Pods-WatchOut.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchOut.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.debug.xcconfig"; sourceTree = "<group>"; };
 		B409C304750759525FA2F39E /* Pods-WatchOut.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WatchOut.release.xcconfig"; path = "Pods/Target Support Files/Pods-WatchOut/Pods-WatchOut.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -213,6 +225,7 @@
 				8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */,
 				8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */,
 				84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */,
+				842DE0E51EE9C723004084DD /* ActionButtonsView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -220,6 +233,7 @@
 		84572D1A1EE4C22100D8CE05 /* Popup */ = {
 			isa = PBXGroup;
 			children = (
+				84FA97B21EE9B5FB0067F385 /* ActionSheet */,
 				84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */,
 				84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */,
 			);
@@ -303,9 +317,11 @@
 		848A7F121EE0227F00A9F88E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				84FA97BB1EE9BE000067F385 /* ShareManager.swift */,
 				84FA979A1EE7F6D70067F385 /* SaveManager.swift */,
 				848A7F131EE0228F00A9F88E /* LocationManager.swift */,
 				848A7F151EE025B400A9F88E /* MapFunctions.swift */,
+				84FA97B91EE9B7B40067F385 /* MapLauncher.swift */,
 			);
 			name = Managers;
 			sourceTree = "<group>";
@@ -430,6 +446,16 @@
 			name = PersonVC;
 			sourceTree = "<group>";
 		};
+		84FA97B21EE9B5FB0067F385 /* ActionSheet */ = {
+			isa = PBXGroup;
+			children = (
+				84FA97B31EE9B60F0067F385 /* CollectionPopup.swift */,
+				84FA97B41EE9B60F0067F385 /* CollectionPopupCell.xib */,
+				84FA97B51EE9B60F0067F385 /* CollectionPopup.xib */,
+			);
+			name = ActionSheet;
+			sourceTree = "<group>";
+		};
 		A2131E31D92E191E6B4C2E8C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -510,6 +536,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FA97B71EE9B60F0067F385 /* CollectionPopupCell.xib in Resources */,
 				84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */,
 				84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */,
 				84FA979F1EE80A9B0067F385 /* UserPage.storyboard in Resources */,
@@ -517,6 +544,7 @@
 				848A7F041EE01D5700A9F88E /* Assets.xcassets in Resources */,
 				848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */,
 				84FA97AD1EE955B10067F385 /* PersonDetails.storyboard in Resources */,
+				84FA97B81EE9B60F0067F385 /* CollectionPopup.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -599,6 +627,7 @@
 				84572D2A1EE695D400D8CE05 /* StarRatingView.swift in Sources */,
 				848A7F611EE02A5300A9F88E /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				848A7F701EE02AE000A9F88E /* MapView+ZoomLevel.swift in Sources */,
+				84FA97B61EE9B60F0067F385 /* CollectionPopup.swift in Sources */,
 				848A7F651EE02A5300A9F88E /* NVActivityIndicatorViewable.swift in Sources */,
 				848A7F4E1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScaleMultiple.swift in Sources */,
 				848A7F4F1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScaleRipple.swift in Sources */,
@@ -614,6 +643,7 @@
 				84FA97A61EE8A2860067F385 /* UserMemberCardsView.swift in Sources */,
 				848A7F141EE0228F00A9F88E /* LocationManager.swift in Sources */,
 				848A7F101EE01F3300A9F88E /* APIConnector.swift in Sources */,
+				84FA97BA1EE9B7B40067F385 /* MapLauncher.swift in Sources */,
 				84FA97A81EE8A9F50067F385 /* CustomsFlowLayouts.swift in Sources */,
 				84FA97A41EE845FC0067F385 /* WOMemberCard.swift in Sources */,
 				848A7F4A1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
@@ -624,6 +654,7 @@
 				84FA97A01EE80A9B0067F385 /* UserPageVC.swift in Sources */,
 				84572D2C1EE6AFBF00D8CE05 /* SearchBarView.swift in Sources */,
 				84572D281EE60D6C00D8CE05 /* ClickablePickerView.swift in Sources */,
+				84FA97BC1EE9BE000067F385 /* ShareManager.swift in Sources */,
 				848A7F581EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScaleParty.swift in Sources */,
 				84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */,
 				848A7F4D1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
@@ -647,6 +678,7 @@
 				848A7F491EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulseRise.swift in Sources */,
 				848A7F551EE02A5300A9F88E /* NVActivityIndicatorAnimationBlank.swift in Sources */,
 				848A7F6E1EE02AE000A9F88E /* UIImage+Extensions.swift in Sources */,
+				842DE0E61EE9C723004084DD /* ActionButtonsView.swift in Sources */,
 				84FA97AC1EE955B10067F385 /* PersonVC.swift in Sources */,
 				848A7F5F1EE02A5300A9F88E /* NVActivityIndicatorAnimationSquareSpin.swift in Sources */,
 				848A7F621EE02A5300A9F88E /* NVActivityIndicatorPresenter.swift in Sources */,

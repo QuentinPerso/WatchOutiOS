@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="01t-rf-Y32" customClass="CollectionPopupCell" customModule="MarksHot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Google Maps" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syk-39-wsn">
+                        <rect key="frame" x="1" y="61" width="78" height="11"/>
+                        <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="9"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wca-Ei-OCw">
+                        <rect key="frame" x="18" y="8" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="wca-Ei-OCw" secondAttribute="height" id="zyV-0r-ceW"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="wca-Ei-OCw" firstAttribute="centerX" secondItem="01t-rf-Y32" secondAttribute="centerX" id="3uK-Vm-WpL"/>
+                <constraint firstAttribute="trailing" secondItem="syk-39-wsn" secondAttribute="trailing" constant="1" id="GAi-8S-pNN"/>
+                <constraint firstAttribute="bottom" secondItem="syk-39-wsn" secondAttribute="bottom" constant="8" id="XIk-JM-e41"/>
+                <constraint firstItem="syk-39-wsn" firstAttribute="leading" secondItem="01t-rf-Y32" secondAttribute="leading" constant="1" id="aC9-eU-fQN"/>
+                <constraint firstItem="wca-Ei-OCw" firstAttribute="top" secondItem="01t-rf-Y32" secondAttribute="top" constant="8" id="kUl-BW-ahb"/>
+                <constraint firstItem="syk-39-wsn" firstAttribute="top" secondItem="wca-Ei-OCw" secondAttribute="bottom" constant="8" id="okh-au-hx9"/>
+            </constraints>
+            <size key="customSize" width="80" height="80"/>
+            <connections>
+                <outlet property="iconImage" destination="wca-Ei-OCw" id="ipp-Th-62v"/>
+                <outlet property="textLabel" destination="syk-39-wsn" id="RNH-ks-CFg"/>
+            </connections>
+        </collectionViewCell>
+    </objects>
+</document>

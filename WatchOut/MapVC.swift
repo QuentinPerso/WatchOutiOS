@@ -29,6 +29,9 @@ class MapVC: UIViewController {
     
     @IBOutlet weak var dateFilterView: DateFilterView!
     
+    @IBOutlet weak var actionsBtnView: ActionButtonsView!
+    
+    
     var autoCompleteRequest:DataRequest?
     
     var timeListRequest:DataRequest?
@@ -160,6 +163,10 @@ extension MapVC {
     func setupBottomView() {
         
         theaterShowsView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
+        theaterShowsView.didSelectMovieInviteAction = { [weak self] message in
+            if self == nil { return }
+            ShareManager.shareOnController(controller: self!, sourceView: self!.theaterShowsView, message: message)
+        }
         
     }
     
@@ -214,7 +221,6 @@ extension MapVC {
             self.searchBarView.searchBar.resignFirstResponder()
         }
         autocompleteView.didClickDetailsSuggestion = { suggestion in
-            print(suggestion)
             if let movie = suggestion as? WOMovie {
                 self.showMovieVC(movie)
             }
@@ -325,6 +331,73 @@ extension MapVC {
             self.present(viewCtrl, animated: true, completion: nil)
             
         }
+        
+    }
+    
+    @IBAction func directionButtonClicked(_ sender: UIButton) {
+        
+        showTransitOptions()
+        
+    }
+    
+    @IBAction func inviteButtonClicked(_ sender: UIButton) {
+        UIView.transition(with: sender,
+                          duration: 0.25,
+                          options: sender.isSelected ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                          animations: {
+                            sender.isSelected = !sender.isSelected
+        }, completion: nil)
+        theaterShowsView.inviteMode = sender.isSelected
+        
+    }
+    
+    func showTransitOptions() {
+        
+        if self.view.window == nil { return }
+        
+        var cinema:WOCinema?
+        
+        for annot in mapView.selectedAnnotations {
+            if let cAnnot = annot as? CinemaAnnotation {
+                
+                cinema = cAnnot.theaterShowTime.cinema
+                
+            }
+        }
+        
+        guard let cinemaName = cinema?.name else { return }
+        guard let cineCoord = cinema?.coordinate else { return }
+        
+        let collectionPP = Bundle.main.loadNibNamed("CollectionPopup", owner: self, options: nil)?[0] as! CollectionPopup
+        
+        collectionPP.titleLbl.text = "Go to" + " " + cinemaName
+        
+        let optionsArray:[MapApp] = [.appleMap, .citymapper, .googleMap, .uber, .navigon, .waze, .theTransitApp, .yandex]
+        let namesArray = ["Maps", "City mapper", "Google Maps", "Uber", "Navigon", "Waze", "The transit app", "Yandex"]
+        let imagesArray = [#imageLiteral(resourceName: "transitMap"), #imageLiteral(resourceName: "transitCitymapper"), #imageLiteral(resourceName: "transitGMaps"), #imageLiteral(resourceName: "transitUber"), #imageLiteral(resourceName: "transitNavigon.png"), #imageLiteral(resourceName: "transitWaze.png"), #imageLiteral(resourceName: "transitTransit.png"), #imageLiteral(resourceName: "transitYandex.png")]
+        let mapPoint = MapPoint.mapPoint(name: cinemaName, address: nil, coordinate: cineCoord)
+        
+        var i = 0
+        var mapsAction = [PopupAction]()
+        for option in optionsArray {
+            if MapLauncher.isMapAppInstalled(option) {
+                
+                let mapAction = PopupAction(title: namesArray[i], image: imagesArray[i], handler: {
+                    
+                    _ = MapLauncher.launch(mapApp: option, forDirectionTo: mapPoint)
+                   
+                })
+                
+                mapsAction.append(mapAction)
+                
+                
+            }
+            i += 1
+        }
+        
+        collectionPP.actions = mapsAction
+        
+        collectionPP.showInWindow(self.view.window!)
         
     }
 }
@@ -469,6 +542,17 @@ extension MapVC {
 
     func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
         
+        let sender = actionsBtnView.inviteButton
+        UIView.transition(with: sender!,
+                          duration: 0.25,
+                          options: sender!.isSelected ? .transitionFlipFromLeft : .transitionFlipFromRight,
+                          animations: {
+                            sender!.isSelected = false
+        }, completion: nil)
+        theaterShowsView.inviteMode = false
+        
+        actionsBtnView.setHidden(hidden, animated: animated)
+    
         botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -theaterShowsView.padInsetBot
         mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - theaterShowsView.padInsetBot
         
@@ -600,6 +684,7 @@ extension MapVC : MKMapViewDelegate{
     
     
     func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        
         
         var delay = 0.0
         for annotView in views {

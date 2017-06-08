@@ -53,7 +53,7 @@ class WOMovie : NSObject, NSCoding {
         actors = aDecoder.decodeObject(forKey: "actors") as? [String]
         genre = aDecoder.decodeObject(forKey: "genre") as! String
         releaseDate = aDecoder.decodeObject(forKey: "releaseDate") as! String
-        imageURL = aDecoder.decodeObject(forKey: "imageURL") as! URL
+        imageURL = aDecoder.decodeObject(forKey: "imageURL") as? URL
         userRating = aDecoder.decodeObject(forKey: "userRating") as? Double
         pressRating = aDecoder.decodeObject(forKey: "pressRating") as? Double
         synopsis = aDecoder.decodeObject(forKey: "synopsis") as? String

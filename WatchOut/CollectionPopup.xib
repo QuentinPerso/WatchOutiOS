@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Light.otf">
+            <string>Montserrat-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="L2u-Ry-FER" customClass="CollectionPopup" customModule="MarksHot" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2V-cD-Ppl">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="0.70232234589999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="78Q-Ka-lyc" appends="YES" id="RQP-5s-psY"/>
+                    </connections>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssh-aX-t5W" userLabel="MainView">
+                    <rect key="frame" x="0.0" y="428" width="375" height="249"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-1J-TIj">
+                            <rect key="frame" x="24" y="32" width="327" height="22"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRM-ZK-gsN">
+                            <rect key="frame" x="154" y="179" width="67" height="34"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lKP-K9-H7R">
+                                    <rect key="frame" x="0.0" y="0.0" width="67" height="34"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="u3o-Mb-qH3"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Montserrat-Light" family="Montserrat" pointSize="11"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                    <state key="normal" title="Cancel"/>
+                                    <connections>
+                                        <action selector="clickLeftButton:" destination="L2u-Ry-FER" eventType="touchUpInside" id="uyh-zN-MGr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="lKP-K9-H7R" firstAttribute="leading" secondItem="HRM-ZK-gsN" secondAttribute="leading" id="5Hj-n9-iaH"/>
+                                <constraint firstAttribute="trailing" secondItem="lKP-K9-H7R" secondAttribute="trailing" priority="249" id="ANy-iL-t9a"/>
+                                <constraint firstAttribute="bottom" secondItem="lKP-K9-H7R" secondAttribute="bottom" id="pT2-eV-4w2"/>
+                                <constraint firstItem="lKP-K9-H7R" firstAttribute="top" secondItem="HRM-ZK-gsN" secondAttribute="top" id="yxh-Ac-PEO"/>
+                            </constraints>
+                        </view>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qTr-t7-97g">
+                            <rect key="frame" x="0.0" y="73" width="375" height="80"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="80" id="ZZC-bM-q64"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="Tfw-nB-QRA">
+                                <size key="itemSize" width="69" height="76"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells/>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="F1x-1J-TIj" firstAttribute="centerX" secondItem="Ssh-aX-t5W" secondAttribute="centerX" id="0yv-rs-YyF"/>
+                        <constraint firstItem="qTr-t7-97g" firstAttribute="leading" secondItem="Ssh-aX-t5W" secondAttribute="leading" id="DPw-rq-6Vo"/>
+                        <constraint firstItem="HRM-ZK-gsN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ssh-aX-t5W" secondAttribute="leading" constant="20" id="Rc8-fQ-UGb"/>
+                        <constraint firstItem="HRM-ZK-gsN" firstAttribute="top" secondItem="qTr-t7-97g" secondAttribute="bottom" constant="26" id="Sbg-AM-JKD"/>
+                        <constraint firstAttribute="trailing" secondItem="qTr-t7-97g" secondAttribute="trailing" id="WPa-iu-MeC"/>
+                        <constraint firstItem="F1x-1J-TIj" firstAttribute="top" secondItem="Ssh-aX-t5W" secondAttribute="top" constant="32" id="Wg0-M8-QzS"/>
+                        <constraint firstAttribute="bottom" secondItem="HRM-ZK-gsN" secondAttribute="bottom" constant="36" id="WoW-qs-RUa"/>
+                        <constraint firstItem="qTr-t7-97g" firstAttribute="top" secondItem="F1x-1J-TIj" secondAttribute="bottom" constant="19" id="hWX-4G-4Da"/>
+                        <constraint firstItem="HRM-ZK-gsN" firstAttribute="centerX" secondItem="Ssh-aX-t5W" secondAttribute="centerX" id="phW-09-EXV"/>
+                        <constraint firstItem="F1x-1J-TIj" firstAttribute="leading" secondItem="Ssh-aX-t5W" secondAttribute="leading" constant="24" id="whu-fo-wlW"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Ssh-aX-t5W" secondAttribute="bottom" constant="-10" id="5C6-Ey-ghk"/>
+                <constraint firstItem="j2V-cD-Ppl" firstAttribute="top" secondItem="L2u-Ry-FER" secondAttribute="top" id="TSb-lv-bVQ"/>
+                <constraint firstItem="j2V-cD-Ppl" firstAttribute="leading" secondItem="L2u-Ry-FER" secondAttribute="leading" id="WFJ-g0-cd1"/>
+                <constraint firstAttribute="trailing" secondItem="j2V-cD-Ppl" secondAttribute="trailing" id="eTe-EL-xIi"/>
+                <constraint firstItem="Ssh-aX-t5W" firstAttribute="centerX" secondItem="L2u-Ry-FER" secondAttribute="centerX" id="kkb-0F-zYl"/>
+                <constraint firstItem="Ssh-aX-t5W" firstAttribute="leading" secondItem="L2u-Ry-FER" secondAttribute="leading" id="nqY-aR-bIM"/>
+                <constraint firstAttribute="bottom" secondItem="j2V-cD-Ppl" secondAttribute="bottom" id="rg2-WY-uPN"/>
+            </constraints>
+            <connections>
+                <outlet property="backgroundView" destination="j2V-cD-Ppl" id="iDy-8a-sJo"/>
+                <outlet property="buttonView" destination="HRM-ZK-gsN" id="B2d-MN-esg"/>
+                <outlet property="collectionView" destination="qTr-t7-97g" id="0iy-IL-LHs"/>
+                <outlet property="leftButton" destination="lKP-K9-H7R" id="AXx-m8-2tx"/>
+                <outlet property="mainView" destination="Ssh-aX-t5W" id="raB-n4-npn"/>
+                <outlet property="titleLbl" destination="F1x-1J-TIj" id="TL9-ll-x0z"/>
+            </connections>
+            <point key="canvasLocation" x="34.5" y="54.5"/>
+        </view>
+        <tapGestureRecognizer cancelsTouchesInView="NO" id="78Q-Ka-lyc">
+            <connections>
+                <action selector="closeClicked:" destination="L2u-Ry-FER" id="8eW-PJ-aOn"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

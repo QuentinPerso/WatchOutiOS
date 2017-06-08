@@ -181,7 +181,6 @@ extension APIConnector {
                         }
                         
                         if memberCards.count == 0 {
-                            print("ssqqqqsss")
                             completion(woObjs, false)
                         }
                         

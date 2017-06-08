@@ -19,14 +19,27 @@ class TheaterShowTimesView : UIView {
     
     @IBOutlet weak var titleHConstraint: NSLayoutConstraint!
     
+    var titleString = ""
+    
+    var inviteMode = false {
+        didSet {
+            let message = "Choose a movie to to share 😍"
+            UIView.transition(with: titleLabel, duration: 0.2, options: [], animations: {
+                self.titleLabel.text = self.inviteMode ? message : self.titleString
+            }, completion: nil)
+            tableView.reloadData()
+        }
+    }
+    
     var didSelectMovieAction:((WOMovie) -> (Void))?
+    var didSelectMovieInviteAction:((String) -> (Void))?
     
     var theaterShowTime:WOTheaterShowtime! {
         didSet {
             UIView.transition(with: titleLabel, duration: 0.2, options: [], animations: {
                 self.titleLabel.text = self.theaterShowTime.cinema.name.uppercased()
             }, completion: nil)
-            
+            titleString = theaterShowTime.cinema.name.uppercased()
             tableView.delegate = self
             tableView.dataSource = self
             //tableView.register(UINib(nibName: "MovieHoursCell", bundle: nil), forCellReuseIdentifier: "MovieHoursCell")
@@ -66,14 +79,18 @@ class TheaterShowTimesView : UIView {
         
     }
     
-//    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-//        let viewPoint = superview?.convert(point, to: self) ?? point
-//    
-//        let view = super.hitTest(viewPoint, with: event)
-//    
-//        return view
-//    }
-//    
+    func animationForSelectedCells() -> CABasicAnimation{
+        var rotation:CABasicAnimation
+        rotation = CABasicAnimation(keyPath: "transform.rotation") // animationWithKeyPath:"transform.rotation"];
+        rotation.fromValue = -CGFloat.pi/25
+        rotation.toValue = CGFloat.pi/25
+        rotation.autoreverses = true
+        rotation.duration = 0.1 // Speed
+        rotation.repeatCount = 1000000000 // Repeat forever. Can be a finite number.
+        
+        return rotation
+    }
+ 
 }
 
 extension TheaterShowTimesView:UITableViewDataSource {
@@ -103,6 +120,13 @@ extension TheaterShowTimesView:UITableViewDataSource {
             cell.hoursLabel.text = "N/A"
         }
         
+        if inviteMode {
+            cell.pictureImage.layer.add(animationForSelectedCells(), forKey: "Spin")
+        }
+        else {
+            cell.pictureImage.layer.removeAllAnimations()
+        }
+        
         return cell
     }
     
@@ -117,7 +141,20 @@ extension TheaterShowTimesView:UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let movie = theaterShowTime.moviesShowTime[indexPath.row].movie {
-            didSelectMovieAction?(movie)
+            
+            if inviteMode, let showTimes = theaterShowTime.moviesShowTime[indexPath.row].showTimes {
+                var datesStrings = [String]()
+                for showTime in showTimes {
+                    let string = "-\(showTime.date!) : \(showTime.hours.joined(separator: ", "))"
+                    datesStrings.append(string)
+                }
+                
+                let message = "Wanna go see \(movie.name!) at \(theaterShowTime.cinema.name!) ? \n \(datesStrings.joined(separator: "\n"))"
+                didSelectMovieInviteAction?(message)
+            }
+            else {
+                didSelectMovieAction?(movie)
+            }
         }
         
     }

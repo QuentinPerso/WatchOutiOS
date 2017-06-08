@@ -16,6 +16,7 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     var didTapBG:(()->())?
     var didSelectSuggestion:((AnyObject)->())?
+    var didClickDetailsSuggestion:((AnyObject)->())?
     
     var autocompletes = [AnyObject]() {
         
@@ -45,6 +46,14 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         dimeBG(false, animated: false)
+        
+    }
+    
+    func updateLayout(topBarHeight:CGFloat) {
+        
+        print(topBarHeight)
+        tableView.contentInset = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
+        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
         
     }
     
@@ -85,16 +94,17 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: AutocompleteCell.identifier, for: indexPath) as! AutocompleteCell
         
-        if let resultMovie = autocompletes[indexPath.row] as? WOMovieSearchResult {
+        if let resultMovie = autocompletes[indexPath.row] as? WOMovie {
             if let url = resultMovie.imageURL {
                 let filter = AspectScaledToFillSizeFilter(size: cell.pictureImage.frame.size)
                 let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
                 cell.pictureImage.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
             }
             cell.mainLabel.text = resultMovie.name + " " + resultMovie.productionYear
-            cell.secondLabel.text = resultMovie.directors
+            cell.secondLabel.text = resultMovie.directors?.joined(separator: ", ")
+            
         }
-        else if let resultPerson = autocompletes[indexPath.row] as? WOPersonSearchResult {
+        else if let resultPerson = autocompletes[indexPath.row] as? WOPerson {
             if let url = resultPerson.imageURL {
                 let filter = AspectScaledToFillSizeCircleFilter(size: cell.pictureImage.frame.size)
                 let placeH = filter.filter(#imageLiteral(resourceName: "defaultPerson"))
@@ -105,8 +115,9 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
             
         }
 
-        
-        
+        cell.detailButton.tag = indexPath.row
+        cell.detailButton.addTarget(self, action: #selector(self.clickDetailButton(_:)), for: .touchUpInside)
+        cell.detailButton.isHidden = false
 
         return cell
         
@@ -117,6 +128,12 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
     //************************************
     // MARK: - Table view Delegate
     //************************************
+    
+    func clickDetailButton(_ sender:UIButton) {
+        
+        didClickDetailsSuggestion?(autocompletes[sender.tag])
+        
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -138,5 +155,6 @@ class AutocompleteCell: UITableViewCell {
     @IBOutlet weak var pictureImage: UIImageView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var detailButton: UIButton!
     
 }

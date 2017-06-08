@@ -73,8 +73,9 @@ class MovieVC: UIViewController {
         }
         
         //******* Release Date
-        if let date = movie.releaseDate {
-            releaseDateLabel.text = "Released on " + date
+        if movie.releaseDate != "" {
+            infosLabel.text = "INFOS"
+            releaseDateLabel.text = "Released on " + movie.releaseDate
         }
         else {
             infosLabel.text = ""
@@ -95,6 +96,7 @@ class MovieVC: UIViewController {
         
         //******* Casting Infos
         if let actors = movie.actors {
+            castingLabel.text = "CASTING"
             if let directors = movie.directors {
                 realisatorAndActorsLabel.text = "Director : " + directors.joined(separator: ", ") + "\n" + "Actors : " + actors.joined(separator: ", ")
             }
@@ -104,6 +106,7 @@ class MovieVC: UIViewController {
             
         }
         else  if let directors = movie.directors {
+            castingLabel.text = "CASTING"
             realisatorAndActorsLabel.text = "Director : " + directors.joined(separator: ", ")
             
         }
@@ -124,7 +127,7 @@ class MovieVC: UIViewController {
         else if !isDetailsRequestDone{
             isDetailsRequestDone = true
             synopsisLabel.alpha = 0
-            _ = APIConnector.getMovieSynospsi(movie: movie, completion: { [weak self] (movie) in
+            _ = APIConnector.getMovieDetails(movie: movie, completion: { [weak self] (movie) in
                 self?.movie = movie
                 self?.setupMovie()
             })

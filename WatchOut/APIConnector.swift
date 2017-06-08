@@ -81,18 +81,14 @@ extension APIConnector {
                     
                     if let rawObjs = rawSObj["movie"] as? [[String : AnyObject]] {
                         for rawObj in rawObjs {
-                            woObjs.append(WOMovieSearchResult(dictionary: rawObj))
-                            
-                            //   mksObjs.append(mksObj)
+                            woObjs.append(WOMovie(dictionary: rawObj))
                         }
                         
                     }
                     if let rawObjs = rawSObj["person"] as? [[String : AnyObject]] {
                         
                         for rawObj in rawObjs {
-                            woObjs.append(WOPersonSearchResult(dictionary: rawObj))
-                            
-                            //   mksObjs.append(mksObj)
+                            woObjs.append(WOPerson(dictionary: rawObj))
                         }
                     }
                     completion(woObjs)
@@ -103,7 +99,7 @@ extension APIConnector {
                 completion(nil)
             }
         }
-
+        print(request)
         return request
     }
     
@@ -213,12 +209,12 @@ extension APIConnector {
 
 
 //************************************
-// MARK: - Synopsis
+// MARK: - Movie details (bug update android stuff)
 //************************************
 
 extension APIConnector {
     
-    static func getMovieSynospsi(movie:WOMovie, completion:@escaping (WOMovie?) -> Void) -> DataRequest{
+    static func getMovieDetails(movie:WOMovie, completion:@escaping (WOMovie?) -> Void) -> DataRequest{
         
         let queryParams:[String:String] = [
             "partner" : partner,
@@ -234,9 +230,15 @@ extension APIConnector {
             
             if let jsonDict = response.result.value as? [String: AnyObject]{
                 if let rawObj = jsonDict["movie"] as? [String : AnyObject] {
-                    movie.synopsis = rawObj["synopsis"] as? String
+                    let newMovie = WOMovie(dictionary: rawObj)
+                    newMovie.imageURL = movie.imageURL
+                    newMovie.name = movie.name
+                    completion(newMovie)
                 }
-                completion(movie)
+                else {
+                    completion(movie)
+                }
+                
                 
             }
             else if let error = response.error as NSError?, error.code == -999 {
@@ -246,8 +248,49 @@ extension APIConnector {
                 completion(movie)
             }
         }
-
+        print(request)
         return request
+    }
+    
+}
+
+//************************************
+// MARK: - Person
+//************************************
+
+extension APIConnector {
+    
+    static func getPersonDetails(personID:Int, completion:@escaping (WOPerson?) -> Void){
+        
+        let queryParams:[String:String] = [
+            "partner" : partner,
+            "code" : "\(personID)",
+            "format" : "json",
+            "profile" : "large"
+        ]
+        
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        let request = sessionManager.request("http://api.allocine.fr/rest/v3/person", parameters: queryParams).responseJSON { response in
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let jsonDict = response.result.value as? [String: AnyObject]{
+                if let rawObj = jsonDict["person"] as? [String : AnyObject] {
+                    let person = WOPerson(dictionary: rawObj)
+                    completion(person)
+                }
+                else {
+                    completion(nil)
+                }
+                
+                
+            }
+            else{
+                completion(nil)
+            }
+        }
+        print(request)
+
     }
     
 }

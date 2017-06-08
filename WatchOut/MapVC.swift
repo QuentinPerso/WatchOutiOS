@@ -14,8 +14,6 @@ class MapVC: UIViewController {
     
     @IBOutlet weak var topBarView: UIView!
     
-    @IBOutlet weak var topbarHConstraint: NSLayoutConstraint!
-    
     @IBOutlet weak var botViewBotConstraint: NSLayoutConstraint!
     @IBOutlet weak var botViewHConstraint: NSLayoutConstraint!
     
@@ -28,6 +26,7 @@ class MapVC: UIViewController {
     @IBOutlet weak var autocompleteView: AutocompleteView!
     
     @IBOutlet weak var mapReloaderView: MapReloaderView!
+    
     @IBOutlet weak var dateFilterView: DateFilterView!
     
     var autoCompleteRequest:DataRequest?
@@ -49,11 +48,17 @@ class MapVC: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         setBottomViewHidden(true, animated: false)
+        
         setupMap()
+        
         setupBottomView()
+        
         setupDateFilterView()
+        
         setupAutocompleteView()
+        
         setupKeyboard()
+        
         setupSearchBarView()
         
     }
@@ -65,8 +70,11 @@ class MapVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        autocompleteView.tableView.contentInset = UIEdgeInsetsMake(topbarHConstraint.constant, 0, 0, autocompleteView.tableView.contentInset.bottom)
-        mapView.layoutMargins = UIEdgeInsetsMake(topbarHConstraint.constant, 0, mapView.layoutMargins.bottom, 0)
+        
+        autocompleteView.updateLayout(topBarHeight: topBarView.frame.size.height)
+        
+        
+        mapView.layoutMargins = UIEdgeInsetsMake(topBarView.frame.size.height, 0, mapView.layoutMargins.bottom, 0)
         
         
         view.bringSubview(toFront: autocompleteView)
@@ -205,10 +213,17 @@ extension MapVC {
             self.autocompleteView.autocompletes = []
             self.searchBarView.searchBar.resignFirstResponder()
         }
+        autocompleteView.didClickDetailsSuggestion = { suggestion in
+            print(suggestion)
+            if let movie = suggestion as? WOMovie {
+                self.showMovieVC(movie)
+            }
+            else if let person = suggestion as? WOPerson {
+                self.showPersonVC(person)
+            }
+        }
         autocompleteView.didTapBG = {
-            
             self.searchBarView.searchBar.resignFirstResponder()
-            
         }
         
         
@@ -251,8 +266,8 @@ extension MapVC {
         
         timeListRequest?.cancel()
         
-        let searchedMovieCode = (searchedObject as? WOMovieSearchResult)?.uniqID
-        let seachedPersonName = (searchedObject as? WOPersonSearchResult)?.name
+        let searchedMovieCode = (searchedObject as? WOMovie)?.uniqID
+        let seachedPersonName = (searchedObject as? WOPerson)?.name
         
         var dateString:String? = nil
         var hoursTimeInterval:Double? = nil
@@ -476,6 +491,16 @@ extension MapVC {
         let viewController = UIStoryboard(name: "MovieDetails", bundle: nil).instantiateInitialViewController() as! MovieVC
         
         viewController.movie = movie
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
+    }
+    
+    func showPersonVC(_ person:WOPerson) {
+        
+        let viewController = UIStoryboard(name: "PersonDetails", bundle: nil).instantiateInitialViewController() as! PersonVC
+        
+        viewController.personID = person.uniqID
         
         self.navigationController?.pushViewController(viewController, animated: true)
         

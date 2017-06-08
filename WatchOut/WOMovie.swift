@@ -16,7 +16,8 @@ class WOMovie : NSObject, NSCoding {
     var directors:[String]?
     var actors:[String]?
     var genre = ""
-    var releaseDate:String?
+    var releaseDate = ""
+    var productionYear = ""
     var imageURL:URL!
     var userRating:Double?
     var pressRating:Double?
@@ -51,7 +52,7 @@ class WOMovie : NSObject, NSCoding {
         directors = aDecoder.decodeObject(forKey: "directors") as? [String]
         actors = aDecoder.decodeObject(forKey: "actors") as? [String]
         genre = aDecoder.decodeObject(forKey: "genre") as! String
-        releaseDate = aDecoder.decodeObject(forKey: "releaseDate") as? String
+        releaseDate = aDecoder.decodeObject(forKey: "releaseDate") as! String
         imageURL = aDecoder.decodeObject(forKey: "imageURL") as! URL
         userRating = aDecoder.decodeObject(forKey: "userRating") as? Double
         pressRating = aDecoder.decodeObject(forKey: "pressRating") as? Double
@@ -63,9 +64,8 @@ class WOMovie : NSObject, NSCoding {
     init(dictionary:[String : AnyObject]) {
         super.init()
 
-        
         uniqID = dictionary["code"] as! Int
-        name = dictionary["title"] as! String
+        name = (dictionary["title"] as? String) ?? dictionary["originalTitle"] as? String
         if let secondTime = dictionary["runtime"] as? Int {
             duration = secondTime.timeFromSeconds()
         }
@@ -82,8 +82,15 @@ class WOMovie : NSObject, NSCoding {
             
         }
         
-        let genreDictArray = (dictionary["genre"] as! [[String : AnyObject]])
-        genre = genreDictArray.map({ (dict) -> String in return dict["$"] as! String }).joined(separator: ", ")
+        if let dateInt = dictionary["productionYear"] as? Int {
+            productionYear = "(\(dateInt))"
+        }
+
+        
+        if let genreDictArray = (dictionary["genre"] as? [[String : AnyObject]]) {
+            genre = genreDictArray.map({ (dict) -> String in return dict["$"] as! String }).joined(separator: ", ")
+        }
+        
 
         if let poster = dictionary["poster"] as? [String : AnyObject], let urlStr = poster["href"] as? String {
             imageURL = URL(string:urlStr)
@@ -104,6 +111,7 @@ class WOMovie : NSObject, NSCoding {
                 actors = actorsString.components(separatedBy: ", ")
             }
         }
+        synopsis = dictionary["synopsis"] as? String
     }
   
 }

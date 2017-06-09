@@ -94,20 +94,26 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: AutocompleteCell.identifier, for: indexPath) as! AutocompleteCell
         
         if let resultMovie = autocompletes[indexPath.row] as? WOMovie {
+            let filter = AspectScaledToFillSizeFilter(size: cell.pictureImage.frame.size)
+            let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
             if let url = resultMovie.imageURL {
-                let filter = AspectScaledToFillSizeFilter(size: cell.pictureImage.frame.size)
-                let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
                 cell.pictureImage.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
+            }
+            else {
+                cell.pictureImage.image = placeH
             }
             cell.mainLabel.text = resultMovie.name + " " + resultMovie.productionYear
             cell.secondLabel.text = resultMovie.directors?.joined(separator: ", ")
             
         }
         else if let resultPerson = autocompletes[indexPath.row] as? WOPerson {
+            let filter = AspectScaledToFillSizeCircleFilter(size: cell.pictureImage.frame.size)
+            let placeH = filter.filter(#imageLiteral(resourceName: "defaultPerson"))
             if let url = resultPerson.imageURL {
-                let filter = AspectScaledToFillSizeCircleFilter(size: cell.pictureImage.frame.size)
-                let placeH = filter.filter(#imageLiteral(resourceName: "defaultPerson"))
                 cell.pictureImage.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
+            }
+            else {
+                cell.pictureImage.image = placeH
             }
             cell.mainLabel.text = resultPerson.name
             cell.secondLabel.text = resultPerson.activities

@@ -17,10 +17,11 @@ enum MapSearchState:String {
 class InteractivMap: MKMapView {
 
     var shouldStartSearch:Bool = false
+    var shouldDeselect:Bool = true
     
     var dragSearchAction:((MapSearchState)->())?
     var mapReloadedAnnotationAction:((MKAnnotation)->())?
-    var didSelectAnnotaionAction:((MKAnnotation)->())?
+    var didSelectAnnotaionAction:((_ annotation:MKAnnotation, _ selected:Bool)->())?
     var didDeselectAllAnnotaionAction:(()->())?
     
     
@@ -70,6 +71,26 @@ extension InteractivMap : UIGestureRecognizerDelegate {
             }
         }
         
+    }
+    
+    func centerMapOnAnnotation(_ cineAnnot:CinemaAnnotation) {
+        let nePoint =
+            CGPoint(x:bounds.origin.x + bounds.size.width,
+                    y:bounds.origin.y)
+        let swPoint =
+            CGPoint(x:(bounds.origin.x),
+                    y:(bounds.origin.y + bounds.size.height - layoutMargins.bottom))
+        
+        
+        
+        //Then transform those point into lat,lng values
+        let ne = convert(nePoint, toCoordinateFrom: self)
+        let sw = convert(swPoint, toCoordinateFrom: self)
+        
+        
+        if !MapFunctions.isCoordInViewPort(coord: cineAnnot.coordinate, sw: sw, ne: ne) {
+            centerOn(coord: cineAnnot.coordinate, radius: nil, animated: true)
+        }
     }
     
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -135,12 +156,20 @@ extension InteractivMap : MKMapViewDelegate {
             var annotationView: CinemaAnnotationView
             if let dequeuedView = dequeueReusableAnnotationView(withIdentifier: identifier) as? CinemaAnnotationView{
                 dequeuedView.annotation = annotation
-                annotationView = dequeuedView
-                annotationView.initLayout()
+                annotationView = dequeuedView 
             }
             else {
                 annotationView = CinemaAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                 annotationView.initLayout()
+            }
+            
+            annotationView.tapAction = { [weak self] in
+                
+                if self == nil { return }
+                if self!.selectedAnnotations.count > 0 {
+                    self?.shouldDeselect = false
+                }
+                
             }
             
             return annotationView
@@ -151,44 +180,32 @@ extension InteractivMap : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
+        print("didSelect MKAnnotationView")
         if let cineAnnot = view.annotation as? CinemaAnnotation {
             
-            didSelectAnnotaionAction?(cineAnnot)
+            didSelectAnnotaionAction?(cineAnnot, true)
 
             centerMapOnAnnotation(cineAnnot)
-            
-            
+ 
         }
         
     }
-    
-    func centerMapOnAnnotation(_ cineAnnot:CinemaAnnotation) {
-        let nePoint =
-            CGPoint(x:bounds.origin.x + bounds.size.width,
-                    y:bounds.origin.y)
-        let swPoint =
-            CGPoint(x:(bounds.origin.x),
-                    y:(bounds.origin.y + bounds.size.height - layoutMargins.bottom))
-        
-        
-        
-        //Then transform those point into lat,lng values
-        let ne = convert(nePoint, toCoordinateFrom: self)
-        let sw = convert(swPoint, toCoordinateFrom: self)
-        
-        
-        if !MapFunctions.isCoordInViewPort(coord: cineAnnot.coordinate, sw: sw, ne: ne) {
-            centerOn(coord: cineAnnot.coordinate, radius: nil, animated: true)
-        }
-    }
-    
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        print("didDeselect MKAnnotationView", shouldDeselect)
+        
+        if let annot = view.annotation {
+            didSelectAnnotaionAction?(annot, false)
+        }
+        
+        if !shouldDeselect {
+            shouldDeselect = true
+            return
+        }
         
         if (view.annotation as? CinemaAnnotation) != nil {
-            if selectedAnnotations.count == 0 {
+            if selectedAnnotations.count == 0{
                 didDeselectAllAnnotaionAction?()
             }
         }

@@ -49,6 +49,8 @@ class MapVC: UIViewController {
         
         setBottomViewHidden(true, animated: false)
         
+        setActionsViewHidden(true, animated: false)
+        
         setupMap()
         
         setupBottomView()
@@ -122,21 +124,29 @@ extension MapVC {
             
         }
         
-        mapView.didSelectAnnotaionAction = { annotation in
+        mapView.didSelectAnnotaionAction = { annotation, selected in
             
-            guard let cineAnnot = annotation as? CinemaAnnotation else { return }
+            if selected {
+                guard let cineAnnot = annotation as? CinemaAnnotation else { return }
+                
+                self.timeListRequest?.cancel()
+                self.mapReloaderView.hide()
+                
+                self.theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
+                
+                self.setBottomViewHidden(false, animated: true)
+                
+                self.setActionsViewHidden(false, animated: true)
+            }
+            else {
+                self.setBottomViewHidden(true, animated: true)
+            }
             
-            self.timeListRequest?.cancel()
-            self.mapReloaderView.hide()
-            
-            self.theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
-            
-            self.setBottomViewHidden(false, animated: true)
             
         }
         
         mapView.didDeselectAllAnnotaionAction = {
-            self.setBottomViewHidden(true, animated: true)
+            self.setActionsViewHidden(true, animated: true)
         }
         
     }
@@ -532,22 +542,33 @@ extension MapVC {
 //************************************
 
 extension MapVC {
+    
+    func setActionsViewHidden(_ hidden:Bool, animated:Bool) {
+        
+        if theaterShowsView.inviteMode {
+            
+            actionsBtnView.inviteButton.isSelected = false
+            
+            theaterShowsView.inviteMode = false
+        }
+        
+        
+        actionsBtnView.setHidden(hidden, animated: animated)
+
+        
+    }
 
     func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
         
-//        let sender = actionsBtnView.inviteButton
-//        UIView.transition(with: sender!,
-//                          duration: 0.25,
-//                          options: sender!.isSelected ? .transitionFlipFromLeft : .transitionFlipFromRight,
-//                          animations: {
-//                            sender!.isSelected = false
-//        }, completion: nil)
-//        theaterShowsView.inviteMode = false
-        
-//        actionsBtnView.setHidden(hidden, animated: animated)
-    
-        botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -theaterShowsView.padInsetBot
-        mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - theaterShowsView.padInsetBot
+        let actionBtnH = actionsBtnView.frame.size.height
+        if hidden {
+            botViewBotConstraint.constant = -botViewHConstraint.constant
+            mapView.layoutMargins.bottom = actionBtnH
+        }
+        else {
+            botViewBotConstraint.constant = -theaterShowsView.padInsetBot
+            mapView.layoutMargins.bottom = botViewHConstraint.constant - theaterShowsView.padInsetBot + actionBtnH
+        }
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
             

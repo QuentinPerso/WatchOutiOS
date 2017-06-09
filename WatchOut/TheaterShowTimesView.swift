@@ -23,6 +23,7 @@ class TheaterShowTimesView : UIView {
     
     var inviteMode = false {
         didSet {
+            if oldValue == inviteMode { return }
             let message = "Choose a movie to to share 😍"
             UIView.transition(with: titleLabel, duration: 0.2, options: [], animations: {
                 self.titleLabel.text = self.inviteMode ? message : self.titleString

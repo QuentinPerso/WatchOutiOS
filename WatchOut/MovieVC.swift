@@ -124,11 +124,13 @@ class MovieVC: UIViewController {
             if synopsisLabel.alpha == 0 {
                 UIView.animate(withDuration: 0.2, animations: {
                     self.synopsisLabel.alpha = 1
+                    self.synopsisTitleLabel.alpha = 1
                 })
             }
         }
         else if !isDetailsRequestDone{
             isDetailsRequestDone = true
+            synopsisTitleLabel.alpha = 0
             synopsisLabel.alpha = 0
             _ = APIConnector.getMovieDetails(movie: movie, completion: { [weak self] (movie) in
                 self?.movie = movie

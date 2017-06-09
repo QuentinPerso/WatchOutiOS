@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="bBc-nh-fUE" customClass="MovieAroundCellView" customModule="WatchOut" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8iA-uM-JTT">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rsk-di-mgf">
+                    <rect key="frame" x="22" y="317.5" width="331" height="32"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A llloooooooooong film name on a looooonng day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DS-7K-bXA">
+                            <rect key="frame" x="5" y="5" width="321" height="22"/>
+                            <fontDescription key="fontDescription" name="AvenirNextCondensed-Bold" family="Avenir Next Condensed" pointSize="16"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="8DS-7K-bXA" secondAttribute="bottom" constant="5" id="NPf-kc-ufO"/>
+                        <constraint firstItem="8DS-7K-bXA" firstAttribute="top" secondItem="rsk-di-mgf" secondAttribute="top" constant="5" id="Raf-n5-GuM"/>
+                        <constraint firstItem="8DS-7K-bXA" firstAttribute="leading" secondItem="rsk-di-mgf" secondAttribute="leading" constant="5" id="SmO-16-Tg9"/>
+                        <constraint firstAttribute="trailing" secondItem="8DS-7K-bXA" secondAttribute="trailing" constant="5" id="s6S-Wv-Gt2"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.086274509799999996" green="0.090196078430000007" blue="0.098039215690000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rsk-di-mgf" secondAttribute="trailing" constant="8" id="Ae0-Ff-giI"/>
+                <constraint firstItem="rsk-di-mgf" firstAttribute="centerX" secondItem="bBc-nh-fUE" secondAttribute="centerX" id="H30-FI-iag"/>
+                <constraint firstAttribute="trailing" secondItem="8iA-uM-JTT" secondAttribute="trailing" id="MEH-Wv-QDt"/>
+                <constraint firstAttribute="bottom" secondItem="8iA-uM-JTT" secondAttribute="bottom" id="PdB-bI-bT0"/>
+                <constraint firstItem="8iA-uM-JTT" firstAttribute="leading" secondItem="bBc-nh-fUE" secondAttribute="leading" id="PtX-GF-DHS"/>
+                <constraint firstItem="rsk-di-mgf" firstAttribute="centerY" secondItem="bBc-nh-fUE" secondAttribute="centerY" id="T9y-8l-cBJ"/>
+                <constraint firstItem="rsk-di-mgf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="bBc-nh-fUE" secondAttribute="leading" constant="8" id="jbb-c1-Z3v"/>
+                <constraint firstItem="8iA-uM-JTT" firstAttribute="top" secondItem="bBc-nh-fUE" secondAttribute="top" id="szb-OW-dai"/>
+            </constraints>
+            <connections>
+                <outlet property="pictureImage" destination="8iA-uM-JTT" id="MsL-r3-opU"/>
+                <outlet property="titleLabel" destination="8DS-7K-bXA" id="aGu-le-nbI"/>
+            </connections>
+        </view>
+    </objects>
+</document>

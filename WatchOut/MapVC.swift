@@ -188,6 +188,47 @@ extension MapVC {
             
         }
         
+        theaterShowsView.moviesCollectionView.didBeginScrollAction = {
+            self.unhighlightAnnotations()
+        }
+        
+        theaterShowsView.moviesCollectionView.didScrollToMovieAction = { movieCines in
+            self.highlightAnnotations(cinemas: movieCines.cinemas)
+        }
+        
+    }
+    
+    func unhighlightAnnotations() {
+        for annot in mapView.annotations {
+            if annot is CinemaAnnotation {
+                if let view = mapView.view(for: annot) as? CinemaAnnotationView {
+                    view.layer.removeAllAnimations()
+                    UIView.animate(withDuration: 0.1, animations: {
+                        view.alpha = 1
+                    })
+                }
+                
+            }
+        }
+    }
+    
+    func highlightAnnotations(cinemas:[WOCinema]) {
+        
+        for cinema in cinemas {
+            for annot in mapView.annotations {
+                if let cAnnot = annot as? CinemaAnnotation {
+                    if cAnnot.theaterShowTime.cinema == cinema {
+                        if let view = mapView.view(for: annot) as? CinemaAnnotationView {
+                            UIView.animate(withDuration: 0.25, delay: 0, options: [.repeat, .allowUserInteraction, .autoreverse], animations: {
+                                view.alpha = 0
+                            }, completion: nil)
+                        }
+                    }
+                }
+            }
+            
+        }
+        
     }
     
     func setupKeyboard() {
@@ -315,9 +356,8 @@ extension MapVC {
             
             if !canceled { self?.mapReloaderView.hide() }
             if theaterShowTimes == nil { return }
-            self?.reloadMap(theaterShowTimes: theaterShowTimes!)
-            
-            
+            self?.mapView.reloadMap(theaterShowTimes: theaterShowTimes!)
+            self?.theaterShowsView.moviesCollectionView.reload(theaterShowTimes: theaterShowTimes!)
             
         })
         
@@ -422,60 +462,6 @@ extension MapVC {
     }
 }
 
-//************************************
-// MARK: - Map Functions
-//************************************
-extension MapVC:UIGestureRecognizerDelegate {
-    
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-    
-    func reloadMap(theaterShowTimes:[WOTheaterShowtime]){
-        
-        var selectedAnnot:CinemaAnnotation?
-        
-        for annot in mapView.selectedAnnotations {
-            if let cAnnot = annot as? CinemaAnnotation {
-                if !theaterShowTimes.contains(cAnnot.theaterShowTime) {
-                    mapView.removeAnnotation(cAnnot)
-                }
-                else {
-                    selectedAnnot = cAnnot
-                }
-            }
-        }
-        for annot in mapView.annotations {
-            if let cAnnot = annot as? CinemaAnnotation, let selAnnot = selectedAnnot, cAnnot != selAnnot {
-                mapView.removeAnnotation(annot)
-            }
-            else if selectedAnnot == nil {
-                mapView.removeAnnotation(annot)
-            }
-        }
-    
-        for tst in theaterShowTimes {
-            if let selAnnot = selectedAnnot {
-                
-                if selAnnot.theaterShowTime != tst {
-                    let annotation = CinemaAnnotation(theaterShowTime: tst)
-                    mapView.addAnnotation(annotation)
-                }
-                else {
-                    selAnnot.theaterShowTime = tst
-                    theaterShowsView.theaterShowTime = tst
-                }
-                
-            }
-            else if selectedAnnot == nil {
-                let annotation = CinemaAnnotation(theaterShowTime: tst)
-                mapView.addAnnotation(annotation)
-            }
-        }
-    }
-    
-}
 
 //************************************
 // MARK: - Search Functions
@@ -565,21 +551,33 @@ extension MapVC {
 
     func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
         
-        let actionBtnH = actionsBtnView.frame.size.height
+//        let actionBtnH = actionsBtnView.frame.size.height
+//        if hidden {
+//            botViewBotConstraint.constant = -botViewHConstraint.constant
+//            mapView.layoutMargins.bottom = actionBtnH
+//        }
+//        else {
+//            botViewBotConstraint.constant = -theaterShowsView.padInsetBot
+//            mapView.layoutMargins.bottom = botViewHConstraint.constant - theaterShowsView.padInsetBot + actionBtnH
+//        }
+        
+        let tstView = theaterShowsView
+        
         if hidden {
-            botViewBotConstraint.constant = -botViewHConstraint.constant
-            mapView.layoutMargins.bottom = actionBtnH
-        }
-        else {
-            botViewBotConstraint.constant = -theaterShowsView.padInsetBot
-            mapView.layoutMargins.bottom = botViewHConstraint.constant - theaterShowsView.padInsetBot + actionBtnH
+            tstView?.titleLabel.text = "ON SHOW"
         }
         
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
-            
-            self?.view.layoutIfNeeded()
-            
-            }, completion: nil)
+        
+        UIView.animate(withDuration: 0.3) { 
+            tstView?.tableView.alpha = hidden ? 0 : 1
+            tstView?.moviesCollectionView.alpha = hidden ? 1 : 0
+        }
+        
+//        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: hidden ? 1:0.75, initialSpringVelocity: 0, options: [.allowUserInteraction], animations: { [weak self] in
+//            
+//            self?.view.layoutIfNeeded()
+//            
+//            }, completion: nil)
     }
     
 }

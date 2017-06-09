@@ -16,6 +16,13 @@
 		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
 		842DE0E61EE9C723004084DD /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E51EE9C723004084DD /* ActionButtonsView.swift */; };
 		842DE0E81EEA93EB004084DD /* InteractivMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E71EEA93EB004084DD /* InteractivMap.swift */; };
+		842DE0EA1EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E91EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift */; };
+		842DE0EC1EEB471C004084DD /* NowAroundCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0EB1EEB471C004084DD /* NowAroundCollectionView.swift */; };
+		842DE0EE1EEB497D004084DD /* WOMovieCinemas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0ED1EEB497D004084DD /* WOMovieCinemas.swift */; };
+		842DE0F01EEB56EC004084DD /* CoverFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0EF1EEB56EC004084DD /* CoverFlowLayout.swift */; };
+		842DE0F41EEB5874004084DD /* YRCoverFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0F31EEB5874004084DD /* YRCoverFlowLayout.m */; };
+		842DE0F71EEB5CAA004084DD /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0F61EEB5CAA004084DD /* iCarousel.m */; };
+		842DE0F91EEB5D96004084DD /* MovieAroundCellView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 842DE0F81EEB5D96004084DD /* MovieAroundCellView.xib */; };
 		84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */; };
 		84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */; };
 		84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */; };
@@ -109,6 +116,16 @@
 		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
 		842DE0E51EE9C723004084DD /* ActionButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 		842DE0E71EEA93EB004084DD /* InteractivMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractivMap.swift; sourceTree = "<group>"; };
+		842DE0E91EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		842DE0EB1EEB471C004084DD /* NowAroundCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowAroundCollectionView.swift; sourceTree = "<group>"; };
+		842DE0ED1EEB497D004084DD /* WOMovieCinemas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOMovieCinemas.swift; sourceTree = "<group>"; };
+		842DE0EF1EEB56EC004084DD /* CoverFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverFlowLayout.swift; sourceTree = "<group>"; };
+		842DE0F11EEB5874004084DD /* WatchOut-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WatchOut-Bridging-Header.h"; sourceTree = "<group>"; };
+		842DE0F21EEB5874004084DD /* YRCoverFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRCoverFlowLayout.h; sourceTree = "<group>"; };
+		842DE0F31EEB5874004084DD /* YRCoverFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRCoverFlowLayout.m; sourceTree = "<group>"; };
+		842DE0F51EEB5CAA004084DD /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		842DE0F61EEB5CAA004084DD /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		842DE0F81EEB5D96004084DD /* MovieAroundCellView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieAroundCellView.xib; sourceTree = "<group>"; };
 		84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPopup.swift; sourceTree = "<group>"; };
 		84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerPopup.xib; sourceTree = "<group>"; };
 		84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
@@ -229,6 +246,8 @@
 				8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */,
 				84572D251EE5F9CC00D8CE05 /* MovieHoursCell.swift */,
 				842DE0E51EE9C723004084DD /* ActionButtonsView.swift */,
+				842DE0F81EEB5D96004084DD /* MovieAroundCellView.xib */,
+				842DE0EB1EEB471C004084DD /* NowAroundCollectionView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -336,6 +355,13 @@
 				84572D271EE60D6C00D8CE05 /* ClickablePickerView.swift */,
 				84572D291EE695D400D8CE05 /* StarRatingView.swift */,
 				84FA97A71EE8A9F50067F385 /* CustomsFlowLayouts.swift */,
+				842DE0EF1EEB56EC004084DD /* CoverFlowLayout.swift */,
+				842DE0E91EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift */,
+				842DE0F51EEB5CAA004084DD /* iCarousel.h */,
+				842DE0F61EEB5CAA004084DD /* iCarousel.m */,
+				842DE0F21EEB5874004084DD /* YRCoverFlowLayout.h */,
+				842DE0F31EEB5874004084DD /* YRCoverFlowLayout.m */,
+				842DE0F11EEB5874004084DD /* WatchOut-Bridging-Header.h */,
 			);
 			name = Controls;
 			sourceTree = "<group>";
@@ -418,6 +444,7 @@
 			children = (
 				848A7F731EE02CCB00A9F88E /* WOCinema.swift */,
 				8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */,
+				842DE0ED1EEB497D004084DD /* WOMovieCinemas.swift */,
 				848A7F791EE03FE700A9F88E /* WOMovieShowtime.swift */,
 				848A7F771EE039C100A9F88E /* WOMovie.swift */,
 				848A7F7B1EE0434400A9F88E /* WOShowTime.swift */,
@@ -512,6 +539,7 @@
 					848A7EF81EE01D5700A9F88E = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = MQK5ADKQSE;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -543,6 +571,7 @@
 				84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */,
 				84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */,
 				84FA979F1EE80A9B0067F385 /* UserPage.storyboard in Resources */,
+				842DE0F91EEB5D96004084DD /* MovieAroundCellView.xib in Resources */,
 				848A7F071EE01D5700A9F88E /* LaunchScreen.storyboard in Resources */,
 				848A7F041EE01D5700A9F88E /* Assets.xcassets in Resources */,
 				848A7F021EE01D5700A9F88E /* Main.storyboard in Resources */,
@@ -622,6 +651,7 @@
 				8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */,
 				84572D2E1EE6EAE700D8CE05 /* DebugAnnot.swift in Sources */,
 				848A7F531EE02A5300A9F88E /* NVActivityIndicatorAnimationBallZigZag.swift in Sources */,
+				842DE0EA1EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift in Sources */,
 				848A7F641EE02A5300A9F88E /* NVActivityIndicatorView.swift in Sources */,
 				848A7F4C1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallRotateChase.swift in Sources */,
 				848A7F741EE02CCB00A9F88E /* WOCinema.swift in Sources */,
@@ -649,6 +679,7 @@
 				848A7F101EE01F3300A9F88E /* APIConnector.swift in Sources */,
 				84FA97BA1EE9B7B40067F385 /* MapLauncher.swift in Sources */,
 				84FA97A81EE8A9F50067F385 /* CustomsFlowLayouts.swift in Sources */,
+				842DE0EE1EEB497D004084DD /* WOMovieCinemas.swift in Sources */,
 				84FA97A41EE845FC0067F385 /* WOMemberCard.swift in Sources */,
 				848A7F4A1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				848A7F5E1EE02A5300A9F88E /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */,
@@ -663,10 +694,13 @@
 				84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */,
 				848A7F4D1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallScale.swift in Sources */,
 				84FA979B1EE7F6D70067F385 /* SaveManager.swift in Sources */,
+				842DE0F41EEB5874004084DD /* YRCoverFlowLayout.m in Sources */,
 				848A7F521EE02A5300A9F88E /* NVActivityIndicatorAnimationBallTrianglePath.swift in Sources */,
 				848A7F561EE02A5300A9F88E /* NVActivityIndicatorAnimationCubeTransition.swift in Sources */,
 				848A7F451EE02A5300A9F88E /* NVActivityIndicatorAnimationBallClipRotatePulse.swift in Sources */,
+				842DE0F71EEB5CAA004084DD /* iCarousel.m in Sources */,
 				848A7F5D1EE02A5300A9F88E /* NVActivityIndicatorAnimationPacman.swift in Sources */,
+				842DE0EC1EEB471C004084DD /* NowAroundCollectionView.swift in Sources */,
 				848A7F6D1EE02AE000A9F88E /* UIImage+Effects.swift in Sources */,
 				848A7F541EE02A5300A9F88E /* NVActivityIndicatorAnimationBallZigZagDeflect.swift in Sources */,
 				848A7F601EE02A5300A9F88E /* NVActivityIndicatorAnimationTriangleSkewSpin.swift in Sources */,
@@ -676,6 +710,7 @@
 				848A7F571EE02A5300A9F88E /* NVActivityIndicatorAnimationLineScale.swift in Sources */,
 				8405CB991EE2ADE7005B373E /* WOTheaterShowTime.swift in Sources */,
 				8425BF2B1EE40B5B009E15A3 /* WOPerson.swift in Sources */,
+				842DE0F01EEB56EC004084DD /* CoverFlowLayout.swift in Sources */,
 				848A7F7A1EE03FE700A9F88E /* WOMovieShowtime.swift in Sources */,
 				848A7EFD1EE01D5700A9F88E /* AppDelegate.swift in Sources */,
 				848A7F511EE02A5300A9F88E /* NVActivityIndicatorAnimationBallSpinFadeLoader.swift in Sources */,
@@ -811,12 +846,15 @@
 			baseConfigurationReference = AB65BCAE556DB0CE3082FDA7 /* Pods-WatchOut.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MQK5ADKQSE;
 				INFOPLIST_FILE = WatchOut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ghostCat.WatchOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchOut/WatchOut-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -827,12 +865,14 @@
 			baseConfigurationReference = B409C304750759525FA2F39E /* Pods-WatchOut.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = MQK5ADKQSE;
 				INFOPLIST_FILE = WatchOut/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.ghostCat.WatchOut;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WatchOut/WatchOut-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

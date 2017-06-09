@@ -47,7 +47,7 @@ extension MKMapView {
 
 class MapFunctions: NSObject {
     
-    static let defaultRegionRadius:CLLocationDistance = 1500
+    static let defaultRegionRadius:CLLocationDistance = 2400
     
     
     //************************************

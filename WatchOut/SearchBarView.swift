@@ -8,13 +8,19 @@
 
 import UIKit
 
+enum BarSearchState:String {
+    case start = "start"
+    case ended = "ended"
+    case canceled = "canceled"
+}
+
 class SearchBarView: UIView {
 
     @IBOutlet weak var searchBar: UISearchBar!
     
     fileprivate var searchBarShouldBeginEditing = true
     
-    var searchStateChanged:((_ entered:Bool)->())?
+    var searchStateChanged:((BarSearchState)->())?
     var textChangedAction:((_ searchText:String?)->())?
     
     override func awakeFromNib() {
@@ -84,7 +90,7 @@ extension SearchBarView : UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
         
         if searchBarShouldBeginEditing {
-            searchStateChanged?(true)
+            searchStateChanged?(.start)
             searchBar.setShowsCancelButton(true, animated: true)
             return true
         }
@@ -97,14 +103,17 @@ extension SearchBarView : UISearchBarDelegate{
     
     func searchBarShouldEndEditing(_ searchBar: UISearchBar) -> Bool {
         
-        searchStateChanged?(false)
+        searchStateChanged?(.ended)
         searchBar.setShowsCancelButton(false, animated: true)
         
         return true
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchStateChanged?(.canceled)
         searchBar.resignFirstResponder()
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

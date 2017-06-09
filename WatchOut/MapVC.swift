@@ -153,12 +153,15 @@ extension MapVC {
     
     func setupSearchBarView() {
         
-        searchBarView.searchStateChanged = { [weak self] enter in
-            if enter {
+        searchBarView.searchStateChanged = { [weak self] state in
+            if state == .start {
                 self?.autocompleteView.dimeBG(true, animated: true)
             }
-            else {
+            else if state == .ended {
                 self?.autocompleteView.dimeBG(false, animated: true)
+            }
+            else if state == .canceled {
+                self?.resetSearch()
             }
         }
         searchBarView.textChangedAction = { [weak self] searchString in

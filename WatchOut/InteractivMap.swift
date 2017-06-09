@@ -180,7 +180,7 @@ extension InteractivMap : MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("didSelect MKAnnotationView")
+
         if let cineAnnot = view.annotation as? CinemaAnnotation {
             
             didSelectAnnotaionAction?(cineAnnot, true)
@@ -193,8 +193,7 @@ extension InteractivMap : MKMapViewDelegate {
     
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        print("didDeselect MKAnnotationView", shouldDeselect)
-        
+
         if let annot = view.annotation {
             didSelectAnnotaionAction?(annot, false)
         }

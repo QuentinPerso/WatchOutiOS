@@ -131,8 +131,12 @@ extension APIConnector {
             ]
     
         if movieCode != nil { queryParams["movie"] = "\(movieCode!)" }
-        if person != nil { queryParams["count"] = "30" } // increase count for post search treatment
         if date != nil { queryParams["date"] = date }
+        
+        // increase count for post search treatment
+        if (person != nil) || (timeInterval != nil) || (memberCards.count>0) {
+            queryParams["count"] = "20"
+        }
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         let request = sessionManager.request("http://api.allocine.fr/rest/v3/showtimelist", parameters: queryParams).responseJSON { response in

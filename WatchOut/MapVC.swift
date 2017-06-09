@@ -183,7 +183,9 @@ extension MapVC {
         theaterShowsView.didSelectMovieAction = { [weak self] movie in self?.showMovieVC(movie) }
         theaterShowsView.didSelectMovieInviteAction = { [weak self] message in
             if self == nil { return }
+            self?.inviteButtonClicked(self!.actionsBtnView.inviteButton)
             ShareManager.shareOnController(controller: self!, sourceView: self!.theaterShowsView, message: message)
+            
         }
         
     }

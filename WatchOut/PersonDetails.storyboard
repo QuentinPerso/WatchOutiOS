@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z91-4c-FVw" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="593"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAVID LYNCH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6h-Dh-vee">
                                                         <rect key="frame" x="20" y="50" width="335" height="30.5"/>
@@ -46,7 +46,7 @@
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15 - 11 - 1989" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hb-4r-5FI">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- -- --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hb-4r-5FI">
                                                         <rect key="frame" x="20" y="92.5" width="335" height="22"/>
                                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -58,14 +58,14 @@
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auteur realisateur Scenariste producter Auteur realisateur Scenariste producter Auteur realisateur Scenariste producter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV6-MS-v2j">
-                                                        <rect key="frame" x="20" y="183" width="335" height="44"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- -- -- -- -- -- -- --- -- --- ---- ----- -- -- --- - - ---- --- " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV6-MS-v2j">
+                                                        <rect key="frame" x="20" y="183" width="335" height="22"/>
                                                         <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inW-zG-sfT" customClass="FilmographyView" customModule="WatchOut" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="253" width="375" height="292"/>
+                                                        <rect key="frame" x="0.0" y="231" width="375" height="292"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILMOGRAPHY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-1Z-GRA">
                                                                 <rect key="frame" x="20" y="0.0" width="335" height="30.5"/>
@@ -125,7 +125,7 @@
                                                                                         <constraint firstItem="sEu-Dq-Rl6" firstAttribute="leading" secondItem="pvH-YZ-ACj" secondAttribute="leading" id="NZX-Rz-Kri"/>
                                                                                         <constraint firstItem="sqt-db-qre" firstAttribute="centerX" secondItem="pvH-YZ-ACj" secondAttribute="centerX" id="Q5c-SK-QFh"/>
                                                                                         <constraint firstItem="sqt-db-qre" firstAttribute="leading" secondItem="pvH-YZ-ACj" secondAttribute="leading" constant="10" id="Tqg-58-HUs"/>
-                                                                                        <constraint firstItem="sqt-db-qre" firstAttribute="top" secondItem="mD7-fS-MHo" secondAttribute="bottom" constant="1" id="UE5-4e-8h6"/>
+                                                                                        <constraint firstAttribute="bottom" secondItem="sqt-db-qre" secondAttribute="bottom" constant="13.5" id="qjt-N2-pPz"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                             </subviews>

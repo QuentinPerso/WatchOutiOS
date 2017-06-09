@@ -90,7 +90,7 @@ extension UserPersonsView:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var size = collectionView.frame.size
-        size.width = 100
+        size.width = 70
         return size
         
     }

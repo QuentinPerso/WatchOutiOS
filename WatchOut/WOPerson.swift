@@ -72,7 +72,19 @@ class WOPerson : NSObject, NSCoding {
             }
         }
         
-        birthDate = dictionary["birthDate"] as? String
+        if let rawDate = dictionary["birthDate"] as? String {
+            
+            let formater = DateFormatter()
+            formater.dateFormat = "yyyy-MM-dd"
+            
+            if let nsDate = formater.date(from: rawDate) {
+                birthDate = DateFormatter.localizedString(from: nsDate, dateStyle: .medium, timeStyle: .none)
+            }
+            
+            
+        }
+        
+       
                 
         if let pictureDict = dictionary["picture"] as? [String : AnyObject], let urlStr = pictureDict["href"] as? String {
             imageURL = URL(string:urlStr)

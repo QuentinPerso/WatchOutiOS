@@ -177,6 +177,10 @@ extension APIConnector {
                                 
                                 
                             }
+                            else {
+                                index += 1
+                                completion(woObjs, false)
+                            }
                             
                         }
                         

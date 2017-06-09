@@ -19,7 +19,7 @@ class MapVC: UIViewController {
     
     @IBOutlet weak var searchBarView: SearchBarView!
 
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var mapView: InteractivMap!
     
     @IBOutlet weak var theaterShowsView: TheaterShowTimesView!
 
@@ -30,15 +30,12 @@ class MapVC: UIViewController {
     @IBOutlet weak var dateFilterView: DateFilterView!
     
     @IBOutlet weak var actionsBtnView: ActionButtonsView!
-    
-    
+
     var autoCompleteRequest:DataRequest?
     
     var timeListRequest:DataRequest?
     
     var searchedObject:AnyObject?
-    
-    var shouldStartSearch:Bool = false
     
     deinit {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
@@ -108,30 +105,38 @@ class MapVC: UIViewController {
 extension MapVC {
     
     func setupMap() {
-        mapView.delegate = self
         
-        let panRec = UIPanGestureRecognizer(target: self, action: #selector(self.didDragMap(_:)))
-        panRec.delegate = self
-        
-        self.mapView.addGestureRecognizer(panRec)
-        
-        //****** ViewPort
-        let locAuthStatus = CLLocationManager.authorizationStatus()
-        if locAuthStatus == .notDetermined {
-            LocationManager.shared.locationInUseGranted = {[weak self] in
-                self?.mapView.setUserTrackingMode(.follow, animated: false)
-            }
-            LocationManager.shared.requestLocAuth()
-        }
-        else if LocationManager.hasLocalisationAuth {
-            mapView.showsUserLocation = true
-            LocationManager.shared.autoUpdate = true
-            LocationManager.shared.startUpdatingLocation({ (coord, error) in
-                self.mapView.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: false)
+        mapView.dragSearchAction = { state in
+            switch state {
+            case .start:
+                self.mapReloaderView.show()
+            case .ended:
                 self.callAPITimeLists()
-                LocationManager.shared.stopUpdatingLocation()
-                LocationManager.shared.autoUpdate = false
-            })
+            }
+        }
+        
+        mapView.mapReloadedAnnotationAction = { annotation in
+            guard let cineAnnot = annotation as? CinemaAnnotation else { return }
+            self.theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
+            
+            
+        }
+        
+        mapView.didSelectAnnotaionAction = { annotation in
+            
+            guard let cineAnnot = annotation as? CinemaAnnotation else { return }
+            
+            self.timeListRequest?.cancel()
+            self.mapReloaderView.hide()
+            
+            self.theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
+            
+            self.setBottomViewHidden(false, animated: true)
+            
+        }
+        
+        mapView.didDeselectAllAnnotaionAction = {
+            self.setBottomViewHidden(true, animated: true)
         }
         
     }
@@ -407,19 +412,7 @@ extension MapVC {
 //************************************
 extension MapVC:UIGestureRecognizerDelegate {
     
-    
-    
-    func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
-        
-        if gestureRecognizer.state == .began {
-            if gestureRecognizer.numberOfTouches == 1{
-                shouldStartSearch = true
-                mapReloaderView.show()
-            }
-        }
-        
-    }
-    
+
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
@@ -542,16 +535,16 @@ extension MapVC {
 
     func setBottomViewHidden(_ hidden:Bool, animated:Bool) {
         
-        let sender = actionsBtnView.inviteButton
-        UIView.transition(with: sender!,
-                          duration: 0.25,
-                          options: sender!.isSelected ? .transitionFlipFromLeft : .transitionFlipFromRight,
-                          animations: {
-                            sender!.isSelected = false
-        }, completion: nil)
-        theaterShowsView.inviteMode = false
+//        let sender = actionsBtnView.inviteButton
+//        UIView.transition(with: sender!,
+//                          duration: 0.25,
+//                          options: sender!.isSelected ? .transitionFlipFromLeft : .transitionFlipFromRight,
+//                          animations: {
+//                            sender!.isSelected = false
+//        }, completion: nil)
+//        theaterShowsView.inviteMode = false
         
-        actionsBtnView.setHidden(hidden, animated: animated)
+//        actionsBtnView.setHidden(hidden, animated: animated)
     
         botViewBotConstraint.constant = hidden ? -botViewHConstraint.constant : -theaterShowsView.padInsetBot
         mapView.layoutMargins.bottom = hidden ? 0 : botViewHConstraint.constant - theaterShowsView.padInsetBot
@@ -592,115 +585,4 @@ extension MapVC {
     
 }
 
-//************************************
-// MARK: - Map View Delegate
-//************************************
-extension MapVC : MKMapViewDelegate{
-    
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if let annotation = annotation as? CinemaAnnotation {
-            
-            let identifier = "cinemaAnotView"
-            var annotationView: CinemaAnnotationView
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CinemaAnnotationView{
-                dequeuedView.annotation = annotation
-                annotationView = dequeuedView
-                annotationView.initLayout()
-            }
-            else {
-                annotationView = CinemaAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-                annotationView.initLayout()
-            }
-            
-            return annotationView
-            
-        }
-        
-        return nil
-    }
-    
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
-        if let cineAnnot = view.annotation as? CinemaAnnotation {
-            
-            timeListRequest?.cancel()
-            mapReloaderView.hide()
-            
-            theaterShowsView.theaterShowTime = cineAnnot.theaterShowTime
-            
-            setBottomViewHidden(false, animated: true)
-            centerMapOnAnnotation(cineAnnot)
-            
-            
-        }
-        
-    }
-    
-    func centerMapOnAnnotation(_ cineAnnot:CinemaAnnotation) {
-        let nePoint =
-            CGPoint(x:mapView.bounds.origin.x + mapView.bounds.size.width,
-                    y:mapView.bounds.origin.y)
-        let swPoint =
-            CGPoint(x:(mapView.bounds.origin.x),
-                    y:(mapView.bounds.origin.y + mapView.bounds.size.height - mapView.layoutMargins.bottom))
-        
-        
-        
-        //Then transform those point into lat,lng values
-        let ne = mapView.convert(nePoint, toCoordinateFrom: mapView)
-        let sw = mapView.convert(swPoint, toCoordinateFrom: mapView)
-        
-        
-        if !MapFunctions.isCoordInViewPort(coord: cineAnnot.coordinate, sw: sw, ne: ne) {
-            mapView.centerOn(coord: cineAnnot.coordinate, radius: nil, animated: true)
-        }
-    }
-    
-    
-    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        
-        if (view.annotation as? CinemaAnnotation) != nil {
-            if mapView.selectedAnnotations.count == 0 {
-                setBottomViewHidden(true, animated: true)
-            }
-        }
-    }
-    
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        let userLocationView = mapView.view(for: userLocation)
-        userLocationView?.canShowCallout = false
-    }
-    
-    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        
-        if shouldStartSearch {
-            shouldStartSearch = false
-            callAPITimeLists()
-        }
-        //callAPITimeLists()
-        
-    }
-    
-    
-    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
-        
-        
-        var delay = 0.0
-        for annotView in views {
-            if let placeAnnotView = annotView as? CinemaAnnotationView {
-                
-                annotView.transform = CGAffineTransform(translationX: 0, y: placeAnnotView.frame.size.height).scaledBy(x: 0, y: 0)
-                UIView.animate(withDuration: 0.2, delay: delay, options: .curveEaseInOut, animations: {
-                    annotView.transform = annotView.isSelected ? .identity : placeAnnotView.unselectedTransform
-                }, completion: nil)
-                delay += 0.05
-            }
-            else if annotView.annotation is MKUserLocation {
-                //addHeadingView(toAnnotationView: annotView)
-            }
-            
-        }
-    }
-}
 

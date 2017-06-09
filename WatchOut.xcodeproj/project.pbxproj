@@ -15,6 +15,7 @@
 		8425BF2B1EE40B5B009E15A3 /* WOPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */; };
 		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
 		842DE0E61EE9C723004084DD /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E51EE9C723004084DD /* ActionButtonsView.swift */; };
+		842DE0E81EEA93EB004084DD /* InteractivMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E71EEA93EB004084DD /* InteractivMap.swift */; };
 		84572D1D1EE4C28500D8CE05 /* DatePickerPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */; };
 		84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = 84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */; };
 		84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */; };
@@ -107,6 +108,7 @@
 		8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOPerson.swift; sourceTree = "<group>"; };
 		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
 		842DE0E51EE9C723004084DD /* ActionButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
+		842DE0E71EEA93EB004084DD /* InteractivMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractivMap.swift; sourceTree = "<group>"; };
 		84572D1B1EE4C28500D8CE05 /* DatePickerPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerPopup.swift; sourceTree = "<group>"; };
 		84572D1C1EE4C28500D8CE05 /* DatePickerPopup.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DatePickerPopup.xib; sourceTree = "<group>"; };
 		84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MovieDetails.storyboard; sourceTree = "<group>"; };
@@ -219,6 +221,7 @@
 		84572D121EE4B44200D8CE05 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				842DE0E71EEA93EB004084DD /* InteractivMap.swift */,
 				8425BF261EE2D691009E15A3 /* AutocompleteView.swift */,
 				84572D2B1EE6AFBF00D8CE05 /* SearchBarView.swift */,
 				848A7F171EE0288600A9F88E /* MapReloaderView.swift */,
@@ -624,6 +627,7 @@
 				848A7F741EE02CCB00A9F88E /* WOCinema.swift in Sources */,
 				848A7F421EE02A5300A9F88E /* NVActivityIndicatorAnimationBallBeat.swift in Sources */,
 				848A7F4B1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallRotate.swift in Sources */,
+				842DE0E81EEA93EB004084DD /* InteractivMap.swift in Sources */,
 				84572D2A1EE695D400D8CE05 /* StarRatingView.swift in Sources */,
 				848A7F611EE02A5300A9F88E /* NVActivityIndicatorAnimationDelegate.swift in Sources */,
 				848A7F701EE02AE000A9F88E /* MapView+ZoomLevel.swift in Sources */,

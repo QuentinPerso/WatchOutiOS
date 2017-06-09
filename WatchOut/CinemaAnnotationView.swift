@@ -11,7 +11,7 @@ import MapKit
 
 class CinemaAnnotationView : MKAnnotationView {
     
-
+    
     static let pinSize = CGSize(width: 40, height: 47)
     
     let unselectedTransform = CGAffineTransform(translationX: 0, y: pinSize.height * (1 - 0.5) / 2 ).scaledBy(x: 0.5, y: 0.5)
@@ -34,45 +34,27 @@ class CinemaAnnotationView : MKAnnotationView {
         
         if animated {
             if selected {
-                
-                UIView.transition(with: self, duration: 0.1, options: UIViewAnimationOptions.transitionCrossDissolve, animations: {
-                    self.setNeedsDisplay()
-                }, completion: { (finished) in
-                    UIView.animate(withDuration: 0.2,
-                                   delay: 0,
-                                   usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
-                                   options: .curveEaseOut, animations: {
-                                    self.transform = CGAffineTransform(translationX: 0, y: 0).scaledBy(x: 0.65, y: 1)
-                    }, completion: nil)
-                    UIView.animate(withDuration: 0.2,
-                                   delay: 0.05,
-                                   usingSpringWithDamping: 0.8, initialSpringVelocity: 10,
-                                   options: .curveEaseIn, animations: {
-                                    self.transform = CGAffineTransform(translationX: 0, y: 0).scaledBy(x: 1, y: 1)
-                    }, completion:{ (finished) in
-                        //
-                    })
-                })
+                UIView.animate(withDuration: 0.2,
+                               delay: 0,
+                               usingSpringWithDamping: 0.7, initialSpringVelocity: 0,
+                               options: .curveEaseOut, animations: {
+                                self.transform = CGAffineTransform(translationX: 0, y: 0).scaledBy(x: 0.65, y: 1)
+                }, completion: nil)
+                UIView.animate(withDuration: 0.2,
+                               delay: 0.05,
+                               usingSpringWithDamping: 0.8, initialSpringVelocity: 10,
+                               options: .curveEaseIn, animations: {
+                                self.transform = CGAffineTransform(translationX: 0, y: 0).scaledBy(x: 1, y: 1)
+                }, completion:nil)
             }
             else{
-                
                 UIView.animate(withDuration: 0.2, animations: {
                     self.transform = self.unselectedTransform
-                }, completion: { (finished) in
-                    UIView.transition(with: self, duration: 0.05, options: UIViewAnimationOptions.transitionFlipFromRight, animations: {
-                        //                            self.image = self.normalImage
-                        self.setNeedsDisplay()
-                        
-                    }, completion: nil)
-                })
-                
-                
+                }, completion:nil)
             }
             
         }
         else{
-            self.setNeedsDisplay()
-            //            self.image = selected ? self.selectedImage : self.normalImage
             self.transform = selected ? CGAffineTransform.identity : unselectedTransform
         }
     }
@@ -95,11 +77,11 @@ class CinemaAnnotationView : MKAnnotationView {
         ctx?.fillPath()
         ctx?.setShadow(offset: CGSize(width: 0, height: 0), blur: 0, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0).cgColor)
         
-//        //**** Border color
-//        createPath(ctx: ctx!, rect: rect)
-//        ctx?.setLineWidth(strokW)
-//        ctx?.setStrokeColor(MKSPlacesHelper.typeColor(type).cgColor)
-//        ctx?.strokePath()
+        //        //**** Border color
+        //        createPath(ctx: ctx!, rect: rect)
+        //        ctx?.setLineWidth(strokW)
+        //        ctx?.setStrokeColor(MKSPlacesHelper.typeColor(type).cgColor)
+        //        ctx?.strokePath()
         
         //**** Image
         ctx!.setFillColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1).cgColor)
@@ -138,8 +120,8 @@ class CinemaAnnotationView : MKAnnotationView {
     
     
 }
-    
-    
+
+
 
 
 

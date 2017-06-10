@@ -99,7 +99,7 @@ extension APIConnector {
                 completion(nil)
             }
         }
-        print(request)
+//        print(request)
         return request
     }
     
@@ -207,7 +207,7 @@ extension APIConnector {
                 completion(nil, false)
             }
         }
-        print(request)
+//        print(request)
         return request
     }
     

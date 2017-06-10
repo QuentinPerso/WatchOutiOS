@@ -57,7 +57,8 @@ class NowAroundCollectionView: UIView {
                 
             }
         }
-        self.carousel.reloadData()
+        carousel.reloadData()
+        carouselDidEndScrollingAnimation(carousel)
     }
 
 }
@@ -124,8 +125,10 @@ extension NowAroundCollectionView : iCarouselDataSource, iCarouselDelegate {
     }
     
     func carouselDidEndScrollingAnimation(_ carousel: iCarousel) {
-        if movieCinemasArray.count > carousel.currentItemIndex {
-            let movieCines = movieCinemasArray[carousel.currentItemIndex]
+        
+        let index = carousel.currentItemIndex
+        if movieCinemasArray.count > index,index >= 0 {
+            let movieCines = movieCinemasArray[index]
             didScrollToMovieAction?(movieCines)
         }
         

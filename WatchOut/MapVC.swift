@@ -74,8 +74,9 @@ class MapVC: UIViewController {
         
         
         autocompleteView.updateLayout(topBarHeight: topBarView.frame.size.height)
-        
-        
+
+        mapView.layoutMargins.bottom = botViewHConstraint.constant - theaterShowsView.padInsetBot + actionsBtnView.frame.size.height
+
         mapView.layoutMargins = UIEdgeInsetsMake(topBarView.frame.size.height, 0, mapView.layoutMargins.bottom, 0)
         
         
@@ -97,6 +98,18 @@ class MapVC: UIViewController {
         topBarView.layer.shadowPath = shadowPath.cgPath
         topBarView.clipsToBounds = false
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        unhighlightAnnotations()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        theaterShowsView.moviesCollectionView.carouselDidEndScrollingAnimation(theaterShowsView.moviesCollectionView.carousel)
     }
     
 }
@@ -137,16 +150,15 @@ extension MapVC {
                 self.setBottomViewHidden(false, animated: true)
                 
                 self.setActionsViewHidden(false, animated: true)
+                
+                self.theaterShowsView.showSelectedMovie()
             }
-            else {
-                self.setBottomViewHidden(true, animated: true)
-            }
-            
             
         }
         
         mapView.didDeselectAllAnnotaionAction = {
             self.setActionsViewHidden(true, animated: true)
+            self.setBottomViewHidden(true, animated: true)
         }
         
     }
@@ -205,6 +217,7 @@ extension MapVC {
                     view.layer.removeAllAnimations()
                     UIView.animate(withDuration: 0.1, animations: {
                         view.alpha = 1
+                        view.transform = view.isSelected ? .identity : view.unselectedTransform
                     })
                 }
                 
@@ -214,21 +227,25 @@ extension MapVC {
     
     func highlightAnnotations(cinemas:[WOCinema]) {
         
-        for cinema in cinemas {
-            for annot in mapView.annotations {
-                if let cAnnot = annot as? CinemaAnnotation {
-                    if cAnnot.theaterShowTime.cinema == cinema {
-                        if let view = mapView.view(for: annot) as? CinemaAnnotationView {
-                            UIView.animate(withDuration: 0.25, delay: 0, options: [.repeat, .allowUserInteraction, .autoreverse], animations: {
-                                view.alpha = 0
-                            }, completion: nil)
-                        }
-                    }
-                }
+        for annot in mapView.annotations {
+            
+            guard let cAnnot = annot as? CinemaAnnotation else { continue }
+            
+            if cinemas.contains(cAnnot.theaterShowTime.cinema) {
+                
+                guard let view = mapView.view(for: annot) as? CinemaAnnotationView else { continue }
+                
+                let transform = view.isSelected ? .identity : view.unselectedTransform
+                
+                UIView.animate(withDuration: 0.3, delay: 0, options: [.repeat, .allowUserInteraction, .autoreverse], animations: {
+                    view.alpha = 0.75
+                    view.transform = transform.scaledBy(x: 1.3, y: 1.2)
+                }, completion: nil)
+                
             }
             
         }
-        
+   
     }
     
     func setupKeyboard() {

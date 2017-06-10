@@ -46,7 +46,13 @@ class TheaterShowTimesView : UIView {
             tableView.delegate = self
             tableView.dataSource = self
             //tableView.register(UINib(nibName: "MovieHoursCell", bundle: nil), forCellReuseIdentifier: "MovieHoursCell")
-            tableView.reloadSections([0], with: .left)
+            if tableView.alpha == 0 {
+                tableView.reloadData()
+            }
+            else {
+                tableView.reloadSections([0], with: .left)
+            }
+            
         }
         
     }
@@ -84,6 +90,38 @@ class TheaterShowTimesView : UIView {
         layer.shadowOffset = CGSize(width: 0, height: -1)
         layer.shadowPath = shadowPath.cgPath
         clipsToBounds = false
+        
+    }
+    
+    func showSelectedMovie(){
+        
+        guard let index = moviesCollectionView?.carousel.currentItemIndex else { return }
+        guard let movie = moviesCollectionView?.movieCinemasArray[index].movie else { return }
+            
+        var i = 0
+        for movST in theaterShowTime.moviesShowTime {
+            if let mov = movST.movie, mov == movie {
+                
+                let indexP = IndexPath(row: i, section: 0)
+
+                tableView.scrollToRow(at: indexP, at: .top, animated: false)
+                guard let cell = tableView.cellForRow(at: indexP) else { continue }
+                
+                let animation = CABasicAnimation(keyPath: "opacity")
+                animation.beginTime = CACurrentMediaTime() + 0.5
+                animation.duration = 0.2
+                animation.autoreverses = true
+                animation.repeatCount = 2
+                animation.fromValue = 1.0
+                animation.toValue = 0
+                cell.layer.add(animation, forKey: nil)
+                
+                break
+            }
+            i += 1
+        }
+        
+        
         
     }
     

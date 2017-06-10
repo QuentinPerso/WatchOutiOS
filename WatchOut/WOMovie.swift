@@ -26,7 +26,8 @@ class WOMovie : NSObject, NSCoding {
     override func isEqual(_ object: Any?) -> Bool {
         if let object = object as? WOMovie {
             return self.uniqID == object.uniqID
-        } else {
+        }
+        else {
             return false
         }
     }

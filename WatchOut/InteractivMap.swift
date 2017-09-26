@@ -16,8 +16,10 @@ enum MapSearchState:String {
 
 class InteractivMap: MKMapView {
 
-    var shouldStartSearch:Bool = false
-    var shouldDeselect:Bool = true
+    var shouldShowAnnotations = false
+    var shouldStartSearch = false
+    var shouldDeselect = true
+    
     
     var dragSearchAction:((MapSearchState)->())?
     var mapReloadedAnnotationAction:((MKAnnotation)->())?
@@ -44,14 +46,18 @@ class InteractivMap: MKMapView {
             LocationManager.shared.requestLocAuth()
         }
         else if LocationManager.hasLocalisationAuth {
+            
             self.showsUserLocation = true
             LocationManager.shared.autoUpdate = true
             LocationManager.shared.startUpdatingLocation({ (coord, error) in
-                self.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: false)
                 self.shouldStartSearch = true
+                self.centerOn(coord: coord, radius: 10000, animated: false)
+                self.shouldStartSearch = false
+                self.shouldShowAnnotations = true
                 LocationManager.shared.stopUpdatingLocation()
                 LocationManager.shared.autoUpdate = false
             })
+            
         }
     }
 
@@ -138,7 +144,15 @@ extension InteractivMap : UIGestureRecognizerDelegate {
                 addAnnotation(annotation)
             }
         }
+        
+        if shouldShowAnnotations, annotations.count > 1 {
+            shouldShowAnnotations = false
+            print(self.layoutMargins)
+            self.showAnnotations(annotations, animated: true)
+        }
     }
+  
+    
     
 }
 

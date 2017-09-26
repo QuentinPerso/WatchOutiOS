@@ -75,10 +75,11 @@ class MapVC: UIViewController {
         
         autocompleteView.updateLayout(topBarHeight: topBarView.frame.size.height)
 
-        mapView.layoutMargins.bottom = botViewHConstraint.constant - theaterShowsView.padInsetBot + actionsBtnView.frame.size.height
+        mapView.layoutMargins.bottom = botViewHConstraint.constant - 30 + actionsBtnView.frame.size.height
 
-        mapView.layoutMargins = UIEdgeInsetsMake(topBarView.frame.size.height, 0, mapView.layoutMargins.bottom, 0)
-        
+        //- 30 for shadow and bot anim // - 64 for auto adjust scroll .....
+        mapView.layoutMargins = UIEdgeInsetsMake(topBarView.frame.size.height - 64, 0, mapView.layoutMargins.bottom, 0)
+
         
         view.bringSubview(toFront: autocompleteView)
         view.bringSubview(toFront: topBarView)
@@ -245,7 +246,6 @@ extension MapVC {
             }
             
         }
-   
     }
     
     func setupKeyboard() {
@@ -355,6 +355,7 @@ extension MapVC {
         
         var dateString:String? = nil
         var hoursTimeInterval:Double? = nil
+        
         let formater = DateFormatter()
         formater.dateFormat = "yyyy-MM-dd"
         

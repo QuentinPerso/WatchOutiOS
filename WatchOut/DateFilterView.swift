@@ -32,8 +32,11 @@ class DateFilterView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         soonButton.isSelected = true
+        
         slider.setThumbImage(#imageLiteral(resourceName: "thumb"), for: .normal)
+        
         slider.addTarget(self, action: #selector(self.sliderValueStopped(_:)), for: .touchUpOutside)
         slider.addTarget(self, action: #selector(self.sliderValueStopped(_:)), for: .touchUpInside)
         slider.addTarget(self, action: #selector(self.sliderValueChanged(_:)), for: .valueChanged)

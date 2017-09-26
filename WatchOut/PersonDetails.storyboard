@@ -38,7 +38,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z91-4c-FVw" userLabel="ContentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="549"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAVID LYNCH" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G6h-Dh-vee">
                                                         <rect key="frame" x="20" y="50" width="335" height="30.5"/>
@@ -48,7 +48,7 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hb-4r-5FI">
                                                         <rect key="frame" x="20" y="92.5" width="335" height="0.0"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="16"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
@@ -60,12 +60,12 @@
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV6-MS-v2j">
                                                         <rect key="frame" x="20" y="161" width="335" height="0.0"/>
-                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-Regular" family="Avenir Next Condensed" pointSize="16"/>
+                                                        <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="16"/>
                                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="inW-zG-sfT" customClass="FilmographyView" customModule="WatchOut" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="187" width="375" height="292"/>
+                                                        <rect key="frame" x="0.0" y="187" width="375" height="322"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FILMOGRAPHY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Xd-1Z-GRA">
                                                                 <rect key="frame" x="20" y="0.0" width="335" height="30.5"/>
@@ -74,10 +74,10 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dNB-Ax-eru">
-                                                                <rect key="frame" x="0.0" y="42" width="375" height="250"/>
+                                                                <rect key="frame" x="0.0" y="42" width="375" height="280"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" constant="250" id="4Kf-sX-I9q"/>
+                                                                    <constraint firstAttribute="height" constant="280" id="4Kf-sX-I9q"/>
                                                                 </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="QwY-1s-nUJ">
                                                                     <size key="itemSize" width="108" height="170"/>
@@ -87,7 +87,7 @@
                                                                 </collectionViewFlowLayout>
                                                                 <cells>
                                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilmographyColCell" id="Qpm-mo-2Ts" customClass="FilmographyColCell" customModule="WatchOut" customModuleProvider="target">
-                                                                        <rect key="frame" x="20" y="0.0" width="100" height="250"/>
+                                                                        <rect key="frame" x="20" y="15" width="100" height="250"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="250"/>
@@ -103,8 +103,8 @@
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title title title title title title title title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mD7-fS-MHo">
-                                                                                            <rect key="frame" x="10" y="174" width="80" height="41"/>
-                                                                                            <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="15"/>
+                                                                                            <rect key="frame" x="10" y="174" width="80" height="38.5"/>
+                                                                                            <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="14"/>
                                                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
@@ -122,10 +122,10 @@
                                                                                         <constraint firstItem="mD7-fS-MHo" firstAttribute="centerX" secondItem="pvH-YZ-ACj" secondAttribute="centerX" id="DBV-49-tMY"/>
                                                                                         <constraint firstItem="mD7-fS-MHo" firstAttribute="top" secondItem="sEu-Dq-Rl6" secondAttribute="bottom" constant="4" id="Dj6-zg-yIT"/>
                                                                                         <constraint firstItem="mD7-fS-MHo" firstAttribute="leading" secondItem="pvH-YZ-ACj" secondAttribute="leading" constant="10" id="HtD-0n-c7u"/>
+                                                                                        <constraint firstItem="sqt-db-qre" firstAttribute="top" secondItem="sEu-Dq-Rl6" secondAttribute="bottom" constant="46" id="JVd-RR-cVC"/>
                                                                                         <constraint firstItem="sEu-Dq-Rl6" firstAttribute="leading" secondItem="pvH-YZ-ACj" secondAttribute="leading" id="NZX-Rz-Kri"/>
                                                                                         <constraint firstItem="sqt-db-qre" firstAttribute="centerX" secondItem="pvH-YZ-ACj" secondAttribute="centerX" id="Q5c-SK-QFh"/>
                                                                                         <constraint firstItem="sqt-db-qre" firstAttribute="leading" secondItem="pvH-YZ-ACj" secondAttribute="leading" constant="10" id="Tqg-58-HUs"/>
-                                                                                        <constraint firstAttribute="bottom" secondItem="sqt-db-qre" secondAttribute="bottom" constant="13.5" id="qjt-N2-pPz"/>
                                                                                     </constraints>
                                                                                 </view>
                                                                             </subviews>

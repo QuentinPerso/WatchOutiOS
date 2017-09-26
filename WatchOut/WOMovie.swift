@@ -15,6 +15,7 @@ class WOMovie : NSObject, NSCoding {
     var duration:String?
     var directors:[String]?
     var actors:[String]?
+    var castMembers:[WOCastMember]?
     var genre = ""
     var releaseDate = ""
     var productionYear = ""
@@ -37,6 +38,7 @@ class WOMovie : NSObject, NSCoding {
         aCoder.encode(name, forKey: "name")
         aCoder.encode(duration, forKey: "duration")
         aCoder.encode(actors, forKey: "actors")
+        aCoder.encode(directors, forKey: "directors")
         aCoder.encode(genre, forKey: "genre")
         aCoder.encode(releaseDate, forKey: "releaseDate")
         aCoder.encode(imageURL, forKey: "imageURL")
@@ -111,8 +113,40 @@ class WOMovie : NSObject, NSCoding {
             }
         }
         synopsis = dictionary["synopsis"] as? String
+        
+        if let casting = dictionary["castMember"] as? [[String : AnyObject]] {
+            castMembers = []
+            for casty in casting {
+                castMembers?.append(WOCastMember(dictionary: casty))
+            }
+            
+            
+        }
     }
   
+}
+
+class WOCastMember : NSObject{
+    
+    var person:WOPerson!
+    var activity:String!
+    
+    
+    init(dictionary:[String : AnyObject]) {
+        super.init()
+        
+        activity = (dictionary["activity"] as! [String : AnyObject])["$"] as! String
+        person = WOPerson(dictionary: dictionary["person"] as! [String : AnyObject])
+        if let pictureDict = dictionary["picture"] as? [String : AnyObject], let urlStr = pictureDict["href"] as? String {
+            person.imageURL = URL(string:urlStr)
+        }
+        else {
+            person.imageURL = URL(string:"blavla")!
+        }
+        
+    }
+    
+
 }
 
 

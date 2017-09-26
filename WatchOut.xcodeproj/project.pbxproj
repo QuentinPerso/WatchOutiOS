@@ -14,6 +14,7 @@
 		8425BF271EE2D691009E15A3 /* AutocompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF261EE2D691009E15A3 /* AutocompleteView.swift */; };
 		8425BF2B1EE40B5B009E15A3 /* WOPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */; };
 		8425BF2D1EE42CA6009E15A3 /* DateFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */; };
+		842CD6941F24EDE50024715B /* CastingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842CD6931F24EDE50024715B /* CastingView.swift */; };
 		842DE0E61EE9C723004084DD /* ActionButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E51EE9C723004084DD /* ActionButtonsView.swift */; };
 		842DE0E81EEA93EB004084DD /* InteractivMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E71EEA93EB004084DD /* InteractivMap.swift */; };
 		842DE0EA1EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842DE0E91EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift */; };
@@ -114,6 +115,7 @@
 		8425BF261EE2D691009E15A3 /* AutocompleteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutocompleteView.swift; sourceTree = "<group>"; };
 		8425BF2A1EE40B5B009E15A3 /* WOPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOPerson.swift; sourceTree = "<group>"; };
 		8425BF2C1EE42CA6009E15A3 /* DateFilterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterView.swift; sourceTree = "<group>"; };
+		842CD6931F24EDE50024715B /* CastingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CastingView.swift; sourceTree = "<group>"; };
 		842DE0E51EE9C723004084DD /* ActionButtonsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonsView.swift; sourceTree = "<group>"; };
 		842DE0E71EEA93EB004084DD /* InteractivMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteractivMap.swift; sourceTree = "<group>"; };
 		842DE0E91EEB46D7004084DD /* CenterCellCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CenterCellCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -278,6 +280,7 @@
 			children = (
 				84572D211EE54C4B00D8CE05 /* MovieDetails.storyboard */,
 				84572D231EE5525800D8CE05 /* MovieVC.swift */,
+				842CD6931F24EDE50024715B /* CastingView.swift */,
 			);
 			name = MovieVC;
 			sourceTree = "<group>";
@@ -681,6 +684,7 @@
 				84FA97A81EE8A9F50067F385 /* CustomsFlowLayouts.swift in Sources */,
 				842DE0EE1EEB497D004084DD /* WOMovieCinemas.swift in Sources */,
 				84FA97A41EE845FC0067F385 /* WOMemberCard.swift in Sources */,
+				842CD6941F24EDE50024715B /* CastingView.swift in Sources */,
 				848A7F4A1EE02A5300A9F88E /* NVActivityIndicatorAnimationBallPulseSync.swift in Sources */,
 				848A7F5E1EE02A5300A9F88E /* NVActivityIndicatorAnimationSemiCircleSpin.swift in Sources */,
 				848A7EFF1EE01D5700A9F88E /* MapVC.swift in Sources */,

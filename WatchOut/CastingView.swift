@@ -1,5 +1,5 @@
 //
-//  UserMoviesView.swift
+//  CastingView.swift
 //  WatchOut
 //
 //  Created by admin on 07/06/2017.
@@ -9,17 +9,13 @@
 import UIKit
 import AlamofireImage
 
-class FilmographyView: UIView {
+class CastingView: UIView {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
-    var participations = [WOPersonParticipation]() {
-        didSet {
-            collectionView.reloadData()
-        }
-    }
+    var castMembers = [WOCastMember]() { didSet { collectionView.reloadData() } }
     
-    var selectMovieAction:((WOMovie)->())?
+    var selectPersonAction:((WOPerson)->())?
     
     
     override func awakeFromNib() {
@@ -34,30 +30,29 @@ class FilmographyView: UIView {
 // MARK: - collection Data Source
 //************************************
 
-extension FilmographyView:UICollectionViewDataSource {
+extension CastingView:UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return participations.count
+        return castMembers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilmographyColCell", for: indexPath) as! FilmographyColCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CastingColCell", for: indexPath) as! CastingColCell
         
-        if let movie = participations[indexPath.item].movie {
-            if let url = movie.imageURL {
-                let filter = AspectScaledToFillSizeFilter(size: cell.picture.frame.size)
-                let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
-                cell.picture.af_setImage(withURL: url, placeholderImage: placeH, filter: filter)
-            }
-            else {
-                cell.picture.image = #imageLiteral(resourceName: "defaultMovie")
-            }
-            cell.title.text = movie.name
-            cell.activityLabel.text = "("+participations[indexPath.item].activity+")"
+        let member = castMembers[indexPath.item]
+        
+        if let url = member.person.imageURL {
+            let filter = AspectScaledToFillSizeCircleFilter(size: cell.picture.frame.size)
+            let placeH = filter.filter(#imageLiteral(resourceName: "defaultMovie"))
+            cell.picture.af_setImage(withURL: url, placeholderImage: placeH, filter: filter) 
         }
-        
-        
+        else {
+            cell.picture.image = #imageLiteral(resourceName: "defaultMovie")
+
+        }
+        cell.activityLabel.text = member.activity
+        cell.nameLabel.text = member.person.name
         
         return cell
     }
@@ -69,12 +64,12 @@ extension FilmographyView:UICollectionViewDataSource {
 //************************************
 // MARK: - collection Delegate
 //************************************
-extension FilmographyView:UICollectionViewDelegate {
+extension CastingView:UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if participations.count > 0 {
-            selectMovieAction?(participations[indexPath.item].movie)
+        if castMembers.count > 0 {
+            selectPersonAction?(castMembers[indexPath.item].person)
             
         }
         
@@ -85,12 +80,12 @@ extension FilmographyView:UICollectionViewDelegate {
 //************************************
 // MARK: - collection Flow Layout
 //************************************
-extension FilmographyView:UICollectionViewDelegateFlowLayout {
+extension CastingView:UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         var size = collectionView.frame.size
-        size.width = 100
+        size.width = 70
         return size
         
     }
@@ -98,19 +93,17 @@ extension FilmographyView:UICollectionViewDelegateFlowLayout {
     
 }
 
-
 //---------------------------------------------
 // MARK: ------------- Cell
 //---------------------------------------------
 
 
-class FilmographyColCell: UICollectionViewCell {
+class CastingColCell: UICollectionViewCell {
     
     
     @IBOutlet weak var picture: UIImageView!
-    @IBOutlet weak var title: UILabel!
     @IBOutlet weak var activityLabel: UILabel!
-    
+    @IBOutlet weak var nameLabel: UILabel!
     
     override var isHighlighted: Bool {
         
@@ -122,6 +115,5 @@ class FilmographyColCell: UICollectionViewCell {
         }
         
     }
-    
+ 
 }
-

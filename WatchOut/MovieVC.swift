@@ -36,7 +36,9 @@ class MovieVC: UIViewController {
     @IBOutlet weak var viewerRatingValue: UILabel!
     
     @IBOutlet weak var castingLabel: UILabel!
-    @IBOutlet weak var realisatorAndActorsLabel: UILabel!
+    @IBOutlet weak var castingView: CastingView!
+    
+    @IBOutlet weak var castingViewHConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var synopsisTitleLabel: UILabel!
     @IBOutlet weak var synopsisLabel: UILabel!
@@ -98,24 +100,17 @@ class MovieVC: UIViewController {
         }
         
         //******* Casting Infos
-        if let actors = movie.actors {
+        if let castMembers = movie.castMembers {
             castingLabel.text = "CASTING"
-            if let directors = movie.directors {
-                realisatorAndActorsLabel.text = "Director : " + directors.joined(separator: ", ") + "\n" + "Actors : " + actors.joined(separator: ", ")
-            }
-            else {
-                realisatorAndActorsLabel.text = "Actors : " + actors.joined(separator: ", ")
-            }
-            
-        }
-        else  if let directors = movie.directors {
-            castingLabel.text = "CASTING"
-            realisatorAndActorsLabel.text = "Director : " + directors.joined(separator: ", ")
-            
+            castingView.alpha = 1
+            castingViewHConstraint.constant = 142
+            castingView.castMembers = castMembers
+            castingView.selectPersonAction = { [weak self] person in self?.showPersonVC(person) }
         }
         else {
             castingLabel.text = ""
-            realisatorAndActorsLabel.text = ""
+            castingView.alpha = 0
+            castingViewHConstraint.constant = 0
         }
         
         //******* Synopsis
@@ -167,6 +162,16 @@ class MovieVC: UIViewController {
         
         self.navigationController?.popViewController(animated: true)
 
+    }
+    
+    func showPersonVC(_ person:WOPerson) {
+        
+        let viewController = UIStoryboard(name: "PersonDetails", bundle: nil).instantiateInitialViewController() as! PersonVC
+        
+        viewController.personID = person.uniqID
+        
+        self.navigationController?.pushViewController(viewController, animated: true)
+        
     }
 }
 

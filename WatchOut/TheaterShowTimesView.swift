@@ -12,7 +12,7 @@ import AlamofireImage
 
 class TheaterShowTimesView : UIView {
     
-    let padInsetBot:CGFloat = 0.0
+    let padInsetBot:CGFloat = 20.0
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -59,7 +59,7 @@ class TheaterShowTimesView : UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, padInsetBot, 0)
+//        tableView.contentInset = UIEdgeInsetsMake(0, 0, padInsetBot, 0)
         moviesCollectionView.setup()
         moviesCollectionView.didSelectMovieAction = { movie in
             self.didSelectMovieAction?(movie)

@@ -50,9 +50,7 @@ class SavedMovies: NSObject {
         }
         return []
     }
-    
-    
-    
+  
 }
 
 //************************************

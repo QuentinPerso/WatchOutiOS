@@ -381,7 +381,7 @@ public final class NVActivityIndicatorView: UIView {
     @IBInspectable public var padding: CGFloat = NVActivityIndicatorView.DEFAULT_PADDING
 
     /// Current status of animation, read-only.
-    @available(*, deprecated: 3.1)
+    @available(*, deprecated)
     public var animating: Bool { return isAnimating }
 
     /// Current status of animation, read-only.
@@ -473,7 +473,7 @@ public final class NVActivityIndicatorView: UIView {
 
     private final func setUpAnimation() {
         let animation: NVActivityIndicatorAnimationDelegate = type.animation()
-        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(padding, padding, padding, padding))
+        var animationRect = frame.inset(by: UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         let minEdge = min(animationRect.width, animationRect.height)
 
         layer.sublayers = nil

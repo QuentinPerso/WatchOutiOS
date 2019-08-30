@@ -46,7 +46,7 @@ extension UIFont {
         
         return NSString(string: string).boundingRect(with: CGSize(width: width, height: Double.greatestFiniteMagnitude),
                                                              options: NSStringDrawingOptions.usesLineFragmentOrigin,
-                                                             attributes: [NSFontAttributeName: self],
+                                                             attributes: [NSAttributedString.Key.font: self],
                                                              context: nil).size
     }
     

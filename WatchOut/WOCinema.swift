@@ -19,10 +19,10 @@ class WOCinema : NSObject {
     
     init(dictionary:[String : AnyObject]) {
         super.init()
-        uniqID = dictionary["code"] as! String
+        uniqID = dictionary["code"] as? String
         coordinate = extractGeoData(dictionary)
-        name = dictionary["name"] as! String
-        address = dictionary["address"] as! String
+        name = dictionary["name"] as? String
+        address = dictionary["address"] as? String
     }
     
     func extractGeoData(_ dictionary:[String : AnyObject]) -> CLLocationCoordinate2D {

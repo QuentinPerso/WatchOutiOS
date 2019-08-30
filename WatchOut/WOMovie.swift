@@ -49,8 +49,8 @@ class WOMovie : NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         
-        uniqID = aDecoder.decodeObject(forKey: "uniqID") as! Int
-        name = aDecoder.decodeObject(forKey: "name") as! String
+        uniqID = aDecoder.decodeObject(forKey: "uniqID") as? Int
+        name = aDecoder.decodeObject(forKey: "name") as? String
         duration = aDecoder.decodeObject(forKey: "duration") as? String
         directors = aDecoder.decodeObject(forKey: "directors") as? [String]
         actors = aDecoder.decodeObject(forKey: "actors") as? [String]
@@ -67,7 +67,7 @@ class WOMovie : NSObject, NSCoding {
     init(dictionary:[String : AnyObject]) {
         super.init()
 
-        uniqID = dictionary["code"] as! Int
+        uniqID = dictionary["code"] as? Int
         name = (dictionary["title"] as? String) ?? dictionary["originalTitle"] as? String
         if let secondTime = dictionary["runtime"] as? Int {
             duration = secondTime.timeFromSeconds()
@@ -135,7 +135,7 @@ class WOCastMember : NSObject{
     init(dictionary:[String : AnyObject]) {
         super.init()
         
-        activity = (dictionary["activity"] as! [String : AnyObject])["$"] as! String
+        activity = (dictionary["activity"] as! [String : AnyObject])["$"] as? String
         person = WOPerson(dictionary: dictionary["person"] as! [String : AnyObject])
         if let pictureDict = dictionary["picture"] as? [String : AnyObject], let urlStr = pictureDict["href"] as? String {
             person.imageURL = URL(string:urlStr)

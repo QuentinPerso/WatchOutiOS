@@ -36,9 +36,9 @@ class WOPerson : NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         
-        uniqID = aDecoder.decodeObject(forKey: "uniqID") as! Int
-        name = aDecoder.decodeObject(forKey: "name") as! String
-        imageURL = aDecoder.decodeObject(forKey: "imageURL") as! URL
+        uniqID = aDecoder.decodeObject(forKey: "uniqID") as? Int
+        name = aDecoder.decodeObject(forKey: "name") as? String
+        imageURL = aDecoder.decodeObject(forKey: "imageURL") as? URL
         
         super.init()
     }
@@ -46,7 +46,7 @@ class WOPerson : NSObject, NSCoding {
     init(dictionary:[String : AnyObject]) {
         super.init()
         
-        uniqID = dictionary["code"] as! Int
+        uniqID = dictionary["code"] as? Int
         if let nameDict = dictionary["name"] as? [String : AnyObject] {
             name = ""
             if let given = nameDict["given"] as? String {
@@ -57,7 +57,7 @@ class WOPerson : NSObject, NSCoding {
             }
         }
         else {
-            name = dictionary["name"] as! String
+            name = dictionary["name"] as? String
         }
         
         if let natioDict = dictionary["nationality"] as? [[String : AnyObject]] {
@@ -115,7 +115,7 @@ class WOPersonParticipation : NSObject {
             movie = WOMovie(dictionary: movieDict)
         }
         if let activDict = dictionary["activity"] as? [String : AnyObject] {
-            activity = activDict["$"] as! String
+            activity = activDict["$"] as? String
         }
         
     }

@@ -80,7 +80,7 @@ extension MKMapView {
         let latitudeDelta = -1 * (maxLat - minLat)
         
         // create and return the lat/lng span
-        let span = MKCoordinateSpanMake(latitudeDelta, longitudeDelta)
+        let span = MKCoordinateSpan(latitudeDelta: latitudeDelta, longitudeDelta: longitudeDelta)
         return span
     }
     
@@ -93,7 +93,7 @@ extension MKMapView {
         
         // use the zoom level to compute the region
         let span = coordinateSpan(self, centerCoordinate: centerCoordinate, zoomLevel: zoomLevel)
-        let region = MKCoordinateRegionMake(centerCoordinate, span)
+        let region = MKCoordinateRegion(center: centerCoordinate, span: span)
         
         // set the region like normal
         self.setRegion(region, animated: animated)

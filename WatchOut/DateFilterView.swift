@@ -24,9 +24,9 @@ class DateFilterView: UIView {
     
     var filterDate:Date?
     
-    var otherDayAction:((Void) -> (Void))?
+    var otherDayAction:(() -> (Void))?
     
-    var valueDidChangeAction:((Void) -> (Void))?
+    var valueDidChangeAction:(() -> (Void))?
     
     var showSliderAction:((_ show:Bool) -> (Void))?
     
@@ -42,11 +42,11 @@ class DateFilterView: UIView {
         slider.addTarget(self, action: #selector(self.sliderValueChanged(_:)), for: .valueChanged)
     }
     
-    func sliderValueStopped(_ sender: UISlider) {
+    @objc func sliderValueStopped(_ sender: UISlider) {
         valueDidChangeAction?()
     }
     
-    func sliderValueChanged(_ sender: UISlider) {
+    @objc func sliderValueChanged(_ sender: UISlider) {
         
         var timeString = ""
         

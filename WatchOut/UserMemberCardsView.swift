@@ -78,7 +78,7 @@ extension UserMemberCardsView:UICollectionViewDataSource {
 //************************************
 extension UserMemberCardsView:UICollectionViewDelegate {
     
-    func clickMemberCard(_ sender:UIButton) {
+    @objc func clickMemberCard(_ sender:UIButton) {
         
         sender.isSelected = !sender.isSelected
         if sender.isSelected {

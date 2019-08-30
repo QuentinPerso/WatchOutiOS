@@ -16,7 +16,7 @@ class NowAroundCollectionView: UIView {
     var movieCinemasArray = [WOMovieCinemas]()
     
     var didSelectMovieAction:((WOMovie) -> (Void))?
-    var didBeginScrollAction:((Void) -> (Void))?
+    var didBeginScrollAction:(() -> (Void))?
     var didScrollToMovieAction:((WOMovieCinemas) -> (Void))?
     
     var isScrolling = false

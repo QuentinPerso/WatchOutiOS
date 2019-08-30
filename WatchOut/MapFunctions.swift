@@ -18,7 +18,7 @@ extension MKMapView {
     func centerOn(location: CLLocation, radius:CLLocationDistance?, animated:Bool) {
         
         if radius != nil {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, radius!, radius!)
+            let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius!, longitudinalMeters: radius!)
             self.setRegion(coordinateRegion, animated: animated)
         }
         else {
@@ -33,7 +33,7 @@ extension MKMapView {
     func centerOn(coord: CLLocationCoordinate2D, radius:CLLocationDistance?, animated:Bool) {
         
         if radius != nil {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(coord, radius!, radius!)
+            let coordinateRegion = MKCoordinateRegion(center: coord, latitudinalMeters: radius!, longitudinalMeters: radius!)
             self.setRegion(coordinateRegion, animated: animated)
         }
         else {
@@ -58,8 +58,8 @@ class MapFunctions: NSObject {
         let location = CLLocation(latitude: Double(point.x), longitude: Double(point.y))
         
         if radius != nil {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, radius!, radius!)
-            MKMapView.animate(withDuration: 0.15, delay: 0, options: UIViewAnimationOptions.curveEaseOut, animations: {
+            let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius!, longitudinalMeters: radius!)
+            MKMapView.animate(withDuration: 0.15, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
                 map.setRegion(coordinateRegion, animated: false)
             }, completion: nil)
 //            map.setRegion(coordinateRegion, animated: animated)
@@ -80,7 +80,7 @@ class MapFunctions: NSObject {
         let location = CLLocation(latitude:lat, longitude: long)
         
         if radius != nil {
-            let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, radius!, radius!)
+            let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: radius!, longitudinalMeters: radius!)
             map.setRegion(coordinateRegion, animated: animated)
         }
         else {
@@ -125,13 +125,13 @@ class MapFunctions: NSObject {
     
     static func mapRectThatFitsBounds(sw:CLLocationCoordinate2D, ne:CLLocationCoordinate2D) -> MKMapRect{
         
-        let swPoint = MKMapPointForCoordinate(sw)
+        let swPoint = MKMapPoint(sw)
         let swRect = MKMapRect(origin: swPoint, size: MKMapSize(width: 0, height: 0))
         
-        let nePoint = MKMapPointForCoordinate(ne)
+        let nePoint = MKMapPoint(ne)
         let neRect = MKMapRect(origin: nePoint, size: MKMapSize(width: 0, height: 0))
         
-        return MKMapRectUnion(swRect, neRect)
+        return swRect.union(neRect)
     }
     
     static func isCoordInViewPort(coord:CLLocationCoordinate2D, sw:CLLocationCoordinate2D?,ne:CLLocationCoordinate2D?) -> Bool {
@@ -140,9 +140,9 @@ class MapFunctions: NSObject {
         
         let rect = mapRectThatFitsBounds(sw: sw!, ne: ne!)
         
-        let point = MKMapPointForCoordinate(coord)
+        let point = MKMapPoint(coord)
         
-        return MKMapRectContainsPoint(rect, point)
+        return rect.contains(point)
         
     }
     
@@ -150,28 +150,28 @@ class MapFunctions: NSObject {
         
         if rect.count != 4 { return false }
         
-        let point0 = MKMapPointForCoordinate(rect[0])
+        let point0 = MKMapPoint(rect[0])
         let rect0 = MKMapRect(origin: point0, size: MKMapSize(width: 0, height: 0))
         
-        let point1 = MKMapPointForCoordinate(rect[1])
+        let point1 = MKMapPoint(rect[1])
         let rect1 = MKMapRect(origin: point1, size: MKMapSize(width: 0, height: 0))
         
-        let rectU1 = MKMapRectUnion(rect0, rect1)
+        let rectU1 = rect0.union(rect1)
         
         
-        let point2 = MKMapPointForCoordinate(rect[2])
+        let point2 = MKMapPoint(rect[2])
         let rect2 = MKMapRect(origin: point2, size: MKMapSize(width: 0, height: 0))
         
-        let point3 = MKMapPointForCoordinate(rect[3])
+        let point3 = MKMapPoint(rect[3])
         let rect3 = MKMapRect(origin: point3, size: MKMapSize(width: 0, height: 0))
         
-        let rectU2 = MKMapRectUnion(rect2, rect3)
+        let rectU2 = rect2.union(rect3)
         
-        let rectU = MKMapRectUnion(rectU1, rectU2)
+        let rectU = rectU1.union(rectU2)
         
-        let point = MKMapPointForCoordinate(coord)
+        let point = MKMapPoint(coord)
         
-        return MKMapRectContainsPoint(rectU, point)
+        return rectU.contains(point)
         
     }
     

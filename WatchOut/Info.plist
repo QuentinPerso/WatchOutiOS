@@ -20,6 +20,17 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>uber</string>
+		<string>yandexnavi</string>
+		<string>citymapper</string>
+		<string>comgooglemaps</string>
+		<string>waze</string>
+		<string>transit</string>
+		<string>navigon</string>
+		<string>whatsapp</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -51,17 +62,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>uber</string>
-		<string>yandexnavi</string>
-		<string>citymapper</string>
-		<string>comgooglemaps</string>
-		<string>waze</string>
-		<string>transit</string>
-		<string>navigon</string>
-		<string>whatsapp</string>
 	</array>
 </dict>
 </plist>

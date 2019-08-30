@@ -21,6 +21,8 @@ class LocationManager: NSObject{
             return false
         case .authorizedAlways, .authorizedWhenInUse:
             return true
+        @unknown default:
+            return false
         }
     }
     
@@ -191,6 +193,8 @@ extension LocationManager:CLLocationManagerDelegate {
             locationAlwaysGranted?()
         case .authorizedWhenInUse:
             locationInUseGranted?()
+        @unknown default:
+            break
         }
         
         

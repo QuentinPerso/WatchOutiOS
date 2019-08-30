@@ -28,8 +28,8 @@ class CollectionPopup: UIView, UICollectionViewDataSource, UICollectionViewDeleg
     @IBOutlet weak var leftButton: UIButton!
     
     
-    var leftAction:((Void) -> (Void))?
-    var rightAction:((Void) -> (Void))?
+    var leftAction:(() -> (Void))?
+    var rightAction:(() -> (Void))?
     
     var actions = [PopupAction]() {
         didSet {

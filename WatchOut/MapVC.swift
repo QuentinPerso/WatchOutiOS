@@ -38,7 +38,7 @@ class MapVC: UIViewController {
     var searchedObject:AnyObject?
     
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     override func viewDidLoad() {
@@ -78,11 +78,11 @@ class MapVC: UIViewController {
         mapView.layoutMargins.bottom = botViewHConstraint.constant - 30 + actionsBtnView.frame.size.height
 
         //- 30 for shadow and bot anim // - 64 for auto adjust scroll .....
-        mapView.layoutMargins = UIEdgeInsetsMake(topBarView.frame.size.height - 64, 0, mapView.layoutMargins.bottom, 0)
+        mapView.layoutMargins = UIEdgeInsets(top: topBarView.frame.size.height - 64, left: 0, bottom: mapView.layoutMargins.bottom, right: 0)
 
         
-        view.bringSubview(toFront: autocompleteView)
-        view.bringSubview(toFront: topBarView)
+        view.bringSubviewToFront(autocompleteView)
+        view.bringSubviewToFront(topBarView)
 
         //style()
         
@@ -249,7 +249,7 @@ extension MapVC {
     }
     
     func setupKeyboard() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: .UIKeyboardWillChangeFrame, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillChange(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     
@@ -397,7 +397,7 @@ extension MapVC {
             mapView?.centerOn(coord: coord, radius: MapFunctions.defaultRegionRadius, animated: true)
         }
         else {
-            UIApplication.shared.openURL(URL(string: UIApplicationOpenSettingsURLString)!)
+            UIApplication.shared.openURL(URL(string: UIApplication.openSettingsURLString)!)
         }
         
     }
@@ -533,9 +533,9 @@ extension MapVC{
 
 extension MapVC {
     
-    func keyboardWillChange(notification:NSNotification) {
+    @objc func keyboardWillChange(notification:NSNotification) {
         
-        let frameEnd = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let frameEnd = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         
         let convRect = self.view.convert(frameEnd!, from: nil)
         let yOffset = self.view.bounds.size.height - convRect.origin.y

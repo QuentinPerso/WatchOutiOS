@@ -44,8 +44,8 @@ class SearchBarView: UIView {
                 glassIconView.tintColor = UIColor.white
             }
             
-            let buttonAttribute = [NSForegroundColorAttributeName : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
-                                   NSFontAttributeName : UIFont.woFont(size: 13, weight: .demibold)] as [String : Any]
+            let buttonAttribute = [NSAttributedString.Key.foregroundColor : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+                                   NSAttributedString.Key.font : UIFont.woFont(size: 13, weight: .demibold)] as [NSAttributedString.Key : Any]
             
             UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(buttonAttribute, for: .normal)
             
@@ -59,8 +59,8 @@ class SearchBarView: UIView {
             textField.font = UIFont.woFont(size: 16)
             
             
-            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .normal)
-            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBarIcon.clear, state: .highlighted)
+            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBar.Icon.clear, state: .normal)
+            searchBar.setImage(#imageLiteral(resourceName: "crossSearch"), for: UISearchBar.Icon.clear, state: .highlighted)
             
         }
         searchBar.keyboardAppearance = .dark

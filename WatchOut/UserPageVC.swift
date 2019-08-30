@@ -60,7 +60,7 @@ class UserPageVC: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        self.view.bringSubview(toFront: topGradient)
+        self.view.bringSubviewToFront(topGradient)
         
     }
     

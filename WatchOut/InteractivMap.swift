@@ -68,7 +68,7 @@ class InteractivMap: MKMapView {
 //************************************
 extension InteractivMap : UIGestureRecognizerDelegate {
 
-    func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
+    @objc func didDragMap(_ gestureRecognizer:UIGestureRecognizer){
         
         if gestureRecognizer.state == .began {
             if gestureRecognizer.numberOfTouches == 1{

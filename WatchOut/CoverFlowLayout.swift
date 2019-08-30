@@ -157,7 +157,7 @@ extension CoverFlowLayout {
         let maxRads = degreesToRad(maxCoverDegree)
         let center = itemCenter(for: row + 1).x
         let nextItemLeftEdge = center - halfWidth
-        let projectedRightEdgeLocal = fabs(halfWidth * cos(maxRads) * CoverFlowLayout.kDistanceToProjectionPlane / (-halfWidth * sin(maxRads) - CoverFlowLayout.kDistanceToProjectionPlane))
+        let projectedRightEdgeLocal = abs(halfWidth * cos(maxRads) * CoverFlowLayout.kDistanceToProjectionPlane / (-halfWidth * sin(maxRads) - CoverFlowLayout.kDistanceToProjectionPlane))
         
         return nextItemLeftEdge + self.coverDensity * self.itemSize.width - projectedRightEdgeLocal;
     }

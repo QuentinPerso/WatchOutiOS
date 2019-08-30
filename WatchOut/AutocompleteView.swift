@@ -51,8 +51,8 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
     
     func updateLayout(topBarHeight:CGFloat) {
         
-        tableView.contentInset = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
-        tableView.scrollIndicatorInsets = UIEdgeInsetsMake(topBarHeight + 8, 0, 0, tableView.contentInset.bottom)
+        tableView.contentInset = UIEdgeInsets(top: topBarHeight + 8, left: 0, bottom: 0, right: tableView.contentInset.bottom)
+        tableView.scrollIndicatorInsets = UIEdgeInsets(top: topBarHeight + 8, left: 0, bottom: 0, right: tableView.contentInset.bottom)
         
     }
     
@@ -134,7 +134,7 @@ class AutocompleteView: UIView, UITableViewDataSource, UITableViewDelegate {
     // MARK: - Table view Delegate
     //************************************
     
-    func clickDetailButton(_ sender:UIButton) {
+    @objc func clickDetailButton(_ sender:UIButton) {
         
         didClickDetailsSuggestion?(autocompletes[sender.tag])
         

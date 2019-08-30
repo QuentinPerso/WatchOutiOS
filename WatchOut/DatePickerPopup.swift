@@ -21,7 +21,7 @@ class DatePickerPopup: UIView {
     @IBOutlet weak var okButton: UIButton!
     
     
-    var okAction:((Void) -> (Void))?
+    var okAction:(() -> (Void))?
 
 
     

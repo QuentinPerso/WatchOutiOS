@@ -29,8 +29,8 @@ class WOMemberCard : NSObject, NSCoding {
     
     required init?(coder aDecoder: NSCoder) {
         
-        uniqID = aDecoder.decodeObject(forKey: "uniqID") as! Int
-        label = aDecoder.decodeObject(forKey: "label") as! String
+        uniqID = aDecoder.decodeObject(forKey: "uniqID") as? Int
+        label = aDecoder.decodeObject(forKey: "label") as? String
     
         super.init()
     }
@@ -38,8 +38,8 @@ class WOMemberCard : NSObject, NSCoding {
     init(dictionary:[String : AnyObject]) {
         super.init()
 
-        uniqID = dictionary["code"] as! Int
-        label = dictionary["label"] as! String
+        uniqID = dictionary["code"] as? Int
+        label = dictionary["label"] as? String
         
     }
     

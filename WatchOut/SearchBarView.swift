@@ -54,7 +54,7 @@ class SearchBarView: UIView {
             
             textField.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726)
             textField.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.1508989726).cgColor
-            textField.layer.cornerRadius = 2
+            textField.layer.cornerRadius = 12
             textField.clipsToBounds = true
             textField.font = UIFont.woFont(size: 16)
             

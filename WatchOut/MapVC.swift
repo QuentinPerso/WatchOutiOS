@@ -72,10 +72,9 @@ class MapVC: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        
-        autocompleteView.updateLayout(topBarHeight: topBarView.frame.size.height)
+        autocompleteView.updateLayout(topBarHeight: topBarView.frame.size.height - self.topLayoutGuide.length)
 
-        mapView.layoutMargins.bottom = botViewHConstraint.constant - 30 + actionsBtnView.frame.size.height
+        mapView.layoutMargins.bottom = botViewHConstraint.constant - 94 - self.bottomLayoutGuide.length + actionsBtnView.frame.size.height
 
         //- 30 for shadow and bot anim // - 64 for auto adjust scroll .....
         mapView.layoutMargins = UIEdgeInsets(top: topBarView.frame.size.height - 64, left: 0, bottom: mapView.layoutMargins.bottom, right: 0)

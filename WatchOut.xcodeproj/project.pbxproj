@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		66031FB02307A41600207F94 /* mapstogpx20190817_025432.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 66031FAF2307A41600207F94 /* mapstogpx20190817_025432.gpx */; };
 		7316B48AD8371A4D15F9C693 /* Pods_WatchOut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */; };
 		8405CB991EE2ADE7005B373E /* WOTheaterShowTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */; };
 		8405CB9B1EE2BB83005B373E /* CinemaAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405CB9A1EE2BB83005B373E /* CinemaAnnotationView.swift */; };
@@ -110,7 +109,6 @@
 
 /* Begin PBXFileReference section */
 		64E534BBEE4A33E8AEBDD4D3 /* Pods_WatchOut.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WatchOut.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		66031FAF2307A41600207F94 /* mapstogpx20190817_025432.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = mapstogpx20190817_025432.gpx; sourceTree = "<group>"; };
 		8405CB981EE2ADE7005B373E /* WOTheaterShowTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WOTheaterShowTime.swift; sourceTree = "<group>"; };
 		8405CB9A1EE2BB83005B373E /* CinemaAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CinemaAnnotationView.swift; sourceTree = "<group>"; };
 		8405CB9D1EE2BB8F005B373E /* TheaterShowTimesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TheaterShowTimesView.swift; sourceTree = "<group>"; };
@@ -426,7 +424,6 @@
 		848A7F661EE02A6200A9F88E /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				66031FAF2307A41600207F94 /* mapstogpx20190817_025432.gpx */,
 				848A7F051EE01D5700A9F88E /* LaunchScreen.storyboard */,
 				848A7F081EE01D5700A9F88E /* Info.plist */,
 			);
@@ -573,7 +570,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FA97B71EE9B60F0067F385 /* CollectionPopupCell.xib in Resources */,
-				66031FB02307A41600207F94 /* mapstogpx20190817_025432.gpx in Resources */,
 				84572D1E1EE4C28500D8CE05 /* DatePickerPopup.xib in Resources */,
 				84572D221EE54C4B00D8CE05 /* MovieDetails.storyboard in Resources */,
 				84FA979F1EE80A9B0067F385 /* UserPage.storyboard in Resources */,
